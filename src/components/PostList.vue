@@ -5,8 +5,8 @@
         <div>
           <div class="post">{{$t("PostlistVue.Postlist")}}</div>
           <!-- .slice(0,limitPerPage) -->
-          <div  v-for="post in paginatedPosts" :key="post.id">
-            <router-link v-if="typeof paginatedPosts!==undefined" :to="{ name : 'Id', params: {id: post.id}}">
+          <div  v-for="post in displayedPosts" :key="post.id">
+            <router-link  :to="{ name : 'Id', params: {id: post.id}}">
               {{post.title}}
             </router-link>
             
@@ -14,17 +14,32 @@
         </div>
       </div>
     </div>
-    <div class="text-center" style="margin-top:10px">
-      <!-- <v-pagination 
-        color="green"
-        v-model="pageNumber"
-        circle
-        :length="pagesCount-1"
-        @next="next"
-        @previous="previous"
-      ></v-pagination> -->
-      
-    </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <button type="button" 
+            class="page-link" 
+            style="color:#4CAF50" 
+            v-if="page != 1" @click="page--"> Previous 
+          </button>
+        </li>
+        <li class="page-item">
+          <button type="button" 
+            class="page-link"  
+            v-for="pageNumber in pages.slice(page-1, page+5)" 
+            :key="pageNumber" 
+            @click="page = pageNumber"> {{pageNumber}} 
+          </button>
+        </li>
+        <li class="page-item">
+          <button type="button" 
+            @click="page++" 
+            style="color:#4CAF50"
+            v-if="page < pages.length" class="page-link"> Next 
+          </button>
+        </li>
+      </ul>
+    </nav>
     
   </div>
 </template>
@@ -37,33 +52,46 @@ export default {
   data(){
     return  {
      path:'posts',
-     post:[],
-     pageNumber:+this.$route.query.pageNumber || 1,
-     postsPerPage:10
+     posts:[],
+     page: 1,
+     perPage:10,
+     pages:[],
      }
   },
   methods:{
-    next(){
-      this.pageNumber+1;
-      },
-    
-    previous(){
-      this.pageNumber-1;
-      },
-  },
-  computed:{
-    pagesCount(){
-      let lenght = this.post.length,
-      size = this.postsPerPage;
-      return Math.ceil(lenght/size);
+    setPages () {
+      let numberOfPages = Math.ceil(this.posts.length / this.perPage);
+      for (let index = 1; index <= numberOfPages; index++) {
+        this.pages.push(index);
+      }
     },
-    paginatedPosts(){
-      const start = this.pageNumber * this.postsPerPage;
-      const end = start + this.postsPerPage;
-      
-      return this.post.slice(start, end)
+    paginate (posts) {
+      let page = this.page;
+      let perPage = this.perPage;
+      let from = (page * perPage) - perPage;
+      let to = (page * perPage);
+      return  posts.slice(from, to);
     }
   },
+  computed: {
+    displayedPosts () {
+      return this.paginate(this.posts);
+    }
+  },
+  watch: {
+    posts () {
+      this.setPages();
+    }
+  },
+  // created(){
+  //   this.getPosts();
+  // },
+  filters: {
+    trimWords(value){
+      return value.split(" ").splice(0,20).join(" ") + '...';
+    }
+  }
+  
 }
 </script>
 <style scoped>
@@ -80,4 +108,29 @@ export default {
   a{
     color:black;
   }
+
+  button.page-link {
+  display: inline-block;
+  }
+  button.page-link {
+      font-size: 15px;
+      color: #0b34caba;
+      font-weight: 500;
+      padding: 0.2rem 0.5rem;
+      border: 1px dotted;
+      border-radius:2px;
+  }
+
+  .offset{
+    width: 500px !important;
+    margin: 20px auto;  
+  }
+
+  .pagination{
+    align-items: center;
+    justify-content: center;
+    padding-left: 0;
+  }
+
+  
 </style>
