@@ -54,8 +54,9 @@
 
 <script>
 import { UserStore } from '@/stores/UserStore';
-import { email, required, minLength } from '@vuelidate/validators'
+import { email, required, minLength } from '@vuelidate/validators';
 import useVuelidate from '@vuelidate/core';
+
 export default {
     name: 'signin-component',
     setup(){
@@ -80,27 +81,25 @@ export default {
     },
     emits: ['showUser', 'back'],
     methods:{
-      
-    async signIn(){
-      if(this.v$.$invalid){
-                this.v$.$touch()
-                return
-            }
-      const isFormCorrect = await this.v$.$validate()
-      if(!isFormCorrect) return
-      const formData = {
-        email: this.email,
-        password: this.password,
+      async signIn(){
+        if(this.v$.$invalid){
+                  this.v$.$touch()
+                  return
+              }
+        const isFormCorrect = await this.v$.$validate()
+        if(!isFormCorrect) return
+        const formData = {
+          email: this.email,
+          password: this.password,
+        }
+        try {
+          this.mainStore.signIn(formData)
+          this.$emit('showUser')
+        } catch (e) {
+          console.log(e)
+        }
+      }  
       }
-      try {
-        this.mainStore.signIn(formData)
-        this.$emit('showUser')
-        
-      } catch (e) {
-        console.log(e)
-      }
-    }  
-    }
         
     
 }

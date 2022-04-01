@@ -125,22 +125,14 @@
             
           </div>
         </div>
-        
-    
-        
-        
-        <div class="footer">
-            <Footer/>
-        </div>
+          
   </div>
 </template>
 
 <script>
-import Footer from '@/components/Footer.vue'
 
 export default ({
     name: 'cv-component',
-    components:{ Footer },
     data:()=> ({
         contacts:[
         {icon:'bi bi-arrow-down-right-circle', description:'Kharkiv, Ukraine'},

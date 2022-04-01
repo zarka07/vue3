@@ -6,7 +6,7 @@
              <component 
               @sign-in="signIn" 
               @back="back"
-              @showUser="$emit('showUser')" 
+              @showUser="toUser" 
               v-if="selected" 
               :is="selected">
             </component>
@@ -24,7 +24,7 @@
 
 import SignUp from '@/components/SignUp.vue';
 import SignIn from '@/components/SignIn.vue';
-import axios from 'axios'
+//import axios from 'axios'
 export default{
   components: { 'signup': SignUp , 'signin': SignIn },
     name: 'AuthorizationItem',
@@ -52,12 +52,15 @@ export default{
               this.selected = 'signin'
             }
        },
+       toUser(){
+          this.$router.push('/user')
+        }
     },
-    created() {
-    axios.get('/articles.json').then(response => {
-      this.articles = response.data.articles;
-    });
-  }
+    // created() {
+    // axios.get('/articles.json').then(response => {
+    //   this.articles = response.data.articles;
+    // });
+  //}
 }
 </script>
 <style>

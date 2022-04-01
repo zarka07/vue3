@@ -1,9 +1,12 @@
 <template>
   <div >
-    <router-view @showUser="toUser">
-      <div v-if="!store.email"><AuthorizationItem/></div>
-      <div v-else><UserItem/></div>
-    </router-view>
+    <div v-if="showLoader">
+      <Loader/>
+    </div>
+    <div>
+      <router-view></router-view>
+    </div>
+    
   </div>
   
 
@@ -12,23 +15,37 @@
 <script>
 
 import { UserStore } from '@/stores/UserStore';
-import AuthorizationItem from '@/views/Authorization.vue';
-import UserItem from '@/views/User.vue'
+import { LoaderStore } from '@/stores/LoaderStore';
+import Loader from '@/components/Loader.vue';
+//import AuthorizationItem from '@/views/Authorization.vue';
+//import UserItem from '@/views/User.vue'
 export default {
   name: 'App',
   components: {
-    AuthorizationItem, UserItem,
+    Loader
+    //AuthorizationItem, UserItem,
   },
   setup(){
+    
     const store = UserStore()
+    const loader = LoaderStore()
     return{
-      store
+      store,
+      loader
     }
   },
   methods:{
     toUser(){
       this.$router.push('/user')
     }
+  },
+  computed:{
+    showLoader() {
+        return this.loader.loading;
+      },
+      // showError(){
+      //   return this.$store.state.error.statusCode
+      // }
   }
   
 }
@@ -41,6 +58,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #050505;
- 
 }
+
+.loader {
+  
+}
+
 </style>

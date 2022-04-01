@@ -1,61 +1,37 @@
 <template>
-    <div class="user-main">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid d-flex bd-highlight "
-            style="flex-wrap: wrap">
-            <div class="col-xs-2 p-2 flex-grow-1 bd-highlight">
-                <img src="vue-10-10.png" id="brand" alt="brand" style="float:left"/>
-            </div>
-            
-            <div class="col-xs-6 p-2 bd-highlight ">
-                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                    <button type="button" class="btn btn-danger">Project 1</button>
-                    <button type="button" class="btn btn-warning">Project 2</button>
-                    <button type="button" class="btn btn-success">Project 3</button>
-                    <button type="button" class="btn btn-primary">Project 4</button>
-                </div>  
-            </div>
-
-            <div class="col-xs-2 p-2 bd-highlight ">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-
-            <div class="col-xs-2 p-2 bd-highlight collapse navbar-collapse" id="navbarSupportedContent">
-                <ul style="" class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown" >
-                        
-                        <a style="color: black" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         <img src="settings.png" 
-                         id="vue" 
-                         alt="brand" 
-                         style="width:20px;height:20px;margin-right:5px"/>
-                         Hello, {{email}}
-                        </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" style="text-align:center;color: blue" @click="logout" href="#">Logout</a></li>
-                    </ul>
-                    </li>
-                </ul>
+    <div>
+        <Header/>
+        <div class="container">
+            <div class="row">
+                <div class="userinfo col-md-12">
+                    <p>You are successfully logged with user info:</p>
+                    <p v-if="username">username: {{username}}</p>
+                    <p>email: {{email}}</p>
+                    <p>password: {{password}}</p>
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button 
+                            class="btn btn-primary" 
+                            style="margin-top: 1em"
+                            type="button"
+                            @click="logout">Logout</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
-    <div id="cv">
-        <CV/>
-    </div>
+        
+        
+        <Footer/>
     </div>
 </template>
 
 <script>
-import { UserStore } from '@/stores/UserStore';
-import CV from '@/components/CV.vue'
 
+import { UserStore } from '@/stores/UserStore';
+import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
 export default {
-    name: 'UserItem',
-    components:{
-       CV
-    },
+    name: 'user-item',
+    components: { Header, Footer},
     setup() {
         const mainStore = UserStore();
        
@@ -66,26 +42,23 @@ export default {
     },
     data() {
         return{
-           email: this.mainStore.email
+           email: this.mainStore.email,
+           password: this.mainStore.password,
+           username: this.mainStore.username
         }
     },
     methods:{
       logout(){
         this.mainStore.resetUser()
         this.$router.push('/')
-    }
-  },
+        }
+    },
 }
 </script>
+
 <style scoped>
-    .mxauto{
-        position: absolute;
-        left: 55%;
-        transform: translateX(-45%);
-    }
-    #settings{
-        margin-top:10px;
-    }
-    .user-main{
+    .userinfo{
+        height:63vh;
+        text-align: center;
     }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-md-12 footer" style="padding:0">
+        <div class="col-md-12 footer" style="padding:0; margin-left: -12px; margin-right: -12px;">
             <div class="bg-dark text-center text-white ">
               <div class="container p-2 pb-0">
                 <section class="mb-2">

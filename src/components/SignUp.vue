@@ -66,12 +66,14 @@
                                     <label class="form-check-label">I confirm that all data are correct</label>
                                 </div>
                             </div>
+
                             <div class="form-button mt-3">
                                 <button type="submit" 
                                     @click.prevent="signUp" 
                                     class="btn btn-success">Sign Up
                                 </button>
                             </div>
+
                             <div class="form-button mt-3 account">
                                 Already have an account?
                                 <button type="submit" 
@@ -88,9 +90,9 @@
 </template>
 
 <script>
-import { UserStore } from '@/stores/UserStore'
-import { email, required, minLength } from '@vuelidate/validators'
-import useVuelidate from '@vuelidate/core'
+import { UserStore } from '@/stores/UserStore';
+import { email, required, minLength } from '@vuelidate/validators';
+import useVuelidate from '@vuelidate/core';
 export default {
     name: 'signup-component',
     setup(){
@@ -133,6 +135,7 @@ export default {
             try {
                 this.mainStore.addUser(formData)
                 this.$emit('showUser')
+                console.log('show user')
             } catch (e) {
                 console.log(e)
             }
