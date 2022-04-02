@@ -4,7 +4,7 @@
         <div class="main">
             <div class="Header row" style="margin:0">
                 <div class="title col-xs-12 col-sm-6 col-md-6">
-                    <h3>{{$t("AppVue.Vue")}}</h3>
+                    <h2>{{$t("AppVue.Vue")}}</h2>
                 </div>
                 
                 <div class="dropdown col-xs-12 col-sm-6 col-md-6">
@@ -61,7 +61,7 @@ export default {
     .title{
         text-align: center;
         /* padding-top:5px; */
-        color:#FFF;
+        color:#ffc107;
     }
 
     .dropdown{

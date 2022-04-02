@@ -15,15 +15,16 @@ const messages = {
           "Vue": "Vue pet project"
       },
       "PostlistVue": {
-          "Postlist": "Post list",
-          "NextItems": "Next 20 items >"
+          "Postlist": "Post list from jsonplaceholder",
+          "Next": "Next >",
+          "Previous": "< Previous",
       },
       "PostVue": {
-          "Post": "Post #",
+          "Post": "post #",
           "Id": "Id",
           "Title": "Title",
           "Body": "Body",
-          "Comments": "Comments",
+          "Comments": "Comments for ",
           "Name": "Name",
           "Email": "Email",
           "Comment":"Comment",
@@ -58,15 +59,16 @@ const messages = {
           "Vue": "Vue учебный проект"
       },
       "PostlistVue": {
-          "Postlist": "Список публикаций",
-          "NextItems": "Следующие 20 записей >"
+          "Postlist": "Список публикаций взят с сайта jsonplaceholder",
+          "Next": "Вперед >",
+          "Previous": "< Назад",
       },
       "PostVue": {
-          "Post": "Публикация #",
+          "Post": "публикации #",
           "Id": "Номер публикации",
           "Title": "Заголовок",
           "Body": "Содержание",
-          "Comments": "Комментарии",
+          "Comments": "Комментарии к",
           "Name": "Имя",
           "Email": "Почта",
           "Comment":"Комментарий",

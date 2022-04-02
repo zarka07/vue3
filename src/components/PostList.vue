@@ -3,24 +3,26 @@
     <div>
       <div>
         <div>
-          <div class="post">{{$t("PostlistVue.Postlist")}}</div>
+          <div class="posts"><h3>{{$t("PostlistVue.Postlist")}}</h3></div>
           <!-- .slice(0,limitPerPage) -->
-          <div  v-for="post in displayedPosts" :key="post.id">
-            <router-link  :to="{ name : 'Id', params: {id: post.id}}">
-              {{post.title}}
-            </router-link>
-            
-            </div>
+          <ul class="post" style="list-style: none">
+            <li  v-for="post in displayedPosts" :key="post.id">
+              <router-link  :to="{ name : 'Id', params: {id: post.id}}">
+                {{post.id}}. {{post.title}}
+              </router-link>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
+
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item">
           <button type="button" 
             class="page-link" 
             style="color:#4CAF50" 
-            v-if="page != 1" @click="page--"> Previous 
+            v-if="page != 1" @click="page--"> {{$t("PostlistVue.Previous")}} 
           </button>
         </li>
         <li class="page-item">
@@ -35,7 +37,7 @@
           <button type="button" 
             @click="page++" 
             style="color:#4CAF50"
-            v-if="page < pages.length" class="page-link"> Next 
+            v-if="page < pages.length" class="page-link">{{$t("PostlistVue.Next")}} 
           </button>
         </li>
       </ul>
@@ -95,6 +97,15 @@ export default {
 }
 </script>
 <style scoped>
+  .post{
+    margin-left:2em;
+  }
+
+  h3{
+    text-align: center;
+    color: black;
+  }
+
   span{
     margin:15px;
   }

@@ -10,25 +10,25 @@
             Aliquid fugiat eum incidunt magni consequatur, neque officiis quibusdam odio maiores a praesentium beatae reiciendis architecto eveniet sed ut, vel animi doloremque cum dignissimos maxime deleniti pariatur. Nobis, illum deleniti!
             Minus expedita et, voluptatem doloremque pariatur repudiandae fugiat quibusdam maxime ipsa cumque tempore commodi repellendus recusandae odio eum animi? Odit in libero incidunt itaque. Recusandae iure magni reprehenderit et odio.
         </div>
-        <div class="btn">
-        <button class="btn danger"
-            @click="closeAgreement"
-            color="pink"
-            >{{$t('Agreement.NotAgree')}}
-        </button>
-        <button class="btn sucsess" 
-            :disabled="!isReaded"
-            color="green"
-            @click="showPost"
-            >{{$t('Agreement.Agree')}}
-        </button>
-        </div>
-        
 
+        <div class="d-grid gap-2 col-4 mx-auto mt-2">
+            <button class="btn btn-danger" 
+                type="button"
+                @click="closeAgreement"
+                >{{$t('Agreement.NotAgree')}}
+            </button>
+            <button 
+                class="btn btn-success" 
+                type="button"
+                :disabled="!isReaded"
+                @click="showPost"
+                >{{$t('Agreement.Agree')}}
+            </button>
+        </div>
     </div>
 </template>
 <script>
-
+import { ModalStore } from '@/stores/ModalStore';
 export default ({
     name: 'agreement-component',
     data(){
@@ -37,15 +37,21 @@ export default ({
         }
         
     },
+    setup(){
+        const modalStore = ModalStore();
+        return{
+          modalStore,
+        }
+    },
     methods:{
         closeAgreement(){
-            this.$store.dispatch("modal/hideModal");
+            this.modalStore.showModal(false)
             this.$router.push({name:'PostList'})
         },
         showPost(){
             let answer = this.$t('Agreement.Molodec')
             alert(answer+'!')
-            this.$store.dispatch("modal/hideModal");
+            this.modalStore.showModal(false)
         },
         onBodyScroll(){
             const modal = this.$refs.modal;
@@ -65,8 +71,8 @@ export default ({
         text-align: center;
     }
     .btn{
-        margin-top:15px;
-        margin-left:35%;
+        
+        margin-bottom: 15px;
     }
     .v-btn{
         margin:5px;
