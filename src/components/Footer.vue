@@ -6,9 +6,9 @@
                 <section class="mb-2">
                   <a class="btn btn-outline-light btn-floating m-1" href="google.com" role="button"
                     ><i class="bi bi-google"></i></a>
-                  <a class="btn btn-outline-light btn-floating m-1" href="instagram.com" role="button"
-                    ><i class="bi bi-instagram"></i></a>
-                  <a class="btn btn-outline-light btn-floating m-1" href="www.linkedin.com/in/сергей-тарасов-63ba90203/" role="button"
+                  <a class="btn btn-outline-light btn-floating m-1" href="tg://resolve?domain=zarka07" role="button"
+                    ><i class="bi bi-send"></i></a>
+                  <a class="btn btn-outline-light btn-floating m-1" href="www.linkedin.com/in/serhii-tarasov/" role="button"
                     ><i class="bi bi-linkedin"></i></a>
                   <a class="btn btn-outline-light btn-floating m-1" href="github.com/zarka07" role="button"
                     ><i class="bi bi-github"></i></a>

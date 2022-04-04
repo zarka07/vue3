@@ -29,7 +29,7 @@
 <script>
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
-import PostList from '@/components/PostList.vue';
+import PostList from '@/components/Project2/PostList.vue';
 
 export default {
     name: 'project2-component',

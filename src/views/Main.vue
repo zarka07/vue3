@@ -9,7 +9,7 @@
 <script>
 import { UserStore } from '@/stores/UserStore';
 import Header from '@/components/Header.vue';
-import CV from '@/components/CV.vue';
+import CV from '@/components/Project1/CV.vue';
 import Footer from '@/components/Footer.vue';
 
 export default {

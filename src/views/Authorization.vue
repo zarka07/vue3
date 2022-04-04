@@ -22,8 +22,8 @@
 <script>
 //import { storeToRefs } from 'pinia'
 
-import SignUp from '@/components/SignUp.vue';
-import SignIn from '@/components/SignIn.vue';
+import SignUp from '@/components/Project1/SignUp.vue';
+import SignIn from '@/components/Project1/SignIn.vue';
 //import axios from 'axios'
 export default{
   components: { 'signup': SignUp , 'signin': SignIn },

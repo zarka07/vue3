@@ -90,15 +90,18 @@
                   <b>6 month of commercial experience;</b>
                 </h6>
                 <p>
-                    maintenance and upgrading existing app;
+                  using Vue2, Vuex, router, RestAPI, Vant, Wrld.js, i18n;
+                </p>
+                <p>
+                  maintenance and upgrading existing app;
                 </p>
                 <p>
                   creating a new application from a template;
                 </p>
                 <h6><b>Creating web-site</b></h6>
                 <p>for car-repair self-service using HTML+CSS, hosting in web;</p>
-                <h6><b>Creating small web-store</b></h6>
-                <p>using Vue 2, axios, router </p>
+                <h6><b>Creating pet projects</b></h6>
+                <p>using Vue 2,3, router, axios, Vuetify, Quasar, pinia, bootstrap5 </p>
                 <h6><b>Creating hospital database</b></h6>
                 <p>using MSSQL Databases, procedures, triggers</p>
                 <h4 class="goal">OTHER EXPERIENCE:</h4>
@@ -152,11 +155,33 @@ export default ({
 </script>
 
 <style scoped>
-
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1400px) {
   .avatar {
     width: 300px;
     height:480px;
+  }
+  .name{
+    font-weight: 700;
+    font-size: 4.2rem;
+  }
+  .dev{
+    font-weight: 500;
+    font-size: 3.2rem;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .avatar {
+    width: 290px;
+    height:480px;
+  }
+  .name{
+    font-weight: 700;
+    font-size: 4rem;
+  }
+  .dev{
+    font-weight: 500;
+    font-size: 3rem;
   }
 }
 
@@ -165,6 +190,14 @@ export default ({
     width: 160px;
     height:256px;
   }
+  .name{
+    font-weight: 700;
+    font-size: 3.2rem;
+  }
+  .dev{
+    font-weight: 500;
+    font-size: 2rem;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -172,12 +205,28 @@ export default ({
     width: 220px;
     height:352px;
   }
+  .name{
+    font-weight: 700;
+    font-size: 3.2rem;
+  }
+  .dev{
+    font-weight: 500;
+    font-size: 2rem;
+  }
 }
 
 @media only screen and (max-width: 576px) {
   .avatar {
     width: 160px;
     height:256px;
+  }
+  .name{
+    font-weight: 700;
+    font-size: 2.5rem;
+  }
+  .dev{
+    font-weight: 500;
+    font-size: 1.5rem;
   }
 }
 
@@ -226,16 +275,12 @@ i{
 
 .dev{
   color:rgb(111, 176, 236);
-  font-weight: 500;
-  font-size: 2.5em;
   font-family:Arial, Helvetica, sans-serif
 }
 
 .name{
   color:rgb(38, 172, 105);
-  font-weight: 700;
-  font-size: 4em;
-  font-family:Arial, Helvetica, sans-serif
+  font-family:Arial, Helvetica, sans-serif;
 }
 
 .js{

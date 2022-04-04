@@ -46,8 +46,8 @@
   </div>
 </template>
 <script>
-import getApi from '../mixins/getApi'
-import getPosts from '../mixins/getPosts'
+import getApi from '../../mixins/getApi'
+import getPosts from '../../mixins/getPosts'
 export default {
   name: 'PostList',
   mixins:[getApi, getPosts],

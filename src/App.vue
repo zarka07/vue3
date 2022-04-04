@@ -16,7 +16,7 @@
 
 import { UserStore } from '@/stores/UserStore';
 import { LoaderStore } from '@/stores/LoaderStore';
-import Loader from '@/components/Loader.vue';
+import Loader from '@/components/Project2/Loader.vue';
 //import AuthorizationItem from '@/views/Authorization.vue';
 //import UserItem from '@/views/User.vue'
 export default {
