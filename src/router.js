@@ -26,6 +26,25 @@ const routes = [
 		component: () => import (/*webpackChunkName: "project3" */ '@/views/Project3.vue'),
 	},
 	{
+		path: '/project3/main',
+		name: 'main',
+		component: () => import (/*webpackChunkName: "main" */ '@/components/Project3/Main.vue'),
+	},
+	{
+		path: '/project3/form',
+		name: 'Form',
+		component: () => import (/*webpackChunkName: "form" */ '@/components/Project3/Form.vue'),
+	},
+	{
+		path: '/project3/:id',
+		name: 'ProductId',
+		props: true,
+		// route level code-splitting
+		// this generates a separate chunk (about.[hash].js) for this route
+		// which is lazy-loaded when the route is visited.
+		component: () => import(/* webpackChunkName: "Product.vue", webpackMode: "lazy" */'./components/Project3/Product.vue')
+	},
+	{
 		path: '/project4',
 		name: 'Project4',
 		component: () => import (/*webpackChunkName: "project4" */ '@/views/Project4.vue'),
