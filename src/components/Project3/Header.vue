@@ -2,7 +2,7 @@
     <header>
         <div class="navbar navbar-default">
             <div class="navbar-header">
-                <h2><router-link :to="{name: 'main'}">{{sitename}}</router-link></h2>
+                <h2><router-link :to="{name: 'Project3'}">{{sitename}}</router-link></h2>
             </div>
             <div class="nav navbar-nav navbar-right cart">
                 <button class="btn btn-default btn-lg">
