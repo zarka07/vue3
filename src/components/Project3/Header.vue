@@ -6,8 +6,11 @@
             </div>
             <div class="nav navbar-nav navbar-right cart">
                 <button class="btn btn-default btn-lg">
-                    <router-link active-class="active" :to="{name: 'Form'}">
-                        <p class="bi bi-cart">{{ cartItemCount}}</p>
+                    <router-link 
+                        active-class="active" 
+                        :to="{name: 'Form'}"
+                    >
+                        <p class="bi bi-cart">{{ this.userStore.cartItemCount.length }}</p>
                     </router-link>
                 </button>
             </div>
@@ -15,9 +18,15 @@
     </header>
 </template>
 <script>
+import { UserStore } from '@/stores/UserStore';
 export default {
     name: 'my-header',
-    props:['cartItemCount'],
+    setup(){
+        const userStore = UserStore();
+        return{
+          userStore
+        }
+    },
     data () {
         return {
             sitename: "Распродажа склада!",

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <my-header :cartItemCount="cartItemCount"></my-header>
+    <Header/>
+    <my-header></my-header>
     <h5> Код товара: {{ $route.params.id}}</h5>
     <div class="row">
       <div class="col-md-5 col-md-offset-0">
@@ -19,11 +20,12 @@
   </div>
 </template>
 <script>
+import Header from '@/components/Header.vue';
   import MyHeader from './Header.vue';
   import axios from 'axios';
   export default{
     name: 'product-component',
-    components:{ MyHeader },
+    components:{ Header, MyHeader },
     data(){
       return {product:''}
     },

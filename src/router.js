@@ -36,7 +36,7 @@ const routes = [
 		component: () => import (/*webpackChunkName: "form" */ '@/components/Project3/Form.vue'),
 	},
 	{
-		path: '/project3/:id',
+		path: '/project3/product/:id',
 		name: 'ProductId',
 		props: true,
 		// route level code-splitting

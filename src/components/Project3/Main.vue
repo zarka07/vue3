@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header/>
-  <my-header :cartItemCount="cartItemCount"></my-header>
+  <my-header></my-header>
   <main>
     <div v-for="product in sortedProducts" :key="product.id">
       <div class="row">
@@ -69,25 +69,23 @@ export default {
     checkRating(n, myProduct) {
       return myProduct.rating - n >= 0;
     },
-    addToCart(aProduct) {
-      this.userStore.addToCart(aProduct.id);
+    addToCart(Product) {
+      this.userStore.addToCart(Product.id);
     },
-    canAddToCart(aProduct) {
+    canAddToCart(Product) {
       //return this.product.availableInventory > this.cartItemCount;
       return (
-        aProduct.availableInventory >
-        this.cartCount(aProduct.id)
+        Product.availableInventory >
+        this.cartCount(Product.id)
       );
     },
     cartCount(id) {
       let count = 0;
       for (let i = 0; i < this.userStore.cartItemCount.length; i++) {
-        if (this.cartItemCount[i] === id) {
+        if (this.userStore.cartItemCount[i] === id) {
           count++;
         }
-        
       }
-      
       return count;
     }
   },
@@ -103,7 +101,7 @@ export default {
             return 1;
           return 0;
         }
-      if (this.products.length > 0) {
+      if (Object.keys(this.products).length > 0) {
         let productsArray = this.products.slice(0);
         return productsArray.sort(compare);
       }

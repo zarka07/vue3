@@ -1,6 +1,6 @@
 <template>
   <div>
-  <my-header :cartItemCount="cartItemCount"></my-header>
+  <my-header></my-header>
     <div class="row">
       <div class="col-md-12 col-md-offset-1">
         <div class="panel panel-info">
@@ -97,9 +97,15 @@
 </template>
 <script>
 import MyHeader from './Header.vue';
+import { UserStore } from '@/stores/UserStore';
 export default {
   name: 'form-component',
-  props: ['cartItemCount'],
+  setup(){
+    const userStore = UserStore();
+    return{
+      userStore
+    }
+  },
   data () {
     return {
       /*states: {
