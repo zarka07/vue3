@@ -6,13 +6,16 @@ export const UserStore = defineStore('auth', {
             username: '',
             email: '',
             password: '',
-            
+            cartItemCount: [],
         }
     },
     getters:{
 
     },
     actions:{
+        addToCart(id){
+            this.cartItemCount.push(id);
+        },
         resetUser(){
             this.username = '',
             this.email = '',

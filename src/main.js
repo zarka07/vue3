@@ -6,7 +6,7 @@ import router from '@/router';
 import { useVuelidate } from '@vuelidate/core';
 //import messages from './locales/messages';
 import { createI18n } from 'vue-i18n/index';
-
+require('../public/app.css')
 const messages = {
   en: {
       "AppVue": {

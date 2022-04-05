@@ -1,15 +1,16 @@
 <template>
   <div>
+    <Header/>
   <my-header :cartItemCount="cartItemCount"></my-header>
   <main>
     <div v-for="product in sortedProducts" :key="product.id">
       <div class="row">
-        <div class="col-md-5 col-md-offset-0">
+        <div class="col-md-4 col-md-offset-0">
           <figure>
             <img class="product" v-bind:src="product.image" >
           </figure>
         </div>
-        <div class="col-md-6 col-md-offset-0 description">
+        <div class="col-md-8 col-md-offset-0 description">
           <h1><router-link :to="{ name : 'ProductId', params: {id: product.id}}" >{{product.title}}</router-link></h1>
           <p v-html="product.description"></p>
           <!--| formatPrice-->
@@ -31,39 +32,45 @@
           <span class="inventory-message"
             v-if="product.availableInventory - cartCount(product.id) === 0">Товар закончился
         </span>
-        <span class="inventory-message"
+        <div class="inventory-message"
           v-else-if="product.availableInventory - cartCount(product.id) < 5">
           Осталось: {{product.availableInventory - cartCount(product.id)}} шт!
-        </span>
+        </div>
       <span class="inventory-message"
       v-else>Купить сейчас!
     </span>
     
-</div><!-- end of col-md-6-->
-</div><!-- end of row-->
-<hr />
-</div><!-- end of v-for-->
-</main>
+        </div><!-- end of col-md-6-->
+      </div><!-- end of row-->
+      <hr />
+    </div><!-- end of v-for-->
+  </main>
 </div>
 </template>
 <script>
 import MyHeader from './Header.vue';
 import axios from 'axios';
+import { UserStore } from '@/stores/UserStore';
 export default {
   name: 'main-component',
   data() {
     return {
       products: {},
-      cart: []
     };
   },
   components: { MyHeader },
+  setup(){
+    const userStore = UserStore();
+        return{
+          userStore,
+        }
+  },
   methods: {
     checkRating(n, myProduct) {
       return myProduct.rating - n >= 0;
     },
     addToCart(aProduct) {
-      this.cart.push(aProduct.id);
+      this.userStore.addToCart(aProduct.id);
     },
     canAddToCart(aProduct) {
       //return this.product.availableInventory > this.cartItemCount;
@@ -74,17 +81,19 @@ export default {
     },
     cartCount(id) {
       let count = 0;
-      for (var i = 0; i < this.cart.length; i++) {
-        if (this.cart[i] === id) {
+      for (let i = 0; i < this.userStore.cartItemCount.length; i++) {
+        if (this.cartItemCount[i] === id) {
           count++;
         }
+        
       }
+      
       return count;
     }
   },
   computed: {
     cartItemCount() {
-      return this.cart.length || '';
+      return this.userStore.cartItemCount.length || '';
     },
     sortedProducts() {
       function compare(a, b) {
@@ -124,11 +133,12 @@ export default {
     await axios.get('products.json').then(response => {
       this.products = response.data.products;
     });
-  }
+  },
 };
 </script>
 <style scoped>
   h1 a{
     color: black;
   }
+
 </style>

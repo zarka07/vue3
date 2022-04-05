@@ -7,7 +7,7 @@
           <!-- .slice(0,limitPerPage) -->
           <ul class="post" style="list-style: none">
             <li  v-for="post in displayedPosts" :key="post.id">
-              <router-link  :to="{ name : 'Id', params: {id: post.id}}">
+              <router-link  :to="{ name : 'PostId', params: {id: post.id}}">
                 {{post.id}}. {{post.title}}
               </router-link>
             </li>

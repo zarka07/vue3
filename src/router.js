@@ -61,7 +61,7 @@ const routes = [
 	},
 	{
 		path: '/post/:id',
-		name: 'Id',
+		name: 'PostId',
 		props: true,
 		// route level code-splitting
 		// this generates a separate chunk (about.[hash].js) for this route

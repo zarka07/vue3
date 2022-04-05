@@ -53,7 +53,7 @@ export default {
   setup() {
         const modalStore = ModalStore();
         return{
-          modalStore,
+          modalStore
         }
     },
   data(){

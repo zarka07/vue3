@@ -2,7 +2,7 @@
   <div>
   <my-header :cartItemCount="cartItemCount"></my-header>
     <div class="row">
-      <div class="col-md-10 col-md-offset-1">
+      <div class="col-md-12 col-md-offset-1">
         <div class="panel panel-info">
           <div class="panel-heading">Ваша корзина</div>
           <div class="panel-body">
@@ -33,8 +33,8 @@
                 <input v-model.trim="order.city" class="form-control" />
               </div>
             </div>
-            <div class="form-group">
-              <!--<div class="col-md-2">
+            <!--<div class="form-group">
+              <div class="col-md-2">
                 <strong>Область:</strong>
                 <select v-model="order.state" class="form-control">
                   <option disabled value="">Область</option>
@@ -42,8 +42,8 @@
                   {{state}}
                   </option>
                 </select>
-              </div>-->
-            </div>
+              </div>
+            </div>-->
             <div class="form-group">
               <div class="col-md-6 col-md-offset-4">
                 <strong>Почтовый код:</strong>
