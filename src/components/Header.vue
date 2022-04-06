@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="header">
         <nav class="navbar navbar-expand-lg navbar-light bg-dark"
             style="">
         <div class="container-fluid d-flex bd-highlight "
@@ -64,5 +64,15 @@ export default {
     a{
         text-decoration: none;
         color: #FFF;
+    }
+
+    .header{
+        background-color: lightgreen;
+        /* position:fixed; 
+        left:0;          
+        top:0;           
+        width:100vw;     
+        z-index:200;  
+        margin-bottom: 86px; */
     }
 </style>

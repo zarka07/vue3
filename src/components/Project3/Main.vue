@@ -11,7 +11,11 @@
           </figure>
         </div>
         <div class="col-md-8 col-md-offset-0 description">
-          <h1><router-link :to="{ name : 'ProductId', params: {id: product.id}}" >{{product.title}}</router-link></h1>
+          <h3><router-link 
+            :to="{ name : 'ProductId', params: {id: product.id}}" 
+            >{{product.title}}
+            </router-link>
+          </h3>
           <p v-html="product.description"></p>
           <!--| formatPrice-->
           <p class="price">Цена:  
@@ -24,22 +28,25 @@
               v-for="n in 5" :key="n">☆</span>
           </div>
           <br>
-          <button class=" btn btn-primary btn-lg"
-            v-on:click="addToCart(product)"
-            v-if="canAddToCart(product)">Добавить в корзину</button>
-          <button disabled="true" class=" btn btn-primary btn-lg"
-            v-else >Добавить в корзину</button>
-          <span class="inventory-message"
-            v-if="product.availableInventory - cartCount(product.id) === 0">Товар закончился
-        </span>
-        <div class="inventory-message"
-          v-else-if="product.availableInventory - cartCount(product.id) < 5">
-          Осталось: {{product.availableInventory - cartCount(product.id)}} шт!
-        </div>
-      <span class="inventory-message"
-      v-else>Купить сейчас!
-    </span>
-    
+          <div class="d-flex mt-4 flex-wrap align-content-around">
+            <button class="btn btn-primary"
+              v-on:click="addToCart(product)"
+              v-if="canAddToCart(product)">Добавить в корзину
+            </button>
+            <button disabled="true" class=" btn btn-primary btn-lg"
+              v-else >Добавить в корзину
+            </button>
+            <span class="inventory-message"
+                v-if="product.availableInventory - cartCount(product.id) === 0">Товар закончился
+            </span>
+            <div class="inventory-message"
+                v-else-if="product.availableInventory - cartCount(product.id) < 5">
+                Осталось: {{product.availableInventory - cartCount(product.id)}} шт!
+            </div>
+            <span class="inventory-message"
+              v-else>Купить сейчас!
+            </span>
+          </div>
         </div><!-- end of col-md-6-->
       </div><!-- end of row-->
       <hr />
@@ -135,7 +142,7 @@ export default {
 };
 </script>
 <style scoped>
-  h1 a{
+  h3 a{
     color: black;
   }
 

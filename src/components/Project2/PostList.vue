@@ -1,5 +1,5 @@
 <template>
-  <div class="postList">
+  <div class="postlist p-2">
     <div>
       <div>
         <div>
@@ -97,6 +97,10 @@ export default {
 }
 </script>
 <style scoped>
+  .postlist{
+    height:64vh;
+  }
+
   .post{
     margin-left:2em;
   }

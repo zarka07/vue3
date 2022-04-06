@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div class="row footer">
         <div class="col-md-12 footer" style="padding:0; margin-left: -12px; margin-right: -12px;">
             <div class="bg-dark text-center text-white ">
               <div class="container p-2 pb-0">
@@ -34,5 +34,11 @@ export default ({
 </script>
 
 <style>
-  
+  /* .footer{
+    position: fixed;
+    left:0;          
+    bottom:0;       
+    width:100vw;     
+    z-index:200;
+  } */
 </style>

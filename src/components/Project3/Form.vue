@@ -1,99 +1,121 @@
 <template>
   <div>
-  <my-header></my-header>
-    <div class="row">
-      <div class="col-md-12 col-md-offset-1">
-        <div class="panel panel-info">
-          <div class="panel-heading">Ваша корзина</div>
-          <div class="panel-body">
-            <div class="form-group">
-              <div class="col-md-12">
-                <h4><strong>Введите контактную информацию</strong></h4>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-md-6">
-                <strong>Имя:</strong>
-                <input v-model.trim="order.firstName" class="form-control" />
-              </div>
-              <div class="col-md-6">
-                <strong>Фамилия:</strong>
-                <input v-model.trim="order.lastName" class="form-control" />
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-md-12"><strong>Адрес склада перевозчика:</strong></div>
-              <div class="col-md-12">
-                <input v-model.trim="order.address" class="form-control" />
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-md-12"><strong>Город:</strong></div>
-              <div class="col-md-12">
-                <input v-model.trim="order.city" class="form-control" />
-              </div>
-            </div>
-            <!--<div class="form-group">
-              <div class="col-md-2">
-                <strong>Область:</strong>
-                <select v-model="order.state" class="form-control">
-                  <option disabled value="">Область</option>
-                  <option v-for="state in states" :key="state" v-bind:value="state">
-                  {{state}}
-                  </option>
-                </select>
-              </div>
-            </div>-->
-            <div class="form-group">
-              <div class="col-md-6 col-md-offset-4">
-                <strong>Почтовый код:</strong>
-                <input v-model.number="order.zip"
-                   class="form-control"
-                   type="number"/>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-md-6 boxes">
-                <input type="checkbox"
-                       id="gift" value="true"
-                                 v-bind:true-value="order.sendGift"
-                                 v-bind:false-value="order.dontSendGift"
-                                 v-model="order.gift">
-                <label for="gift">Упаковать как хрупкий товар</label>
-              </div>
-            </div><!-- end of form-group -->
-            <div class="form-group">
-              <div class="col-md-6 boxes">
-                <input type="radio" id="home" v-bind:value="order.home" v-model="order.method">
-                    <label for="home">Доставка Новой почтой</label>
-                    <br>
-                <input type="radio" id="business" v-bind:value="order.business" v-model="order.method">
-                    <label for="business">Доставка другим перевозчиком</label>
-              </div>
-            </div><!-- end of form-group-->
-            <div class="form-group">
-              <div class="col-md-6">
-                <button type="submit" class="btn btn-primary submit" v-on:click="submitForm">Разместить заказ</button>
-              </div><!-- end of col-md-6-->
-            </div><!-- end of form-group-->
-            <div class="col-md-12 verify">
-              <pre>
-                        Имя: {{order.firstName}}
-                        Фамилия: {{order.lastName}}
-                        Адрес склада перевозчика: {{order.address}}
-                        Город: {{order.city}}
-                        <!--Обасть: {{order.state}}-->
-                        Доставка: {{order.method}}
-                        Упаковка: {{order.gift}}
-              </pre>
-            </div><!-- end of col-md-12 verify-->
-          </div><!--end of panel-body-->
-        </div><!--end of panel panel-info-->
+    <my-header></my-header>
+    <form class="m-2">
+      <!-- first and last names -->
+      <div class="row mb-4">
+        <div class="col">
+          <div class="form-outline">
+            <input v-model.trim="order.firstName" 
+              type="text" 
+              id="form6Example1" 
+              class="form-control"
+              placeholder="Имя" />
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-outline">
+            <input v-model.trim="order.lastName" 
+              type="text" 
+              id="form6Example2" 
+              class="form-control"
+              placeholder="Фамилия" />
+          </div>
+        </div>
+      </div>
 
+      <!-- delivery -->
+      <div class="form-outline mb-4">
+        <input v-model.trim="order.address" 
+          type="text" 
+          id="form6Example3" 
+          class="form-control"
+          placeholder="Адрес склада перевозчика:" />
+      </div>
 
-      </div><!--end of col-md-10 col-md-offset-1-->
-    </div><!--end of row-->
+      <!-- city -->
+      <div class="form-outline mb-4">
+        <input v-model.trim="order.city" 
+          type="text" 
+          id="form6Example4" 
+          class="form-control"
+          placeholder="Город" />
+      </div>
+
+      <!-- mail code -->
+      <div class="form-outline mb-4">
+        <input v-model.number="order.zip" 
+          type="number" 
+          id="form6Example4" 
+          class="form-control" 
+          placeholder="Почтовый код"/>
+      </div>
+
+    <!-- Checkbox glass-->
+      <div class="form-check d-flex justify-content-center mb-4">
+        <input class="form-check-input me-2" 
+          type="checkbox" 
+          value="true"
+          v-bind:true-value="order.sendGift"
+          v-bind:false-value="order.dontSendGift"
+          v-model="order.gift" id="form6Example8" 
+        />
+        <label class="form-check-label" for="form6Example8"> Упаковать как хрупкое? </label>
+      </div> 
+
+    <!-- Checkbox delivery name -->
+      <div class="form-check d-flex justify-content-center">
+        <div style="margin-right: 2.5rem;">
+          <input class="form-check-input" 
+            type="radio"
+            v-bind:value="order.home" 
+            v-model="order.method"
+            id="home"
+            name="home" />
+          <label class="form-check-label" for="home">
+            Доставка Новой почтой
+          </label>
+        </div>
+          
+        <div>
+          <input class="form-check-input" 
+            type="radio"
+            v-bind:value="order.business" 
+            v-model="order.method"
+            id="business"
+            name="business" />
+          <label class="form-check-label" for="business">
+            Доставка другим перевозчиком
+          </label>
+        </div>
+          
+      </div>
+
+    <!-- Submit button -->
+    <div class="d-flex justify-content-center mb-4 mt-4">
+      <button type="submit" 
+        class="btn btn-primary btn-block"
+        v-on:click="submitForm"
+      >Отправить заказ</button>
+    </div>
+    <!--col-md-12 verify-->  
+      <div class="col-md-12 verify">
+        <pre>
+          First Name: {{order.firstName}}
+          Last Name: {{order.lastName}}
+          Address: {{order.address}}
+          City: {{order.city}}
+          Zip: {{order.zip}}
+          State: {{order.state}}
+          Method: {{order.method}}
+          Gift: {{order.gift}}
+        </pre>
+      </div><!-- end of col-md-12 verify-->
+    </form>
   </div>
+
+          
+
 </template>
 <script>
 import MyHeader from './Header.vue';
@@ -108,13 +130,6 @@ export default {
   },
   data () {
     return {
-      /*states: {
-        AL: 'Alabama',
-        AK: 'Alaska',
-        AR: 'Arizona',
-        CA: 'California',
-        NV: 'Nevada'
-      },*/
       order: {
         firstName: '',
         lastName: '',

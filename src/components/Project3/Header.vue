@@ -1,16 +1,22 @@
 <template>
     <header>
-        <div class="navbar navbar-default">
-            <div class="navbar-header">
-                <h2><router-link :to="{name: 'Project3'}">{{sitename}}</router-link></h2>
+        <div class="d.flex 
+            d-flex justify-content-between 
+            align-items-center
+            mb-1
+            flex-wrap">
+            <div style=" margin-left: 1rem;">
+                <h4><router-link :to="{name: 'Project3'}">{{sitename}}</router-link></h4>
             </div>
-            <div class="nav navbar-nav navbar-right cart">
-                <button class="btn btn-default btn-lg">
+            <div class="">
+                <button class="btn">
                     <router-link 
                         active-class="active" 
                         :to="{name: 'Form'}"
                     >
-                        <p class="bi bi-cart">{{ this.userStore.cartItemCount.length }}</p>
+                        <p class="bi bi-cart" style="margin-top:8px;margin-right:1rem">
+                              {{ this.userStore.cartItemCount.length }}
+                        </p>
                     </router-link>
                 </button>
             </div>
@@ -42,13 +48,19 @@ export default {
 <style scoped>
 header{
     background-color: lightgreen;
+    /* position:fixed; 
+    left:0;           
+    top:86px;        
+    width:100vw;      
+    z-index:200;  */
+     
 }
 a {
   text-decoration: none;
   color: black;
 }
 .router-link-exact-active {
-  color:rgb(22, 209, 22);
+  color:rgb(8, 8, 8);
  
 }
 </style>

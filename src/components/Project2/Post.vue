@@ -1,38 +1,40 @@
 <template>
   <div>
     <Header/>
-
-    <div>
-      <div class="postNumber">
-        <h3>{{$t("PostVue.Comments")}} {{$t("PostVue.Post")}} {{ $route.params.id}}
-        </h3>
-    </div>
-        
+    <div class="main" style="">
+      <div >
+        <div class="postNumber">
+          <h3>{{$t("PostVue.Comments")}} {{$t("PostVue.Post")}} {{ $route.params.id}}
+          </h3>
+        </div>
+          
         <div class="comment" v-for="comment in comments" :key="comment.id">
           <p><b>{{$t("PostVue.Name")}}:</b>   {{comment.name}}</p>
           <p><b>{{$t("PostVue.Email")}}:</b> {{comment.email}}</p>
           <p><b>{{$t("PostVue.Body")}}:</b>   {{comment.body}}</p>
         </div>
-     
-    <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-2">
-      <button 
-        class="btn btn-success" 
-        type="button" 
-        @click="showModal">
-        {{$t('Agreement.ShowAgreement')}}
-      </button>
-      <button 
-        class="btn btn-primary" 
-        type="button"  
-        @click="back">
-        {{$t("PostVue.Back")}}
-      </button>
-    </div>
+      
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-2">
+          <button 
+            class="btn btn-success" 
+            type="button" 
+            @click="showModal">
+            {{$t('Agreement.ShowAgreement')}}
+          </button>
+          <button 
+            class="btn btn-primary" 
+            type="button"  
+            @click="back">
+            {{$t("PostVue.Back")}}
+          </button>
+        </div>
 
-    <modal class="modal" v-if="this.modalStore.show">
-      <div class="modalContent" ><Agreement /></div>
-    </modal>
+        <modal class="modal" v-if="this.modalStore.show">
+          <div class="modalContent" ><Agreement /></div>
+        </modal>
+      </div>
     </div>
+    
         
     <Footer/>
   </div>
@@ -84,6 +86,8 @@ export default {
 }
 </script>
 <style scoped>
+
+
   .btn{
     margin-left: 25px;
     margin-right: 25px;
