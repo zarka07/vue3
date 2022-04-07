@@ -54,7 +54,7 @@ header h2{
 
 .product {
   margin-top: 17px;
-  margin-left: 20px;
+  /* margin-left: 20px; */
   max-height:300px;
   max-width:100%;
 }
@@ -85,6 +85,12 @@ header h2{
 .btn:disabled{
   opacity: 0.2;
 }
+
+h3 a{
+  color: black;
+}
+
+
 /* @media (min-width: 1200px) {
     .container{
         max-width: 970px;
