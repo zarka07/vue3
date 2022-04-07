@@ -139,7 +139,7 @@ export default ({
     data:()=> ({
         contacts:[
         {icon:'bi bi-arrow-down-right-circle', description:'Kharkiv, Ukraine', href:'https://www.google.com/maps/dir/?api=1&destination=49.9947277,36.1457391'},
-        {icon:'bi bi-phone', description:'+38 (050) 700-5472', href:'"tel:+38 (050) 700-5472"'},
+        {icon:'bi bi-phone', description:'+38 (050) 700-5472', href:'tel:+380507005472'},
         {icon:'bi bi-mailbox', description:'zarka08@gmail.com', href:'mailto:zarka08@gmail.com'},
         {icon:'bi bi-telegram', description:'@zarka08', href:'tg://resolve?domain=zarka08'},
         {icon:'bi bi-linkedin', description:'serhii-tarasov', href:'https://www.linkedin.com/in/serhii-tarasov/'}
@@ -271,6 +271,10 @@ i{
 .contacts{
   /* text-align: left; */
   color:#FFF;
+}
+
+.contacts :hover{
+  color:darkgray;
 }
 
 .dev{
