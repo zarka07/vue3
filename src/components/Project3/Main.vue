@@ -2,7 +2,7 @@
   <div>
     <Header/>
   <my-header></my-header>
-  <main>
+  <main class="m-3">
     <div v-for="product in sortedProducts" :key="product.id">
       <div class="row">
         <div class="col-md-4 col-md-offset-0">
@@ -29,11 +29,11 @@
           </div>
           <br>
           <div class="d-flex mt-4 flex-wrap align-content-around">
-            <button class="btn btn-primary"
+            <button class="btn add-btn"
               v-on:click="addToCart(product)"
               v-if="canAddToCart(product)">Добавить в корзину
             </button>
-            <button disabled="true" class=" btn btn-primary btn-lg"
+            <button disabled="true" class=" btn btn-light"
               v-else >Добавить в корзину
             </button>
             <span class="inventory-message"
@@ -142,8 +142,7 @@ export default {
 };
 </script>
 <style scoped>
-  h3 a{
-    color: black;
-  }
-
+  .btn{
+  background-color: greenyellow;
+}
 </style>

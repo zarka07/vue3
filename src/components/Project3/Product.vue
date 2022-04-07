@@ -2,7 +2,7 @@
   <div>
     <Header/>
     <my-header></my-header>
-    <div class="row">
+    <div class="row m-3">
       <div class="col-md-5 col-md-offset-0">
         <figure style="text-align: center">
           <img class="product" :src="product.image" >
