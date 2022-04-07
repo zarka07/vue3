@@ -4,13 +4,13 @@
             <div class="bg-dark text-center text-white ">
               <div class="container p-2 pb-0">
                 <section class="mb-2">
-                  <a class="btn btn-outline-light btn-floating m-1" href="google.com" role="button"
+                  <a class="btn btn-outline-light btn-floating m-1" href="mailto:zarka08@gmail.com" role="button"
                     ><i class="bi bi-google"></i></a>
                   <a class="btn btn-outline-light btn-floating m-1" href="tg://resolve?domain=zarka07" role="button"
                     ><i class="bi bi-send"></i></a>
                   <a class="btn btn-outline-light btn-floating m-1" href="www.linkedin.com/in/serhii-tarasov/" role="button"
                     ><i class="bi bi-linkedin"></i></a>
-                  <a class="btn btn-outline-light btn-floating m-1" href="github.com/zarka07" role="button"
+                  <a class="btn btn-outline-light btn-floating m-1" href="https://zarka07.github.io/" role="button"
                     ><i class="bi bi-github"></i></a>
                 </section>
             </div>
