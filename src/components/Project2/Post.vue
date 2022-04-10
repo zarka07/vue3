@@ -8,10 +8,6 @@
           </h3>
         </div>
 
-  <div>
-    {{$route.params.currentPage}}
-  </div>
-
         <div class="comment" v-for="comment in comments" :key="comment.id">
           <p><b>{{$t("PostVue.Name")}}:</b>   {{comment.name}}</p>
           <p><b>{{$t("PostVue.Email")}}:</b> {{comment.email}}</p>
