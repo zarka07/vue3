@@ -7,6 +7,7 @@ export const UserStore = defineStore('auth', {
             email: '',
             password: '',
             cartItemCount: [],
+            currentPage: 1,
         }
     },
     getters:{

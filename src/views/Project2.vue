@@ -1,7 +1,7 @@
 <template>
     <div>
         <Header/>
-        <div class="main">
+        <div class="main" style="min-height:77vh">
             <div class="Header row" style="margin:0">
                 <div class="title col-xs-12 col-sm-6 col-md-6">
                     <h2>{{$t("AppVue.Vue")}}</h2>

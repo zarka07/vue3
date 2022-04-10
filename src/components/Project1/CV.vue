@@ -283,7 +283,7 @@ i{
 }
 
 .name{
-  color:rgb(38, 172, 105);
+  color: #42b983;
   font-family:Arial, Helvetica, sans-serif;
 }
 
@@ -292,7 +292,7 @@ i{
 }
 
 .vue{
-  color:rgb(31, 182, 106)
+  color: #42b983;
 }
 
 .goal{

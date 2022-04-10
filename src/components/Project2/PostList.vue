@@ -6,8 +6,8 @@
           <div class="posts"><h3>{{$t("PostlistVue.Postlist")}}</h3></div>
           <!-- .slice(0,limitPerPage) -->
           <ul class="post" style="list-style: none">
-            <li  v-for="post in displayedPosts" :key="post.id">
-              <router-link  :to="{ name : 'PostId', params: {id: post.id}}">
+            <li  v-for="post in displayedPosts" :key="post.id" >
+              <router-link :to="{ name : 'PostId', params: {id: post.id, currentPage: this.userStore.currentPage}}">
                 {{post.id}}. {{post.title}}
               </router-link>
             </li>
@@ -22,22 +22,22 @@
           <button type="button" 
             class="page-link" 
             style="color:#4CAF50" 
-            v-if="page != 1" @click="page--"> {{$t("PostlistVue.Previous")}} 
+            v-if="this.userStore.currentPage != 1" @click="this.userStore.currentPage--"> {{$t("PostlistVue.Previous")}} 
           </button>
         </li>
         <li class="page-item">
           <button type="button" 
             class="page-link"  
-            v-for="pageNumber in pages.slice(page-1, page+5)" 
-            :key="pageNumber" 
-            @click="page = pageNumber"> {{pageNumber}} 
+            v-for="pageNumber in pages.slice(this.userStore.currentPage-1, this.userStore.currentPage+5)" 
+            :key="pageNumber"
+            @click="this.userStore.currentPage = pageNumber"> {{pageNumber}}
           </button>
         </li>
         <li class="page-item">
           <button type="button" 
-            @click="page++" 
+            @click="this.userStore.currentPage++" 
             style="color:#4CAF50"
-            v-if="page < pages.length" class="page-link">{{$t("PostlistVue.Next")}} 
+            v-if="this.userStore.currentPage < pages.length" class="page-link">{{$t("PostlistVue.Next")}} 
           </button>
         </li>
       </ul>
@@ -46,21 +46,28 @@
   </div>
 </template>
 <script>
-import getApi from '../../mixins/getApi'
-import getPosts from '../../mixins/getPosts'
+import getApi from '../../mixins/getApi';
+import getPosts from '../../mixins/getPosts';
+import { UserStore } from '@/stores/UserStore'
 export default {
   name: 'PostList',
   mixins:[getApi, getPosts],
+  setup() {
+        const userStore = UserStore();
+        return{
+          userStore
+        }
+    },
   data(){
     return  {
      path:'posts',
      posts:[],
-     page: 1,
      perPage:10,
      pages:[],
      }
   },
   methods:{
+    
     setPages () {
       let numberOfPages = Math.ceil(this.posts.length / this.perPage);
       for (let index = 1; index <= numberOfPages; index++) {
@@ -68,12 +75,13 @@ export default {
       }
     },
     paginate (posts) {
-      let page = this.page;
+      let page = this.userStore.currentPage;
       let perPage = this.perPage;
       let from = (page * perPage) - perPage;
       let to = (page * perPage);
       return  posts.slice(from, to);
-    }
+    },
+    
   },
   computed: {
     displayedPosts () {
@@ -85,9 +93,6 @@ export default {
       this.setPages();
     }
   },
-  // created(){
-  //   this.getPosts();
-  // },
   filters: {
     trimWords(value){
       return value.split(" ").splice(0,20).join(" ") + '...';
@@ -98,7 +103,7 @@ export default {
 </script>
 <style scoped>
   .postlist{
-    height:64vh;
+    /* height:64vh; */
   }
 
   .post{
