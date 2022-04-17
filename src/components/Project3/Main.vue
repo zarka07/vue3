@@ -62,7 +62,7 @@ export default {
   name: 'main-component',
   data() {
     return {
-      products: {},
+      products: [],
     };
   },
   components: { MyHeader },
@@ -77,7 +77,8 @@ export default {
       return myProduct.rating - n >= 0;
     },
     addToCart(Product) {
-      this.userStore.addToCart(Product.id);
+      this.userStore.addToCart(Product.id)
+      localStorage.setItem("products-list", JSON.stringify(this.userStore.cartItemCount))
     },
     canAddToCart(Product) {
       //return this.product.availableInventory > this.cartItemCount;
@@ -138,6 +139,10 @@ export default {
     await axios.get('products.json').then(response => {
       this.products = response.data.products;
     });
+    const productsData = localStorage.getItem("products-list")
+    if(productsData){
+      this.userStore.cartItemCount = JSON.parse(productsData)
+    }
   },
 };
 </script>
