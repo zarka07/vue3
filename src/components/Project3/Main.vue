@@ -96,6 +96,8 @@ export default {
     addToCart(Product) {
       this.userStore.addToCart(Product.id)
       localStorage.setItem("products-list", JSON.stringify(this.userStore.cartItemCount))
+      const data = localStorage.getItem("products-list")
+      console.log(data)
     },
     canAddToCart(Product) {
       //return this.product.availableInventory > this.cartItemCount;

@@ -2,7 +2,7 @@
   <div>
     <my-header></my-header>
     <div class="d-grid gap-2 col-6 mx-auto">
-      <button @click="this.userStore.cartItemCount = []"
+      <button @click="resetCart"
       class="btn btn-primary" type="button">Сбросить корзину</button>
     </div>
     <form class="m-2">
@@ -154,6 +154,9 @@ export default {
   methods: {
     submitForm() {
       alert('Submitted');
+    },
+    resetCart(){
+      localStorage.setItem("products-list", JSON.stringify(this.userStore.cartItemCount=[]))
     }
   }
 }

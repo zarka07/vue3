@@ -30,6 +30,7 @@ export const UserStore = defineStore('auth', {
         signIn(formData){
             this.email = formData.email,
             this.password = formData.password
-        }
+        },
+        
     }
 })
