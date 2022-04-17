@@ -40,7 +40,6 @@ const messages = {
         },
       "Errors": {
             "400": "To resume the session, clear the cookies. If the error persists, contact technical support.",
-            
             "403": "Sorry, you cannot view the content.",
             "404": "The requested page does not exist.",
             "405": "Error #:",
@@ -84,7 +83,6 @@ const messages = {
       },
       "Errors": {
           "400": "Для возобновления сессии выполните очистку файлов Cookies. В случае повтора ошибки – обратитесь в техническую поддержку. ",
-          
           "403": "К сожалению, просмотр содержимого невозможен.",
           "404": "Запрашиваемой страницы не существует.",
           "405": "Ошибка №:",

@@ -30,7 +30,7 @@ export default{
                                 break;
                             case 401:  
                             case 403:
-                                alert('$t("Errors.403")')
+                                this.errorStore.showError(statusCode)
                                 //Auth.logout()
                                 //this.$router.push({name:"auth"})
                                 break;
@@ -44,12 +44,12 @@ export default{
                             case 503:
                             case 504:
                             case 505:
-                                this.errorStore.showError(statusCode)
+                                this.errorStore.showError(statusCode, '500')
                                 this.$router.go(-1)
                                 break;
                             default:
                                 error({
-                                statusCode,
+                                    statusCode,
                                 })
                         }       
                     }

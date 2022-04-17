@@ -1,6 +1,12 @@
 <template>
     <div>
+        <div v-if="this.errorStore.isError" class="alert alert-danger align-items-center" role="alert">
+            <div style="text-align: center">
+                {{this.errorStore.statusCode}}
+            </div>
+        </div>
         <Header/>
+
         <div class="main" style="min-height:77vh">
             <div class="Header row" style="margin:0">
                 <div class="title col-xs-12 col-sm-6 col-md-6">
@@ -22,6 +28,7 @@
             </div>
             <PostList/>
         </div>
+
         <Footer/>
     </div>
 </template>
@@ -30,10 +37,17 @@
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import PostList from '@/components/Project2/PostList.vue';
+import { ErrorStore } from '@/stores/ErrorStore';
 
 export default {
     name: 'project2-component',
     components: { Header, Footer, PostList },
+    setup(){
+        const errorStore = ErrorStore();
+        return {
+            errorStore
+        }
+    },
     methods:{
         changeLang(locale){
             if(this.$i18n.locale!== locale){
@@ -45,7 +59,7 @@ export default {
         return {
             locales: process.env.VUE_APP_I18N_SUPPORTED_LOCALE.split(',')
         }
-    },
+    }
 }
 </script>
 
