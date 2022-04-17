@@ -5,8 +5,19 @@
   <main class="m-3">
     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
       <input v-model="filter" type="text" placeholder="Фильтр"/>
-      <button class="btn btn-primary me-md-2" type="button">Вперед</button>
-      <button class="btn btn-primary me-md-2" type="button">Назад</button>
+      
+      <button 
+        v-if="page > 1"
+        class="btn btn-primary me-md-2" 
+        type="button"
+        @click="page--">Назад
+      </button>
+      <button 
+        v-if="hasNextPage"
+        class="btn btn-primary me-md-2" 
+        type="button"
+        @click="page++">Вперед
+      </button>
     </div>
     <hr>
     <div v-for="product in filteredList()" :key="product.id">
@@ -22,7 +33,7 @@
             >{{product.title}}
             </router-link>
           </h3>
-          <p v-html="product.description"></p>
+          
           <!--| formatPrice-->
           <p class="price">Цена:  
             {{product.price || formatPrice}}  грн
@@ -70,7 +81,8 @@ export default {
     return {
       products: [],
       filter: "",
-      page: 1
+      page: 1,
+      hasNextPage: true
     };
   },
   components: { MyHeader },
@@ -82,7 +94,14 @@ export default {
   },
   methods: {
     filteredList(){
-      return this.products.filter(product => product.title.toLowerCase().includes(this.filter))
+      const start = (this.page - 1)*4;
+      const end = this.page*4 - 1;
+      const filteredList = this.products.filter(product => product.title.
+        toLowerCase().
+        includes(this.filter))
+        
+      this.hasNextPage = filteredList.length > end  
+      return filteredList.slice(start, end);
     },
     formatPrice(price) {
       if (!parseInt(price)) {
@@ -146,7 +165,6 @@ export default {
       return 0;
     }
   },
-  
   created: async function() {
     await axios.get('products.json').then(response => {
       this.products = response.data.products;
@@ -155,7 +173,21 @@ export default {
     if(productsData){
       this.userStore.cartItemCount = JSON.parse(productsData)
     }
+    const windowData = Object.fromEntries(new URL(window.location).searchParams.entries())
+    if(windowData.filter){
+      this.filter = windowData.filter
+    }  
+    if(windowData.page){
+      this.page = windowData.page;
+    }
   },
+  watch:{
+    filter(){
+      this.page = 1;
+      window.history.
+      pushState(null, document.title, `/?filter=${this.filter}&page=${this.page}`)
+  }
+  }
 };
 </script>
 <style scoped>
