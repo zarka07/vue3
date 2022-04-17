@@ -3,7 +3,13 @@
     <Header/>
   <my-header></my-header>
   <main class="m-3">
-    <div v-for="product in sortedProducts" :key="product.id">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+      <input v-model="filter" type="text" placeholder="Фильтр"/>
+      <button class="btn btn-primary me-md-2" type="button">Вперед</button>
+      <button class="btn btn-primary me-md-2" type="button">Назад</button>
+    </div>
+    <hr>
+    <div v-for="product in filteredList()" :key="product.id">
       <div class="row">
         <div class="col-md-4 col-md-offset-0">
           <figure>
@@ -63,6 +69,8 @@ export default {
   data() {
     return {
       products: [],
+      filter: "",
+      page: 1
     };
   },
   components: { MyHeader },
@@ -73,6 +81,9 @@ export default {
         }
   },
   methods: {
+    filteredList(){
+      return this.products.filter(product => product.title.toLowerCase().includes(this.filter))
+    },
     formatPrice(price) {
       if (!parseInt(price)) {
         return '';

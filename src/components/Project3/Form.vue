@@ -147,7 +147,6 @@ export default {
         sendGift: 'Упаковать как хрупкое',
         dontSendGift: 'Не упаковывать как хрупкое'
       }
- 
     }
   },
   components: { MyHeader },
