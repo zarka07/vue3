@@ -1,6 +1,10 @@
 <template>
   <div>
     <my-header></my-header>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button @click="this.userStore.cartItemCount = []"
+      class="btn btn-primary" type="button">Сбросить корзину</button>
+    </div>
     <form class="m-2">
       <!-- first and last names -->
       <div class="row mb-4">
