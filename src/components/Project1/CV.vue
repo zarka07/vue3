@@ -13,7 +13,8 @@
                   <p v-for="contact in contacts" :key="contact" 
                     class="contacts">
                     <i :class="contact.icon"></i> 
-                    <a :href="contact.href">{{ contact.description }}</a>
+                    <a :href="contact.href" target="_blank">{{ contact.description }}</a>
+                    
                   </p>
                 </div>
                 <div class="">
@@ -305,8 +306,6 @@ i{
 h6{
   margin-top: 10px;
 }
-
-
 
 .footer{
   /* position:fixed; */

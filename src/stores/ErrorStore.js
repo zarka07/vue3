@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
 export const ErrorStore = defineStore('error', {
     state:() => {
@@ -7,14 +7,10 @@ export const ErrorStore = defineStore('error', {
             statusCode: null,
         }
     },
-    getters:{
-
-    },
     actions:{
         showError(statusCode){
             this.statusCode = statusCode,
             this.isError = true
         },
-       
     }
 })

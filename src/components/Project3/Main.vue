@@ -1,75 +1,78 @@
 <template>
   <div>
     <Header/>
-  <my-header></my-header>
-  <main class="m-3">
-    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-      <input v-model="filter" type="text" placeholder="Фильтр"/>
-      
-      <button 
-        v-if="page > 1"
-        class="btn btn-primary me-md-2" 
-        type="button"
-        @click="page--">Назад
-      </button>
-      <button 
-        v-if="hasNextPage"
-        class="btn btn-primary me-md-2" 
-        type="button"
-        @click="page++">Вперед
-      </button>
-    </div>
-    <hr>
-    <div v-for="product in filteredList()" :key="product.id">
-      <div class="row">
-        <div class="col-md-4 col-md-offset-0">
-          <figure>
-            <img class="product" v-bind:src="product.image" >
-          </figure>
-        </div>
-        <div class="col-md-8 col-md-offset-0 description">
-          <h3><router-link 
-            :to="{ name : 'ProductId', params: {id: product.id}}" 
-            >{{product.title}}
-            </router-link>
-          </h3>
-          
-          <!--| formatPrice-->
-          <p class="price">Цена:  
-            {{product.price || formatPrice}}  грн
-          </p>
-          <div class="rating">
-            <span>Состояние товара: </span>
-            <span  
-              :class="{'rating-active' :checkRating(n, product)}"
-              v-for="n in 5" :key="n">☆</span>
+
+    <my-header></my-header>
+
+    <main class="m-3">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <input v-model="filter" type="text" placeholder="Фильтр"/>
+        <button 
+          v-if="page > 1"
+          class="btn btn-primary me-md-2" 
+          type="button"
+          @click="page--">Назад
+        </button>
+        <button 
+          v-if="hasNextPage"
+          class="btn btn-primary me-md-2" 
+          type="button"
+          @click="page++">Вперед
+        </button>
+      </div>
+
+      <hr>
+
+      <div v-for="product in filteredList()" :key="product.id">
+        <div class="row">
+          <div class="col-md-4 col-md-offset-0">
+            <figure>
+              <img class="product" v-bind:src="product.image" >
+            </figure>
           </div>
-          <br>
-          <div class="d-flex mt-4 flex-wrap align-content-around">
-            <button class="btn add-btn"
-              v-on:click="addToCart(product)"
-              v-if="canAddToCart(product)">Добавить в корзину
-            </button>
-            <button disabled="true" class=" btn btn-light"
-              v-else >Добавить в корзину
-            </button>
-            <span class="inventory-message"
-                v-if="product.availableInventory - cartCount(product.id) === 0">Товар закончился
-            </span>
-            <div class="inventory-message"
-                v-else-if="product.availableInventory - cartCount(product.id) < 5">
-                Осталось: {{product.availableInventory - cartCount(product.id)}} шт!
+          <div class="col-md-8 col-md-offset-0 description">
+            <h3><router-link 
+              :to="{ name : 'ProductId', params: {id: product.id}}" 
+              >{{product.title}}
+              </router-link>
+            </h3>
+            
+            <p class="price">Цена:  
+              {{product.price || formatPrice}}  грн
+            </p>
+            <div class="rating">
+              <span>Состояние товара: </span>
+              <span  
+                :class="{'rating-active' :checkRating(n, product)}"
+                v-for="n in 5" :key="n">☆</span>
             </div>
-            <span class="inventory-message"
-              v-else>Купить сейчас!
-            </span>
+            <br>
+            <div class="d-flex mt-4 flex-wrap align-content-around">
+              <button class="btn add-btn"
+                v-on:click="addToCart(product)"
+                v-if="canAddToCart(product)">Добавить в корзину
+              </button>
+              <button disabled="true" class=" btn btn-light"
+                v-else >Добавить в корзину
+              </button>
+              <span class="inventory-message"
+                  v-if="product.availableInventory - cartCount(product.id) === 0">Товар закончился
+              </span>
+              <div class="inventory-message"
+                  v-else-if="product.availableInventory - cartCount(product.id) < 5">
+                  Осталось: {{product.availableInventory - cartCount(product.id)}} шт!
+              </div>
+              <span class="inventory-message"
+                v-else>Купить сейчас!
+              </span>
+            </div>
           </div>
-        </div><!-- end of col-md-6-->
-      </div><!-- end of row-->
-      <hr />
-    </div><!-- end of v-for-->
-  </main>
-</div>
+        </div>
+        <hr />
+      </div>
+    </main>
+
+  </div>
 </template>
 <script>
 import MyHeader from './Header.vue';
@@ -124,10 +127,7 @@ export default {
       return myProduct.rating - n >= 0;
     },
     addToCart(Product) {
-      this.userStore.addToCart(Product.id)
-      localStorage.setItem("products-list", JSON.stringify(this.userStore.cartItemCount))
-      const data = localStorage.getItem("products-list")
-      console.log(data)
+      this.userStore.addToCart(Product.id)  
     },
     canAddToCart(Product) {
       //return this.product.availableInventory > this.cartItemCount;
@@ -138,8 +138,8 @@ export default {
     },
     cartCount(id) {
       let count = 0;
-      for (let i = 0; i < this.userStore.cartItemCount.length; i++) {
-        if (this.userStore.cartItemCount[i] === id) {
+      for (let i = 0; i < this.userStore.cartItems.length; i++) {
+        if (this.userStore.cartItems[i] === id) {
           count++;
         }
       }
@@ -147,9 +147,10 @@ export default {
     }
   },
   computed: {
-    cartItemCount() {
-      return this.userStore.cartItemCount.length || '';
-    },
+    // cartItems() {
+    //   return this.userStore.cartItems.length || 0;
+    // },
+
     sortedProducts() {
       function compare(a, b) {
           if (a.title.toLowerCase() < b.title.toLowerCase())
@@ -169,10 +170,7 @@ export default {
     await axios.get('products.json').then(response => {
       this.products = response.data.products;
     });
-    const productsData = localStorage.getItem("products-list")
-    if(productsData){
-      this.userStore.cartItemCount = JSON.parse(productsData)
-    }
+
     const windowData = Object.fromEntries(new URL(window.location).searchParams.entries())
     if(windowData.filter){
       this.filter = windowData.filter

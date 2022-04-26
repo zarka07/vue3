@@ -8,6 +8,7 @@
             <div style=" margin-left: 1rem;">
                 <h4><router-link :to="{name: 'Project3'}">{{sitename}}</router-link></h4>
             </div>
+
             <div class="">
                 <button class="btn">
                     <router-link 
@@ -15,7 +16,7 @@
                         :to="{name: 'Form'}"
                     >
                         <p class="bi bi-cart" style="margin-top:8px;margin-right:1rem">
-                              {{ this.userStore.cartItemCount.length }}
+                              {{ this.userStore.CURRENT_ITEMS_COUNT ?? 0 }}
                         </p>
                     </router-link>
                 </button>
@@ -42,8 +43,8 @@ export default {
     methods: {
         showCheckout(){
             this.$router.push({name:'Form'})
-        }
-    },
+        },
+    },      
 }
 </script>
 <style scoped>

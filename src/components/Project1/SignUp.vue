@@ -99,9 +99,7 @@ export default {
         return { v$: useVuelidate() }
     },
     data() {
-       const mainStore = UserStore();
-        // const { email, password, username } = storeToRefs(mainStore)
-        
+       const mainStore = UserStore(); 
         return{
           mainStore,
           username:'',
@@ -144,8 +142,6 @@ export default {
             this.$emit('sign-in')
         }
     }
-        
-    
 }
 </script>
 

@@ -1,10 +1,12 @@
 <template>
   <div>
     <my-header></my-header>
+
     <div class="d-grid gap-2 col-6 mx-auto">
       <button @click="resetCart"
       class="btn btn-primary" type="button">Сбросить корзину</button>
     </div>
+
     <form class="m-2">
       <!-- first and last names -->
       <div class="row mb-4">
@@ -114,11 +116,9 @@
           Method: {{order.method}}
           Gift: {{order.gift}}
         </pre>
-      </div><!-- end of col-md-12 verify-->
+      </div>
     </form>
   </div>
-
-          
 
 </template>
 <script>
@@ -155,7 +155,7 @@ export default {
       alert('Submitted');
     },
     resetCart(){
-      localStorage.setItem("products-list", JSON.stringify(this.userStore.cartItemCount=[]))
+      this.userStore.resetCart()
     }
   }
 }

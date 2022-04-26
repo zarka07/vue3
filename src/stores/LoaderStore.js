@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
 export const LoaderStore = defineStore('loader', {
     state:() => {
@@ -6,14 +6,10 @@ export const LoaderStore = defineStore('loader', {
             loading: false,
         }
     },
-    getters:{
-
-    },
     actions:{
         showLoader(){
             this.loading = true
         },
-
         hideLoader(){
             this.loading = false
         }

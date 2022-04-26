@@ -60,11 +60,11 @@ export default {
     },
   data(){
       return {
-      isOpen:false,
-      post:{},
-      comments:{},
-      path:'posts/'+this.$route.params.id,
-      commentsPath: 'posts/'+this.$route.params.id+'/comments'
+        isOpen:false,
+        post:{},
+        comments:{},
+        path:'posts/'+this.$route.params.id,
+        commentsPath: 'posts/'+this.$route.params.id+'/comments'
       }
     },
   created(){
