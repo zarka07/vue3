@@ -1,7 +1,6 @@
 <template>
   <div>
-    <Header/>
-
+    
     <my-header></my-header>
 
     <main class="m-3">
@@ -75,6 +74,7 @@
   </div>
 </template>
 <script>
+
 import MyHeader from './Header.vue';
 import axios from 'axios';
 import { UserStore } from '@/stores/UserStore';

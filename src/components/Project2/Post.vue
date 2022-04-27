@@ -29,9 +29,9 @@
           </button>
         </div>
 
-        <modal class="modal" v-if="this.modalStore.show">
+        <div class="modal" v-if="this.modalStore.show">
           <div class="modalContent" ><Agreement /></div>
-        </modal>
+        </div>
       </div>
     </div>
     
