@@ -44,6 +44,25 @@
         "image": "images/ventil-chugunnij-kvadratnij-flanets.jpg",
         "availableInventory": 1,
         "rating": 3
+      },
+      {
+        "id": 1006,
+        "title": "Шаровый кран для газа Ду80 Ру16",
+        "description": "Шаровый кран для газа IVR 82 GJS 400 Ду80 Ру16 чугун",
+        "price": 2020,
+        "image": "images/zadvizhka-vr.png",
+        "availableInventory": 3,
+        "rating": 5
+      },
+      {
+        "id": 1007,
+        "title": "Кран шаровый диаметр 2'' ДУ50",
+        "description": "Резьбовое соединение два дюйма, разных производителей",
+        "price": 800,
+        "image": "images/kran-sharovij-2-dujma.png",
+        "availableInventory": 11,
+        "rating": 5
       }
+      
     ]
   }
