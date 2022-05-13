@@ -1,8 +1,8 @@
 <template>
-    <div class="row footer">
-        <div class="col-md-12 footer" style="padding:0; margin-left: -12px; margin-right: -12px;">
+    <div>
+        <div class="col-md-12 footer">
             <div class="bg-dark text-center text-white ">
-              <div class="container p-2 pb-0">
+              <div class="p-2 pb-0">
                 <section class="mb-2">
                   <a class="btn btn-outline-light btn-floating m-1" href="mailto:zarka08@gmail.com" role="button"
                     ><i class="bi bi-google"></i></a>
@@ -33,8 +33,14 @@ export default ({
 })
 </script>
 
-<style>
-  /* .footer{
+<style scoped>
+  .footer{
+    width:100%;
+    padding:0; 
+    /* margin-left: -12px; 
+    margin-right: -12px; */
+  }
+  /* .footer-general{
     position: fixed;
     left:0;          
     bottom:0;       

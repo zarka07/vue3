@@ -1,42 +1,49 @@
 <template>
-  <div class="dataProcessing">
-      <p style="font-weight:700;">Обработка ваших данных:</p>
-      <progress-bar 
-        :barPercent="barPercent" 
-        :barColor="barColor" 
-        :barHeight="barHeight" 
-        :barProgress="barProgress"
-      >{{barProgress}}</progress-bar>
-      <div class="description">
-        <div v-if="barPercent>15" class="elem">Анализ введенных данных .....<span>Выполнено!</span></div>
-        <div v-if="barPercent>25" class="elem">Коррекция астрологического знака .....<span>Выполнено!</span></div>
-        <div v-if="barPercent>35" class="elem">Расчет вариаций ответов .....<span>Выполнено!</span></div>
-        <div v-if="barPercent>45" class="elem">Генерация предсказания .....<span>Выполнено!</span></div>
-        <div v-if="barPercent>50" class="elem">Сохранение результата .....<span>Выполнено!</span></div>
-        <div v-if="barPercent>65" class="elem">Поиск свободного оператора .....<span>Выполнено!</span></div>
-        <div v-if="barPercent>75" class="elem">Начало озвучки и записи аудио - сообщения .....<span>Выполнено!</span></div>
-        <div v-if="barPercent>76" class="elem" style="color:#B53E42;"><b>ИДЁТ ЗАПИСЬ</b></div> 
-        
-        <div v-if="barPercent==100" class="elem">ГОТОВО!</div>
+    <div>
+        <Header/>
+        <div class="dataProcessing">
+            <p style="font-weight:700;">Обработка ваших данных:</p>
+            <progress-bar 
+                :barPercent="barPercent" 
+                :barColor="barColor" 
+                :barHeight="barHeight" 
+                :barProgress="barProgress"
+            >{{barProgress}}</progress-bar>
+            <div class="description">
+                <div v-if="barPercent>15" class="elem">Анализ введенных данных .....<span>Выполнено!</span></div>
+                <div v-if="barPercent>25" class="elem">Коррекция астрологического знака .....<span>Выполнено!</span></div>
+                <div v-if="barPercent>35" class="elem">Расчет вариаций ответов .....<span>Выполнено!</span></div>
+                <div v-if="barPercent>45" class="elem">Генерация предсказания .....<span>Выполнено!</span></div>
+                <div v-if="barPercent>50" class="elem">Сохранение результата .....<span>Выполнено!</span></div>
+                <div v-if="barPercent>65" class="elem">Поиск свободного оператора .....<span>Выполнено!</span></div>
+                <div v-if="barPercent>75" class="elem">Начало озвучки и записи аудио - сообщения .....<span>Выполнено!</span></div>
+                <div v-if="barPercent>76" class="elem" style="color:#B53E42;"><b>ИДЁТ ЗАПИСЬ</b></div> 
+                
+                <div v-if="barPercent==100" class="elem">ГОТОВО!</div>
 
-        <div class="submit" v-if="barPercent==100" style="text-align:center">
-                    <button type="submit"
-                        class="submitButton"
-                        @click.prevent="this.$router.push({ name: 'get-data'})"
-                     >ДАЛЕЕ
-                    </button>
+                <div class="submit" v-if="barPercent==100" style="text-align:center">
+                            <button type="submit"
+                                class="submitButton"
+                                @click.prevent="this.$router.push({ name: 'p4main-get-data'})"
+                            >ДАЛЕЕ
+                            </button>
+                </div>
+            </div>
         </div>
-      </div>
-  </div>
+        <Footer/>
+    </div>
 </template>
 
 <script>
-import ProgressBar from '../components/Bar.vue';
+import ProgressBar from './Bar.vue';
+import Header from '../Header.vue';
+import Footer from '../Footer.vue';
 
 export default {
     name: 'data-processing',
     components:{
-        'progress-bar': ProgressBar
+        'progress-bar': ProgressBar,
+        Header, Footer
     },
     data(){
         return{
@@ -74,7 +81,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .dataProcessing{
         margin: 20px 10px 10px 10px;
         width: 90%;

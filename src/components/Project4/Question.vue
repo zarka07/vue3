@@ -69,9 +69,9 @@
                 </div>
             </div>
 
-            <p class="submit" v-if="showSubmit">
+            <p class="p4submit" v-if="showSubmit">
                     <button type="submit"
-                        class="submitButton"
+                        class="p4submitButton"
                         @click.prevent="submit"
                      >ДАЛЕЕ
                     </button>
@@ -192,7 +192,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .showError{
         width: 100%;
         height: 36px;
@@ -228,11 +228,11 @@ export default {
         font-weight: 400;
     }
 
-    .submit{
+    .p4submit{
         text-align: center;
     }
 
-    .submitButton{
+    .p4submitButton{
         font-size: 14px;
         font-weight: 700;
         color: #FFF;

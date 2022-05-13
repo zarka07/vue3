@@ -50,18 +50,18 @@ const routes = [
 		component: () => import (/*webpackChunkName: "project4" */ '@/views/Project4.vue'),
 	},
 	{
-		path: '/project4/main',
-		name: 'main4',
-		component: () => import (/*webpackChunkName: "Main" */ '@/components/Project4/Main.vue'),
+		path: '/project4/p4main',
+		name: 'p4main',
+		component: () => import (/*webpackChunkName: "P4Main" */ '@/components/Project4/Main.vue'),
 	},
 	{
-		path: '/project4/main/data-processing',
-		name: 'main4-data-processing',
+		path: '/project4/p4main/data-processing',
+		name: 'p4main-data-processing',
 		component: () => import (/*webpackChunkName: "DataProcessing" */ '@/components/Project4/DataProcessing.vue'),
 	},
 	{
-		path: '/project4/main/get-data',
-		name: 'main4-get-data',
+		path: '/project4/p4main/get-data',
+		name: 'p4main-get-data',
 		component: () => import (/*webpackChunkName: "GetData" */ '@/components/Project4/GetData.vue'),
 	},
 	{

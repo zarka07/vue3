@@ -2,20 +2,23 @@
     <div>
         <Header/>
         <div class="wrapper">
-            <Header/>
-            <router-view/>
-            <Footer/>
-            </div>
+            <P4Header/>
+            <P4Main/>
+            <P4Footer/>
+        </div>
         <Footer/>
     </div>
 </template>
 
 <script>
-import Header from '@/components/Header.vue'
+import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
+import P4Header from '../components/Project4/Header.vue';
+import P4Main from '../components/Project4/Main.vue';
+import P4Footer from '../components/Project4/Footer.vue';
 export default {
     name: 'project4-component',
-    components: { Header, Footer }
+    components: { Header, Footer, P4Header, P4Main, P4Footer }
 }
 </script>
 

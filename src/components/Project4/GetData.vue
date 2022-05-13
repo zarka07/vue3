@@ -1,5 +1,7 @@
 <template>
-  <div class="getData">
+  <div>
+    <Header/>
+    <div class="getData">
     <p style="text-align: left;font-weight:700;margin-left:1vh">Спасибо за ваши ответы</p>
     <p class="greeting">
       Поздравляем! Прослушать свой персональный гороскоп возможно уже сейчас!
@@ -16,7 +18,7 @@
     <div class="getApiButton">        
       <button class="button-menu" @click.prevent="getApi">
         <span class="menu-icon">
-          <img src="../assets/Vector.png" class="img"/>
+          <img src="/assets/Vector.png" class="img"/>
         </span>
         <span class="button-label">Звонить и слушать</span>
       </button>
@@ -66,12 +68,17 @@
     </table>
     </div>
   </div>
+  <Footer/>
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
+import Header from '../Header.vue';
+import Footer from '../Footer.vue';
 export default {
   name: 'get-data',
+  components:{Header, Footer},
   data(){
     return{
       response:{},

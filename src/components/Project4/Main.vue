@@ -9,8 +9,8 @@
 
         <div v-if="showImg">
             <div class="img" >
-                <img alt="koleso" class="rot koleso" src="../assets/koleso.png">
-                <img alt="logo" class="goroskop" src="../assets/goroskop.png">
+                <img alt="koleso" class="rot koleso" src="/assets/koleso.png">
+                <img alt="logo" class="goroskop" src="/assets/goroskop.png">
             </div>
             
             <div class="title">
@@ -30,11 +30,11 @@
 </template>
 
 <script>
-import Question from '../components/Question.vue';
-import ProgressBar from '../components/Bar.vue';
+import Question from './Question.vue';
+import ProgressBar from './Bar.vue';
 
 export default {
-    name: 'main-component',
+    name: 'p4main-component',
     components: { 'question-component': Question, 'progress-bar': ProgressBar},
     setup() {
         
@@ -159,7 +159,7 @@ export default {
             if(this.i===6){
                 this.barPercent=100
                 this.showProgress=false
-                this.$router.push({ name: 'data-processing'})
+                this.$router.push({ name: 'p4main-data-processing'})
             }
         }
     }

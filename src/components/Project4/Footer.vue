@@ -1,5 +1,5 @@
 <template>
-        <div class="footer">
+        <div class="p4footer">
             2022 © horoscop personal
         </div>
 </template>
@@ -13,8 +13,8 @@ export default {
 }
 </script>
 
-<style>
-    .footer{
+<style scoped>
+    .p4footer{
         position: absolute;
         left: 0;
         bottom: 0;
