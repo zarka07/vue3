@@ -49,7 +49,7 @@ export default {
     .subHeader{
         padding-top: 1vh;
         font-weight: 700;
-        font-size: 20px;
+        font-size: 19px;
         color: #AFDCE6;
     }
 
