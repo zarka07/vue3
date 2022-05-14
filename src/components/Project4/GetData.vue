@@ -8,7 +8,7 @@
           Поздравляем! Прослушать свой персональный гороскоп возможно уже сейчас!
         </p>
         <div class="year">
-          <div style="font-size:20px;margin-bottom:.5vh"><b>2021 год Вас ошарашит!</b></div>
+          <div style="font-size:20px;margin-bottom:.5vh"><b>2023 год Вас ошарашит!</b></div>
           
           Вас ждёт то, чего Вы никак не ожидали. Первые известия Вы получите совсем скоро, возможно это 17-18 ноября!
           <br>
@@ -111,6 +111,7 @@ export default {
     justify-content: center;
     align-items: center;
     max-width: 375px;
+    min-height:80vh;
   }
 
   .getData{

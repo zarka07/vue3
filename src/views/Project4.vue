@@ -37,10 +37,10 @@ body {
 }
 .wrapper{
   position:relative;
-  min-height: 100%;
+  min-height: 85vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 90px;
+  padding-bottom: 40px;
 }
 </style>

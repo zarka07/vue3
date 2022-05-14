@@ -42,6 +42,5 @@ export default {
     #settings{
         margin-top:10px;
     }
-    .user-main{
-    }
+    
 </style>

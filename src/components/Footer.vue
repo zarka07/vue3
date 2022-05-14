@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="footer">
         <div class="col-md-12 footer">
             <div class="bg-dark text-center text-white ">
               <div class="p-2 pb-0">
@@ -36,7 +36,7 @@ export default ({
 <style scoped>
   .footer{
     width:100%;
-    padding:0; 
+    padding:0;
     /* margin-left: -12px; 
     margin-right: -12px; */
   }
