@@ -19,11 +19,9 @@ export default {
         left: 0;
         bottom: 0;
         width: 100%;
-        height: 80px;
+        height: auto;
         text-align: center;
-        /* height:auto;  */
         color: rgba(225, 226, 230, 0.954);
-        
     }
     
 </style>

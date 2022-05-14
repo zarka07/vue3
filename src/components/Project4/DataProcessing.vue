@@ -1,8 +1,9 @@
 <template>
     <div>
         <Header/>
+        <div class="container">
         <div class="dataProcessing">
-            <p style="font-weight:700;">Обработка ваших данных:</p>
+            <p>Обработка ваших данных:</p>
             <progress-bar 
                 :barPercent="barPercent" 
                 :barColor="barColor" 
@@ -20,15 +21,15 @@
                 <div v-if="barPercent>76" class="elem" style="color:#B53E42;"><b>ИДЁТ ЗАПИСЬ</b></div> 
                 
                 <div v-if="barPercent==100" class="elem">ГОТОВО!</div>
-
-                <div class="submit" v-if="barPercent==100" style="text-align:center">
-                            <button type="submit"
-                                class="submitButton"
-                                @click.prevent="this.$router.push({ name: 'p4main-get-data'})"
-                            >ДАЛЕЕ
-                            </button>
-                </div>
             </div>
+            <div class="submit" v-if="barPercent==100" style="text-align:center">
+                <button type="submit"
+                        class="submitButton"
+                        @click.prevent="this.$router.push({ name: 'p4main-get-data'})"
+                        >ДАЛЕЕ
+                </button>
+            </div>
+        </div>
         </div>
         <Footer/>
     </div>
@@ -82,9 +83,29 @@ export default {
 </script>
 
 <style scoped>
+    @media only screen and (max-width: 586px) {
+        .container{
+            height:80vh;
+        }
+    } 
+    @media only screen and (min-width: 587px) {
+        .container{
+            height:90vh;
+        }
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        max-width: 375px;
+    }
     .dataProcessing{
-        margin: 20px 10px 10px 10px;
-        width: 90%;
+        
+    }
+
+    p{
+        font-weight:700;
+        padding-top:2vh;
     }
 
     span{
@@ -93,6 +114,7 @@ export default {
 
     .description{
         text-align: left;
+        font-size: 13px;
     }
 
     .elem{
@@ -101,6 +123,7 @@ export default {
 
     .submit{
         margin: 2vh auto 1vh auto;
+        width:100%;
     }
     .submitButton{
         font-size: 14px;
@@ -109,6 +132,6 @@ export default {
         background-color:#315DFA;
         border:0;
         height: 45px;
-        width:50vw;
+        width:100%;
     }
 </style>

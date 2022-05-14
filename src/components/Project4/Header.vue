@@ -29,7 +29,7 @@ export default {
         }
     }
 
-    @media only screen and (min-width: 415px) {
+    @media only screen and (min-width: 413px) {
         .header{
             justify-content: center;
             align-items:center;

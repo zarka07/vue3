@@ -16,7 +16,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .Progress {
         float:left;
         width: 100%;
@@ -36,6 +36,6 @@ export default {
     .percent{
         font-size:14px;
         padding-top: 2vh;
-        margin-left:6vw;
+        margin-left:3vw;
     }
 </style>

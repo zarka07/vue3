@@ -1,4 +1,3 @@
-  
 <template>
     <div>
         <form class="form">
@@ -69,13 +68,13 @@
                 </div>
             </div>
 
-            <p class="p4submit" v-if="showSubmit">
+            <div class="p4submit" v-if="showSubmit">
                     <button type="submit"
                         class="p4submitButton"
                         @click.prevent="submit"
                      >ДАЛЕЕ
                     </button>
-            </p>
+            </div>
         </form>
     </div>
 </template>
@@ -196,7 +195,7 @@ export default {
     .showError{
         width: 100%;
         height: 36px;
-        padding-top:3vh;
+        padding-top:1vh;
         text-align: center;
         color: #D0060E;
         background-color: #FFD8CF;
@@ -230,6 +229,7 @@ export default {
 
     .p4submit{
         text-align: center;
+        margin-top:8px;
     }
 
     .p4submitButton{

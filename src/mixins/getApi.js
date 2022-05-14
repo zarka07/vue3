@@ -18,7 +18,7 @@ export default{
         async get(path, cb = null){
             this.loaderStore.showLoader()
             return await axios
-                .get(process.env.VUE_APP_API_ENDPOINT_URL + path)
+                .get(process.env.VUE_APP_API_P2ENDPOINT_URL + path)
                 .then(response => cb!==null?cb(response.data):response.data)
                 .catch(error => {
                     if(error.response.status){
