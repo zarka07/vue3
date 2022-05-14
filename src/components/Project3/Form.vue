@@ -2,9 +2,13 @@
   <div>
     <my-header></my-header>
 
+    <!-- reset cart button -->
     <div class="d-grid gap-2 col-6 mx-auto">
-      <button @click="resetCart"
-      class="btn btn-primary" type="button">Сбросить корзину</button>
+      <button 
+        @click="resetCart"
+        class="btn btn-primary" type="button"
+        >Сбросить корзину
+      </button>
     </div>
 
     <form class="m-2">
@@ -12,7 +16,8 @@
       <div class="row mb-4">
         <div class="col">
           <div class="form-outline">
-            <input v-model.trim="order.firstName" 
+            <input 
+              v-model.trim="order.firstName" 
               type="text" 
               id="form6Example1" 
               class="form-control"
@@ -21,7 +26,8 @@
         </div>
         <div class="col">
           <div class="form-outline">
-            <input v-model.trim="order.lastName" 
+            <input 
+              v-model.trim="order.lastName" 
               type="text" 
               id="form6Example2" 
               class="form-control"
@@ -32,7 +38,8 @@
 
       <!-- delivery -->
       <div class="form-outline mb-4">
-        <input v-model.trim="order.address" 
+        <input 
+          v-model.trim="order.address" 
           type="text" 
           id="form6Example3" 
           class="form-control"
@@ -41,7 +48,8 @@
 
       <!-- city -->
       <div class="form-outline mb-4">
-        <input v-model.trim="order.city" 
+        <input 
+          v-model.trim="order.city" 
           type="text" 
           id="form6Example4" 
           class="form-control"
@@ -50,7 +58,8 @@
 
       <!-- mail code -->
       <div class="form-outline mb-4">
-        <input v-model.number="order.zip" 
+        <input 
+          v-model.number="order.zip" 
           type="number" 
           id="form6Example4" 
           class="form-control" 
@@ -59,20 +68,25 @@
 
     <!-- Checkbox glass-->
       <div class="form-check d-flex justify-content-center mb-4">
-        <input class="form-check-input me-2" 
+        <input 
+          class="form-check-input me-2" 
           type="checkbox" 
           value="true"
           v-bind:true-value="order.sendGift"
           v-bind:false-value="order.dontSendGift"
           v-model="order.gift" id="form6Example8" 
         />
-        <label class="form-check-label" for="form6Example8"> Упаковать как хрупкое? </label>
+        <label 
+          class="form-check-label" 
+          for="form6Example8"
+          > Упаковать как хрупкое? </label>
       </div> 
 
     <!-- Checkbox delivery name -->
       <div class="form-check d-flex justify-content-center">
         <div style="margin-right: 2.5rem;">
-          <input class="form-check-input" 
+          <input 
+            class="form-check-input" 
             type="radio"
             v-bind:value="order.home" 
             v-model="order.method"
@@ -83,8 +97,10 @@
           </label>
         </div>
           
+    <!-- checkbox delivery method -->
         <div>
-          <input class="form-check-input" 
+          <input 
+            class="form-check-input" 
             type="radio"
             v-bind:value="order.business" 
             v-model="order.method"
@@ -94,16 +110,18 @@
             Доставка другим перевозчиком
           </label>
         </div>
-          
       </div>
 
     <!-- Submit button -->
     <div class="d-flex justify-content-center mb-4 mt-4">
-      <button type="submit" 
+      <button 
+        type="submit" 
         class="btn btn-primary btn-block"
         v-on:click="submitForm"
-      >Отправить заказ</button>
+        >Отправить заказ
+      </button>
     </div>
+
     <!--col-md-12 verify-->  
       <div class="col-md-12 verify">
         <pre>
@@ -119,8 +137,8 @@
       </div>
     </form>
   </div>
-
 </template>
+
 <script>
 import MyHeader from './Header.vue';
 import { UserStore } from '@/stores/UserStore';

@@ -1,9 +1,10 @@
 <template>
   <div>
-    
+    <!-- Project3 header -->
     <my-header></my-header>
-
+    <!-- main -->
     <main class="m-3">
+      <!-- filter -->
       <div class="d-grid gap-2 d-md-flex justify-content-md-start">
         <input v-model="filter" type="text" placeholder="Фильтр"/>
         <button 
@@ -21,31 +22,36 @@
       </div>
 
       <hr>
-
+      <!-- filtered list -->
       <div v-for="product in filteredList()" :key="product.id">
         <div class="row">
+          <!-- product image -->
           <div class="col-md-4 col-md-offset-0">
             <figure>
               <img class="product" v-bind:src="product.image" >
             </figure>
           </div>
+          <!-- product title -->
           <div class="col-md-8 col-md-offset-0 description">
             <h3><router-link 
               :to="{ name : 'ProductId', params: {id: product.id}}" 
               >{{product.title}}
               </router-link>
             </h3>
-            
+            <!-- product price --> 
             <p class="price">Цена:  
               {{product.price || formatPrice}}  грн
             </p>
+            <!-- product rating -->
             <div class="rating">
               <span>Состояние товара: </span>
               <span  
                 :class="{'rating-active' :checkRating(n, product)}"
-                v-for="n in 5" :key="n">☆</span>
+                v-for="n in 5" 
+                :key="n">☆</span>
             </div>
             <br>
+            <!-- can buy now -->
             <div class="d-flex mt-4 flex-wrap align-content-around">
               <button class="btn add-btn"
                 v-on:click="addToCart(product)"
@@ -70,7 +76,6 @@
         <hr />
       </div>
     </main>
-
   </div>
 </template>
 <script>
@@ -147,10 +152,6 @@ export default {
     }
   },
   computed: {
-    // cartItems() {
-    //   return this.userStore.cartItems.length || 0;
-    // },
-
     sortedProducts() {
       function compare(a, b) {
           if (a.title.toLowerCase() < b.title.toLowerCase())

@@ -27,9 +27,6 @@
 
 export default ({
     name: 'footer-component',
-    setup() {
-        
-    },
 })
 </script>
 
@@ -37,14 +34,5 @@ export default ({
   .footer{
     width:100%;
     padding:0;
-    /* margin-left: -12px; 
-    margin-right: -12px; */
   }
-  /* .footer-general{
-    position: fixed;
-    left:0;          
-    bottom:0;       
-    width:100vw;     
-    z-index:200;
-  } */
 </style>

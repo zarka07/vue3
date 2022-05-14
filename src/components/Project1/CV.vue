@@ -2,48 +2,50 @@
     <div>
         <div class="container">    
           <div class="row">
+          <!-- left section -->
             <div class="col-md-4 left">
               <div class="info">
-                <div class="">
+                <!-- photo -->
+                <div>
                   <img src="avatar50-50.png" alt="avatar" class="avatar">
                 </div>
-    
-                <div class="">
+                <!-- contact me section -->
+                <div>
                   <p class="contactMe" >CONTACT ME AT:</p>
-                  <p v-for="contact in contacts" :key="contact" 
+                  <p 
+                    v-for="contact in contacts" 
+                    :key="contact" 
                     class="contacts">
-                    <i :class="contact.icon"></i> 
-                    <a :href="contact.href" target="_blank">{{ contact.description }}</a>
-                    
+                      <i :class="contact.icon"></i> 
+                      <a :href="contact.href" target="_blank">{{ contact.description }}</a>
                   </p>
                 </div>
-                <div class="">
+                <!-- key skills -->
+                <div>
                   <p class="contactMe">KEY SKILLS:</p>
                 </div>
               </div>
-
               <div class="skills">
                    <div>JS + <span class="vue">Vue.js</span>
                    </div>
                    <div class="vue">(Vuex/Router/Vuetify/Quasar)</div>
                    <div class="js">i18n/axios/wrld.js/</div>
               </div>
-
+              <!-- minor skills -->
               <div>
-                  <p class="contactMe" style="text-align:center">MINOR SKILLS:</p>
+                  <p class="contactMe">MINOR SKILLS:</p>
                   <ul class="skills" 
-                    style="list-style: none;
-                    padding-left: 0px">
+                    style="padding-left: 0px">
                     <li>C++</li>
                     <li>MSSQL Databases</li>
                   </ul>
               </div>
-
+              <!-- soft skills -->
               <div>
-                  <p class="contactMe" style="text-align:center">SOFT SKILLS:</p>
-                  <ul class="skills" 
-                    style="list-style: none;
-                      margin-top: -10px;
+                  <p class="contactMe">SOFT SKILLS:</p>
+                  <ul 
+                    class="skills" 
+                    style="margin-top: -10px;
                       padding-left: 0px" 
                     v-for="skill in skills" 
                     :key="skill" 
@@ -51,12 +53,12 @@
                     <li>{{skill}}</li>
                   </ul>
               </div>
-
+              <!-- language skills -->
               <div>
-                  <p class="contactMe" style="text-align:center">LANGUAGE SKILLS:</p>
-                  <ul class="skills" 
-                    style="list-style:none; 
-                    padding-left: 0px"
+                  <p class="contactMe">LANGUAGE SKILLS:</p>
+                  <ul 
+                    class="skills" 
+                    style="padding-left: 0px"
                     >
                     <li>English: Intermediate
                         (between B1 and B2
@@ -68,9 +70,8 @@
                   </ul>
               </div>
             </div>
-
-
-            <div class="col-md-8 right" style="">
+          <!-- right section -->
+            <div class="col-md-8 right">
               <div>
                 <h1 class="name">
                   SERHII TARASOV
@@ -124,12 +125,9 @@
                   Cars and cars industry | Sep 2012 - Jun 2017.
                 </p>
               </div>
-
             </div>
-            
           </div>
         </div>
-          
   </div>
 </template>
 
@@ -246,7 +244,6 @@ export default ({
 }
 
 .info{
-  /* padding-left: 2.2em; */
   text-align: center;
 }
 
@@ -262,15 +259,16 @@ i{
   color:#FFF;
   font-weight: 700;
   margin-top: 2em;
+  text-align:center;
 }
 
 .skills{
   text-align: center;
   color:rgb(111, 176, 236);
   font-weight: 700;
+  list-style:none;
 }
 .contacts{
-  /* text-align: left; */
   color:#FFF;
 }
 
@@ -308,11 +306,10 @@ h6{
 }
 
 .footer{
-  /* position:fixed; */
   left:0px;
   bottom:0px;
   height:115px;
   width:100%;
-  }
+}
 
 </style>

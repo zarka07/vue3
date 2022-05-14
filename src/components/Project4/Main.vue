@@ -1,12 +1,13 @@
 <template>
     <div class="container">
+        <!-- progressbar -->
         <progress-bar v-if="showProgress" 
             :barPercent="barPercent" 
             :barColor="barColor" 
             :barHeight="barHeight"
             :barProgress="barProgress"
         ></progress-bar>
-
+        <!-- goroskop image -->
         <div v-if="showImg">
             <div class="img" >
                 <img alt="koleso" class="rot koleso" src="/assets/koleso.png">
@@ -20,12 +21,11 @@
                 К сожалению, 2022 год принес нам немало неприятностей, даже откровенных проблем и несчастий. Не смотря на это, 3 знака зодиака очень скоро обретут долгожданное счастье! 2023 год затронет своими потрясениями каждого из нас.
             </div>
         </div>
-        
+        <!-- question component -->
         <question-component 
-            :questions="questions[i]"
+            :questions="questions[iterator]"
             @nextQuestion="nextQuestion">
         </question-component>
-        
     </div>
 </template>
 
@@ -36,9 +36,6 @@ import ProgressBar from './Bar.vue';
 export default {
     name: 'p4main-component',
     components: { 'question-component': Question, 'progress-bar': ProgressBar},
-    setup() {
-        
-    },
     data(){
         return{
             showProgress: false,
@@ -47,7 +44,8 @@ export default {
             barPercent: 0,
             barHeight: 8,
             barProgress:'',
-            i:0,
+            iterator:0,
+            questionsCount: 6,
             questions:[
                         {
                             description:{
@@ -148,15 +146,15 @@ export default {
         nextQuestion(){
                     this.showProgress=true
                     this.showImg=false
-                    this.i+=1
-                    this.questions[this.i]
+                    this.iterator+=1
+                    this.questions[this.iterator]
                     this.barPercent+=20
         },
         
     },
     watch:{
-        i(){
-            if(this.i===6){
+        iterator(){
+            if(this.iterator===this.questionsCount){
                 this.barPercent=100
                 this.showProgress=false
                 this.$router.push({ name: 'p4main-data-processing'})
@@ -226,7 +224,6 @@ export default {
         line-height: 22px;
         color: #315DF9;
         margin:2vh 1vw 2vh 1vw;
-        
     }
 
     .subtitle{

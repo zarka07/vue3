@@ -1,35 +1,39 @@
 <template>
     <div>
         <Header/>
+
         <div class="container">
-        <div class="dataProcessing">
-            <p>Обработка ваших данных:</p>
-            <progress-bar 
-                :barPercent="barPercent" 
-                :barColor="barColor" 
-                :barHeight="barHeight" 
-                :barProgress="barProgress"
-            >{{barProgress}}</progress-bar>
-            <div class="description">
-                <div v-if="barPercent>15" class="elem">Анализ введенных данных .....<span>Выполнено!</span></div>
-                <div v-if="barPercent>25" class="elem">Коррекция астрологического знака .....<span>Выполнено!</span></div>
-                <div v-if="barPercent>35" class="elem">Расчет вариаций ответов .....<span>Выполнено!</span></div>
-                <div v-if="barPercent>45" class="elem">Генерация предсказания .....<span>Выполнено!</span></div>
-                <div v-if="barPercent>50" class="elem">Сохранение результата .....<span>Выполнено!</span></div>
-                <div v-if="barPercent>65" class="elem">Поиск свободного оператора .....<span>Выполнено!</span></div>
-                <div v-if="barPercent>75" class="elem">Начало озвучки и записи аудио - сообщения .....<span>Выполнено!</span></div>
-                <div v-if="barPercent>76" class="elem" style="color:#B53E42;"><b>ИДЁТ ЗАПИСЬ</b></div> 
-                
-                <div v-if="barPercent==100" class="elem">ГОТОВО!</div>
-            </div>
-            <div class="submit" v-if="barPercent==100" style="text-align:center">
-                <button type="submit"
+            <div class="dataProcessing">
+                <p>Обработка ваших данных:</p>
+                <!-- progress bar -->
+                <progress-bar 
+                    :barPercent="barPercent" 
+                    :barColor="barColor" 
+                    :barHeight="barHeight" 
+                    :barProgress="barProgress"
+                >{{barProgress}}</progress-bar>
+                <!-- description -->
+                <div class="description">
+                    <div v-if="barPercent>15" class="elem">Анализ введенных данных .....<span>Выполнено!</span></div>
+                    <div v-if="barPercent>25" class="elem">Коррекция астрологического знака .....<span>Выполнено!</span></div>
+                    <div v-if="barPercent>35" class="elem">Расчет вариаций ответов .....<span>Выполнено!</span></div>
+                    <div v-if="barPercent>45" class="elem">Генерация предсказания .....<span>Выполнено!</span></div>
+                    <div v-if="barPercent>50" class="elem">Сохранение результата .....<span>Выполнено!</span></div>
+                    <div v-if="barPercent>65" class="elem">Поиск свободного оператора .....<span>Выполнено!</span></div>
+                    <div v-if="barPercent>75" class="elem">Начало озвучки и записи аудио - сообщения .....<span>Выполнено!</span></div>
+                    <div v-if="barPercent>76" class="elem" style="color:#B53E42;"><b>ИДЁТ ЗАПИСЬ</b></div> 
+                    <div v-if="barPercent==100" class="elem">ГОТОВО!</div>
+                </div>
+                <!-- submit button -->
+                <div class="submit" v-if="barPercent==100" style="text-align:center">
+                    <button 
+                        type="submit"
                         class="submitButton"
                         @click.prevent="this.$router.push({ name: 'p4main-get-data'})"
                         >ДАЛЕЕ
-                </button>
+                    </button>
+                </div>
             </div>
-        </div>
         </div>
         <Footer/>
     </div>

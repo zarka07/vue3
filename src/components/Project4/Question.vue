@@ -1,16 +1,20 @@
 <template>
     <div>
         <form class="form">
-            <div class="formTitle" 
+            <div 
+                class="formTitle" 
                 :title="questions.description.title">
                 {{questions.description.title}}
             </div>
             <div class="formDescription">
-                <div class="container" 
+                <div 
+                    class="container" 
                     :style="questions.description.style" >
                     <div v-for="(question, index) in questions.questions" :key="index">
+                        <!-- question type radio -->
                         <div v-if="questions.description.type==='radio'">
-                            <input :id="question.id"
+                            <input 
+                                :id="question.id"
                                 class="custom-checkbox"
                                 name="name"
                                 :checked="question.checked"
@@ -19,6 +23,7 @@
                                 @click="showButton(), question.checked=true">
                             <label :for="question.id"> {{question.answer}}</label>
                             </div>
+                        <!-- question type select -->
                         <div v-else class="custom-picker">
                             <select 
                                 id="day" 
@@ -67,13 +72,14 @@
                     </div>
                 </div>
             </div>
-
+            <!-- submit button -->
             <div class="p4submit" v-if="showSubmit">
-                    <button type="submit"
-                        class="p4submitButton"
-                        @click.prevent="submit"
-                     >ДАЛЕЕ
-                    </button>
+                <button 
+                    type="submit"
+                    class="p4submitButton"
+                    @click.prevent="submit"
+                    >ДАЛЕЕ
+                </button>
             </div>
         </form>
     </div>
@@ -83,9 +89,6 @@
 export default {
     name: 'question-component',
     props:['questions'],
-    setup() {
-        
-    },
     data(){
         return{
             showSubmit:false,
@@ -185,7 +188,6 @@ export default {
             if(this.selectedDate.year&&this.selectedDate.month&&this.selectedDate.day){
                 this.showSubmit = true
             }
-            
         }
     }
 }
@@ -267,50 +269,48 @@ export default {
     user-select: none;
     font-weight: 500;
     font-size: 18px;
-  }
-  
-  .custom-checkbox+label::before {
+    }
     
-    content: '';
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    flex-shrink: 0;
-    flex-grow: 0;
-    border: 1px solid #adb5bd;
-    border-radius: 50%;
-    margin-right: 0.5em;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 50% 50%;
-    background-color:#FFF
-  }
- 
-  .custom-checkbox:checked+label::before {
-    background-color: #FFF;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23000'/%3e%3c/svg%3e");
-  }
- 
-  .custom-checkbox:disabled+label::before {
-    background-color: #FFF;
-  }
-  
-  .custom-checkbox:checked+label{
-      color:rgb(49, 93, 250);
-      font-weight: 700;
-      font-style: normal;
-  }
+    .custom-checkbox+label::before {
+        
+        content: '';
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        flex-shrink: 0;
+        flex-grow: 0;
+        border: 1px solid #adb5bd;
+        border-radius: 50%;
+        margin-right: 0.5em;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 50% 50%;
+        background-color:#FFF
+    }
+    
+    .custom-checkbox:checked+label::before {
+        background-color: #FFF;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23000'/%3e%3c/svg%3e");
+    }
+    
+    .custom-checkbox:disabled+label::before {
+        background-color: #FFF;
+    }
+    
+    .custom-checkbox:checked+label{
+        color:rgb(49, 93, 250);
+        font-weight: 700;
+        font-style: normal;
+    }
 
-  .zodiac{
-      width:81px;
-      height:82px;
-  }
+    .zodiac{
+        width:81px;
+        height:82px;
+    }
 
-  .zodiac-description{
-      margin-top: 0;
-      font-size: 12px;
-      font-weight: 400;
-  }
-
-  
+    .zodiac-description{
+        margin-top: 0;
+        font-size: 12px;
+        font-weight: 400;
+    }
 </style>

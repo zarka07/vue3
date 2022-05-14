@@ -1,9 +1,13 @@
 <template>
   <div>
     <div class="Progress" >
-        <div class="bar"
+        <div 
+            class="bar"
             :style = "{background:barColor, width:barPercent+'%', height: barHeight+'px'}">
-            <div class="percent"> <b>{{barProgress}}</b></div>
+                <div class="percent"> 
+                    <b>{{barProgress}}
+                    </b>
+                </div>
         </div>
     </div>
   </div>

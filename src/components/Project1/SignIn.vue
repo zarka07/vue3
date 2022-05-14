@@ -7,40 +7,60 @@
               <div class="form-items">
                 <h3>Sign In</h3>
                 <form class="requires-validation" novalidate>
+                  <!-- email input -->
                   <div class="col-md-12">
                     <div :class="{ error: v$.email.$errors.length }">
-                      <input class="form-control" 
+                      <input 
+                        class="form-control" 
                         type="email" 
                         v-model="email" 
                         placeholder="E-mail" 
                         autocomplete ="email"
                       >
-                      <div class="input-errors" v-for="error of v$.email.$errors" :key="error.$uid">
-                        <div style="color:red" class="error-msg">{{ error.$message }}</div>
+                      <div 
+                        class="input-errors" 
+                        v-for="error of v$.email.$errors" 
+                        :key="error.$uid">
+                          <div class="error-msg">{{ error.$message }}</div>
                       </div>
                     </div>
                   </div>
-
+                  <!-- password input -->
                   <div class="col-md-12">
                     <div :class="{ error: v$.password.$errors.length }">
-                      <input class="form-control" 
-                             type="password" 
-                             v-model="password" 
-                             placeholder="Password" 
-                             autocomplete ="current-password" 
-                             required>
+                      <input 
+                        class="form-control" 
+                        type="password" 
+                        v-model="password" 
+                        placeholder="Password" 
+                        autocomplete ="current-password" 
+                        required>
 
-                      <div class="input-errors" v-for="error of v$.password.$errors" :key="error.$uid">
-                        <div style="color:red" class="error-msg">{{ error.$message }}</div>
+                      <div 
+                        class="input-errors" 
+                        v-for="error of v$.password.$errors" 
+                        :key="error.$uid">
+                          <div class="error-msg">{{ error.$message }}</div>
                       </div>
                     </div>
                   </div>
-
+                <!-- back button -->
                   <div class="form-button mt-3">
-                    <button type="button" @click.prevent="$emit('back')" class="btn btn-primary">back</button>
+                    <button 
+                      type="button" 
+                      @click.prevent="$emit('back')" 
+                      class="btn btn-primary"
+                      >back
+                    </button>
                   </div>
+                <!-- sign-in button -->
                   <div class="form-button mt-3">
-                    <button type="submit" @click.prevent="signIn" class="btn btn-success">Sign in</button>
+                    <button 
+                      type="submit" 
+                      @click.prevent="signIn" 
+                      class="btn btn-success"
+                      >Sign in
+                    </button>
                   </div>
                 </form>
               </div>
@@ -98,3 +118,9 @@ export default {
     }  
 }
 </script>
+
+<style scoped>
+  .error-msg{
+    color:red;
+  }
+</style>

@@ -12,9 +12,6 @@
 <script>
 export default {
     name: 'header-component',
-    setup() {
-        
-    },
 }
 </script>
 

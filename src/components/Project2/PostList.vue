@@ -1,32 +1,38 @@
 <template>
   <div class="postlist p-2">
+    <!-- postlist -->
     <div>
       <div>
         <div>
-          <div class="posts"><h3>{{$t("PostlistVue.Postlist")}}</h3></div>
-          <!-- .slice(0,limitPerPage) -->
-          <ul class="post" style="list-style: none">
-            <li  v-for="post in displayedPosts" :key="post.id" >
-              <router-link :to="{ name : 'PostId', params: {id: post.id, currentPage: this.userStore.currentPage}}">
-                {{post.id}}. {{post.title}}
-              </router-link>
+          <div class="posts">
+            <h3>{{$t("PostlistVue.Postlist")}}</h3>
+          </div>
+          <ul class="post">
+            <li 
+              v-for="post in displayedPosts" 
+              :key="post.id" >
+                <router-link :to="{ name : 'PostId', params: {id: post.id, currentPage: this.userStore.currentPage}}">
+                  {{post.id}}. {{post.title}}
+                </router-link>
             </li>
           </ul>
         </div>
       </div>
     </div>
-
+    <!-- pagination -->
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item">
-          <button type="button" 
+          <button 
+            type="button" 
             class="page-link" 
             style="color:#4CAF50" 
             v-if="this.userStore.currentPage != 1" @click="this.userStore.currentPage--"> {{$t("PostlistVue.Previous")}} 
           </button>
         </li>
         <li class="page-item">
-          <button type="button" 
+          <button 
+            type="button" 
             class="page-link"  
             v-for="pageNumber in pages.slice(this.userStore.currentPage-1, this.userStore.currentPage+5)" 
             :key="pageNumber"
@@ -34,7 +40,8 @@
           </button>
         </li>
         <li class="page-item">
-          <button type="button" 
+          <button 
+            type="button" 
             @click="this.userStore.currentPage++" 
             style="color:#4CAF50"
             v-if="this.userStore.currentPage < pages.length" class="page-link">{{$t("PostlistVue.Next")}} 
@@ -67,7 +74,6 @@ export default {
      }
   },
   methods:{
-    
     setPages () {
       let numberOfPages = Math.ceil(this.posts.length / this.perPage);
       for (let index = 1; index <= numberOfPages; index++) {
@@ -102,12 +108,9 @@ export default {
 }
 </script>
 <style scoped>
-  .postlist{
-    /* height:64vh; */
-  }
-
   .post{
     margin-left:2em;
+    list-style: none;
   }
 
   h3{
@@ -132,6 +135,7 @@ export default {
   button.page-link {
   display: inline-block;
   }
+
   button.page-link {
       font-size: 15px;
       color: #0b34caba;
@@ -151,6 +155,4 @@ export default {
     justify-content: center;
     padding-left: 0;
   }
-
-  
 </style>

@@ -7,10 +7,9 @@
 
 export default {
     name: 'loader-component',
-    props: {
-    }
 }
 </script>
+
 <style scoped>
     .loader{
         padding-top: 30vh;
@@ -26,6 +25,5 @@ export default {
         right: 0;
         background-color: rgba(0, 0, 0, 91%);
         transition: opacity .2s ease;
-
     }
 </style>

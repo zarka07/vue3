@@ -1,6 +1,7 @@
 <template>
     <header>
-        <div class="d.flex 
+        <div 
+            class="d.flex 
             d-flex justify-content-between 
             align-items-center
             mb-1
@@ -9,7 +10,7 @@
                 <h4><router-link :to="{name: 'Project3'}">{{sitename}}</router-link></h4>
             </div>
 
-            <div class="">
+            <div>
                 <button class="btn">
                     <router-link 
                         active-class="active" 
@@ -21,7 +22,6 @@
                     </router-link>
                 </button>
             </div>
-            
         </div>
     </header>
 </template>
@@ -55,14 +55,14 @@ header{
     top:86px;        
     width:100vw;      
     z-index:200;  */
-     
 }
+
 a {
   text-decoration: none;
   color: black;
 }
+
 .router-link-exact-active {
   color:rgb(8, 8, 8);
- 
 }
 </style>
