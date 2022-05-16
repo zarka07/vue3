@@ -16,7 +16,29 @@
 <script>
 export default {
     name: 'progress-bar',
-    props:['barColor', 'barPercent', 'barHeight', 'barProgress'],
+    props:
+    {
+        barColor:{
+            type: String,
+            required:false,
+            default:''
+        },
+        barPercent:{
+            type: String,
+            required:false,
+            default:''
+        },
+        barHeight:{
+            type: String,
+            required:false,
+            default:''
+        },
+        barProgress:{
+            type: String,
+            required:false,
+            default:''
+        },
+    },
 }
 </script>
 

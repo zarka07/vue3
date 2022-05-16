@@ -88,7 +88,13 @@
 <script>
 export default {
     name: 'question-component',
-    props:['questions'],
+    props:{
+        questions:{
+            type: String,
+            required: false,
+            default: ''
+        }
+    },
     data(){
         return{
             showSubmit:false,
