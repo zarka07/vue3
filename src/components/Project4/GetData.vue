@@ -73,33 +73,18 @@
 </template>
 
 <script>
-import axios from 'axios';
 import Header from '../Header.vue';
 import Footer from '../Footer.vue';
+import getApiForProject4 from '../../mixins/getApiForProject4';
+
 export default {
   name: 'get-data',
+  mixins:[getApiForProject4],
   components:{Header, Footer},
-  data(){
-    return{
-      response:{},
-      showResponse:false
-    }
-  },
+  
   methods:{
     
-    async getApi(){
-        const Response = await axios
-                .get(process.env.VUE_APP_API_P4ENDPOINT_URL)
-                .catch(error => {
-                    if(error.response.status){
-                        const statusCode = error.response.status
-                        console.log(statusCode)      
-                    }
-                })
-        this.response = Response.data; 
-        this.showResponse = true 
-        console.log(this.response)     
-        },
+    
   }
 }
 </script>
