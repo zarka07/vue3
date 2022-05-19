@@ -187,7 +187,7 @@ export default {
                 default:
                     console.log('nothing');
             }
-            return this.src, this.description
+            return [this.src, this.description]
             
         },
         checkAll(){
