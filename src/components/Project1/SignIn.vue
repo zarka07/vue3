@@ -95,7 +95,18 @@ export default {
             password:{required, minLength:minLength(8)}
         }
     },
-    emits: ['showUser', 'back'],
+    emits: {
+      'showUser':{
+        type: String,
+        required: false,
+        default: ''
+      },
+      'back':{
+        type: String,
+        required: false,
+        default: ''
+      }
+    },
     methods:{
       async signIn(){
         if(this.v$.$invalid){

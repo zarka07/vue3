@@ -132,7 +132,13 @@ export default {
             agree:{checked: v => v}
         }
     },
-    emits: ['sign-in'],
+    emits: {
+        'sign-in':{
+            type: String,
+            required: false,
+            default: ''
+      },
+    },
     methods:{
         async signUp(){
             if(this.v$.$invalid){

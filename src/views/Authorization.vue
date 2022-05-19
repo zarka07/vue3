@@ -28,7 +28,13 @@ import SignIn from '@/components/Project1/SignIn.vue';
 export default{
   components: { 'signup': SignUp , 'signin': SignIn },
     name: 'AuthorizationItem',
-    emits:['showUser'],
+    emits:{
+      'showUser':{
+        type: String,
+        required: false,
+        default: ''
+      }
+    },
     data() {
         return{
           items: [ 'signup', 'signin' ],
