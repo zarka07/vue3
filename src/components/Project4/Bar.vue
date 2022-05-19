@@ -24,14 +24,14 @@ export default {
             default:''
         },
         barPercent:{
-            type: String,
+            type: Number,
             required:false,
-            default:''
+            default:0
         },
         barHeight:{
-            type: String,
+            type: Number,
             required:false,
-            default:''
+            default:0
         },
         barProgress:{
             type: String,

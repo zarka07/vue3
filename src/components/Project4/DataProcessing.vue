@@ -9,7 +9,7 @@
                 <progress-bar 
                     :barPercent="barPercent" 
                     :barColor="barColor" 
-                    :barHeight="barHeight" 
+                    :barHeight="barHeight"
                     :barProgress="barProgress"
                 >{{barProgress}}</progress-bar>
                 <!-- description -->
