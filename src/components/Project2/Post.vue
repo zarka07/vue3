@@ -44,8 +44,8 @@
 
 </template>
 <script>
-import getApi from '../../mixins/getApi';
-import getPosts from '../../mixins/getPosts';
+import getApi from '../../mixins/getApiForProject2';
+import getPosts from '../../mixins/getPostsForProject2';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import Agreement from '@/components/Project2/Agreement.vue';

@@ -53,8 +53,8 @@
   </div>
 </template>
 <script>
-import getApi from '../../mixins/getApi';
-import getPosts from '../../mixins/getPosts';
+import getApi from '../../mixins/getApiForProject2';
+import getPosts from '../../mixins/getPostsForProject2';
 import { UserStore } from '@/stores/UserStore'
 export default {
   name: 'PostList',

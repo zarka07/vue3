@@ -34,7 +34,7 @@ export default {
     }
 
     .header{
-        background-color:rgb(49, 93, 250);
+        background-color:rgb(49, 93, 250) !important;
         color: #AFDCE5;
         font-weight: 700;
         height: auto;

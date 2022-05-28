@@ -17,6 +17,8 @@
                         <button type="button" class="btn btn-warning"><router-link to="/project2">Project 2</router-link></button>
                         <button type="button" class="btn btn-success"><router-link to="/project3">Project 3</router-link></button>
                         <button type="button" class="btn btn-primary"><router-link to="/project4">Project 4</router-link></button>
+                        <button type="button" class="btn btn-info"><router-link to="/project5">Project 5
+                        </router-link></button>
                     </div>  
                 </div>
             </div>
@@ -42,6 +44,6 @@ export default {
     }
 
     .header{
-        background-color: lightgreen;
+        background-color: lightgreen !important;
     }
 </style>

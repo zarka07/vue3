@@ -35,8 +35,8 @@ export default {
 </script>
 <style scoped>
     .mxauto{
-        position: absolute;
-        left: 55%;
+        position: absolute !important;
+        left: 55% ;
         transform: translateX(-45%);
     }
     #settings{
