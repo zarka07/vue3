@@ -123,10 +123,14 @@ export default {
       };
 
       try {
-        this.crmStore.register(formData);
+        await this.crmStore.register(formData);
+        if(this.crmStore.GET_ERROR){
+          this.$toast.error(this.crmStore.GET_ERROR);
+          return
+        }
         this.$router.push("/login");
       } catch (e) {
-        console.log("error when register");
+        this.$toast.error(e.message);
       }
     },
   },

@@ -67,7 +67,7 @@
             <a class="dropdown-item p-1 mb-1" @click="toProfile"><i class="bi bi-file-person me-2"></i>Профиль</a>
             <a class="dropdown-item p-1" @click="logout"><i class="bi bi-box-arrow-left me-2"></i>Выйти</a>
           </li>
-          <li v-else><a class="dropdown-item" @click="login"><i class="bi bi-box-arrow-right me-4"></i>Войти</a></li>
+          <li v-else><a class="dropdown-item" @click="toLogin"><i class="bi bi-box-arrow-right me-4"></i>Войти</a></li>
         </ul>
       </div>
     </div>
@@ -79,12 +79,14 @@ import { CRMstore } from "@/stores/CRMstore";
 
 export default {
   name: "navbar-component",
+
   setup() {
     const crmStore = CRMstore();
     return {
       crmStore,
     };
   },
+
   data: () => ({
     interval: null,
     links: [
@@ -95,39 +97,34 @@ export default {
       { title: "Категория", url: "/categories" },
     ],
   }),
+
   methods: {
     async logout() {
       await this.crmStore.logout();
-      // this.$router.push("/login?message=logout");
       this.$toast.info(`Вы вышли из системы`);
-      setTimeout(this.$toast.clear, 2000)
       this.$router.push("/login");
     },
-    login() {
+    toLogin() {
       this.$router.push({ name: "Login" });
     },
     toProfile(){
       this.$router.push({name: "Profile"})
     }
   },
+
   computed: {
     date() {
       let toDay = new Date().toLocaleDateString();
       let timeNow = new Date().toLocaleTimeString().slice(0, -3);
-      return `${timeNow}   ${toDay}`;
+      return `${timeNow} - ${toDay}`;
     },
     username() {
       return this.crmStore.USER_NAME;
     },
   },
-  mounted() {
-    // this.interval = setInterval(() => {
-    //   this.date = new Date();
-    // }, 60000);
-    //this.dropdown=M.Dropdown.init(this.$refs.dropdown,{constrainWidth:true})
-  },
+  
   beforeUnmount() {
-    // clearInterval(this.interval)
+    
   },
 };
 </script>

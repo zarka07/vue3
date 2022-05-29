@@ -4,7 +4,7 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, si
 export const CRMstore = defineStore('crmstore', {
     state: () => {
         return {
-            error: null,
+            error: 'no errors',
             _userInfo: {}
         }
     },
@@ -14,18 +14,16 @@ export const CRMstore = defineStore('crmstore', {
             const user = auth.currentUser;
             if (user) {
                 const uid = user.uid
-                return uid
+                return uid?uid:null
             }
             return
         },
 
         async register({ email, password, name }) {
-            console.log('trying to register')
             const auth = getAuth();
             try {
                 await createUserWithEmailAndPassword(auth, email, password, name)
                     .then((userCredential) => {
-
                         const user = userCredential.user
                         const uid = user.uid
                         const email = user.email
@@ -37,13 +35,10 @@ export const CRMstore = defineStore('crmstore', {
                             bill: 100
                         })
 
-                        console.log('user created')
                     })
             }
             catch (e) {
-                console.log('auth.js when register error', e)
-                //commit('setError', e)
-                throw e
+                this.setError(e)
             }
         },
 
@@ -57,8 +52,7 @@ export const CRMstore = defineStore('crmstore', {
                 //})
             }
             catch (e) {
-                console.log('auth.js when login error', e)
-                //commit('setError', e)
+                this.setError(e)
                 throw e
             }
         },
@@ -88,17 +82,8 @@ export const CRMstore = defineStore('crmstore', {
             return res.json()
         },
 
-        setError(state, error) {
-            state.error = error
-        },
-
-        clearError(state) {
-            state.error = null
-        },
-
         setUserInfo(data) {
            this._userInfo = data
-           //console.log(this._userInfo.username)
         },
 
         clearInfo() {
@@ -119,11 +104,15 @@ export const CRMstore = defineStore('crmstore', {
                 console.log(error)
             }
 
+        },
+
+        setError(e){
+            this.error = e.message
         }
     },
 
     getters: {
-        error: (state) => state.error,
+        GET_ERROR: (state) => state.error,
         USER_NAME: (state) => state._userInfo.username,
         USER_BILL: (state) => state._userInfo.bill
     }

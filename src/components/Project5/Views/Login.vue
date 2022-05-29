@@ -2,6 +2,7 @@
   <div class="container">
     <form class="form" @submit.prevent="onSubmit()">
       <p class="formDescription">Домашняя бухгалтерия</p>
+
       <div class="form-floating mb-3">
         <input
           type="email"
@@ -18,6 +19,7 @@
           </span>
         </div>
       </div>
+
       <div class="form-floating">
         <input
           type="password"
@@ -34,11 +36,13 @@
           </span>
         </div>
       </div>
+
       <div v-if="!v$.$invalid" class="mt-4 d-grid gap-2">
         <button type="submit" class="btn btn-success">
           Войти <i class="bi bi-arrow-right-square-fill float-end"></i>
         </button>
       </div>
+
       <div class="form-button mt-3 account have-not-account">
         <p>
           Нет аккаунта?
@@ -47,6 +51,7 @@
           >
         </p>
       </div>
+
     </form>
   </div>
 </template>
@@ -89,7 +94,7 @@ export default {
         this.$toast.success(`Вы вошли в систему`);
         this.$router.push("/project5");
       } catch (e) {
-        this.$toast.danger(`Ошибка при входе`);
+        this.$toast.error(e.message);
       }
     },
   },

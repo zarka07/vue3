@@ -138,7 +138,7 @@ const routes = [
 			{
 				path: '/profile',
 				name: 'Profile',
-				meta: { layout: 'empty' },
+				meta: { layout: 'main' },
 				component: () => import(/* webpackChunkName: "Register.vue", webpackMode: "lazy" */'@/components/Project5/Views/Profile.vue')
 				//   components: {
 				// 	default: UserProfile,
