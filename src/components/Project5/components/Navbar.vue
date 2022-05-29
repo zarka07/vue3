@@ -127,6 +127,7 @@ export default {
 <style scoped>
 .navb{
   background-color: rgb(64, 190, 232);
+  color: #FFF !important;
 }
 
 .offcanvas-start {
