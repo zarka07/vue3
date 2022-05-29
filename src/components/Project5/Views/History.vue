@@ -1,23 +1,23 @@
 <template>
   <div>
-    <div class="page-title">
+    <div class="col m-2">
       <h3>История записей</h3>
     </div>
-
+    <hr>
     <div class="history-chart">
       <canvas></canvas>
     </div>
 
     <section>
-      <table>
+      <table class="table">
         <thead>
           <tr>
-            <th>#</th>
-            <th>Сумма</th>
-            <th>Дата</th>
-            <th>Категория</th>
-            <th>Тип</th>
-            <th>Открыть</th>
+            <th scope="col">#</th>
+            <th scope="col">Сумма</th>
+            <th scope="col">Дата</th>
+            <th scope="col">Категория</th>
+            <th scope="col">Тип</th>
+            <th scope="col">Открыть</th>
           </tr>
         </thead>
 
@@ -28,11 +28,11 @@
             <td>12.12.32</td>
             <td>name</td>
             <td>
-              <span class="white-text badge red">Расход</span>
+              <span class="rate shadow-sm rounded">Расход</span>
             </td>
             <td>
-              <button class="btn-small btn">
-                <i class="material-icons">open_in_new</i>
+              <button class="arrow-btn shadow-sm rounded">
+                <i class="bi bi-box-arrow-up-right"></i>
               </button>
             </td>
           </tr>
@@ -47,3 +47,27 @@ export default {
   name: "history-component",
 };
 </script>
+
+<style scoped>
+.bi-box-arrow-up-right{
+  font-size: 100% !important;
+  color: #fff;
+  text-align: center;
+}
+
+.arrow-btn{
+  width: 50px;
+  height: 30px;
+  background-color: rgb(64, 190, 232);
+  border-color: transparent;
+  /* border-radius: 50%; */
+}
+
+.rate{
+  height:20px;
+  width:auto;
+  background-color:rgb(251, 69, 69);
+  padding:4px;
+  font-size: 80%;
+}
+</style>

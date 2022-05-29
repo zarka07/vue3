@@ -6,9 +6,9 @@
       <router-view />
     </main>
 
-    <div class="d-flex justify-content-end me-4">
+    <div class="d-flex justify-content-end me-4 ">
       <router-link class="" to="/record">
-        <i class="bi bi-plus-circle"></i>
+        <i class="bi bi-plus-circle "></i>
       </router-link>
     </div>
   </div>
