@@ -59,12 +59,15 @@
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          {{username??'anonimus'}}
+          {{ username ?? "anonimus" }}
         </a>
 
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <li v-if="username"><a class="dropdown-item" @click="logout">Выйти</a></li>
-          <li v-else><a class="dropdown-item"  @click="login">Войти</a></li>
+        <ul class="dropdown-menu me-1" aria-labelledby="dropdownMenuLink">
+          <li v-if="username">
+            <a class="dropdown-item p-1 mb-1" @click="toProfile"><i class="bi bi-file-person me-2"></i>Профиль</a>
+            <a class="dropdown-item p-1" @click="logout"><i class="bi bi-box-arrow-left me-2"></i>Выйти</a>
+          </li>
+          <li v-else><a class="dropdown-item" @click="login"><i class="bi bi-box-arrow-right me-4"></i>Войти</a></li>
         </ul>
       </div>
     </div>
@@ -98,8 +101,11 @@ export default {
       // this.$router.push("/login?message=logout");
       this.$router.push("/login");
     },
-    login(){
-      this.$router.push({name:'Login'})
+    login() {
+      this.$router.push({ name: "Login" });
+    },
+    toProfile(){
+      this.$router.push({name: "Profile"})
     }
   },
   computed: {
@@ -125,9 +131,9 @@ export default {
 </script>
 
 <style scoped>
-.navb{
+.navb {
   background-color: rgb(64, 190, 232);
-  color: #FFF !important;
+  color: #fff !important;
 }
 
 .offcanvas-start {
@@ -149,12 +155,12 @@ export default {
   border-bottom: 3px solid rgba(var(--bs-primary-rgb));
 }
 
-.dropdown-toggle::after{
+.dropdown-toggle::after {
   vertical-align: 0.1em;
   margin-left: 0.5em;
 }
 
-.dropdown-menu{
-  right:5px;
+.dropdown-menu {
+  min-width:5rem;
 }
 </style>

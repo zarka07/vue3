@@ -25,7 +25,7 @@
         <label for="floatingPassword">Пароль</label>
       </div>
       <div class="mt-4 d-grid gap-2">
-        <button type="submit" class="btn btn-info">
+        <button type="submit" class="btn btn-success">
           Войти <i class="bi bi-arrow-right-square-fill float-end"></i>
         </button>
       </div>

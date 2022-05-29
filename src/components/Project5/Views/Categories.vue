@@ -1,85 +1,67 @@
 <template>
-    <div>
-  <div class="page-title">
-    <h3>Категории</h3>
-  </div>
-  <section>
-    <div class="row">
-      <div class="col s12 m6">
-        <div>
-          <div class="page-subtitle">
-            <h4>Создать</h4>
-          </div>
-
-          <form>
-            <div class="input-field">
-              <input
-                  id="name"
-                  type="text"
-              >
-              <label for="name">Название</label>
-              <span class="helper-text invalid">Введите название</span>
-            </div>
-
-            <div class="input-field">
-              <input
-                  id="limit"
-                  type="number"
-              >
-              <label for="limit">Лимит</label>
-              <span class="helper-text invalid">Минимальная величина</span>
-            </div>
-
-            <button class="btn waves-effect waves-light" type="submit">
-              Создать
-              <i class="material-icons right">send</i>
-            </button>
-          </form>
-        </div>
-      </div>
-      <div class="col s12 m6">
-        <div>
-          <div class="page-subtitle">
-            <h4>Редактировать</h4>
-          </div>
-
-          <form>
-            <div class="input-field" >
-              <select>
-                <option>Category</option>
-              </select>
-              <label>Выберите категорию</label>
-            </div>
-
-            <div class="input-field">
-              <input type="text" id="name">
-              <label for="name">Название</label>
-              <span class="helper-text invalid">TITLE</span>
-            </div>
-
-            <div class="input-field">
-              <input
-                  id="limit"
-                  type="number"
-              >
-              <label for="limit">Лимит</label>
-              <span class="helper-text invalid">LIMIT</span>
-            </div>
-
-            <button class="btn waves-effect waves-light" type="submit">
-              Обновить
-              <i class="material-icons right">send</i>
-            </button>
-          </form>
-        </div>
-      </div>
+  <div class="p-4 categories">
+    <div class="">
+      <h3>Категории</h3>
     </div>
-  </section>
-</div>
+    <hr />
+    <section>
+      <div class="row justify-content-evenly">
+        <div class="create col-6">
+          <div class="p-2">
+            <div class="mb-4">
+              <h4>Создать</h4>
+            </div>
+
+            <form>
+              <div class="mb-2">
+                <input id="name" type="text" placeholder="Название" />
+              </div>
+
+              <div class="mb-4">
+                <input id="limit" type="number" placeholder="Лимит" />
+              </div>
+
+              <button type="submit" class="btn btn-success shadow-sm rounded mb-2">
+                СОЗДАТЬ <i class="bi bi-send float-end ms-2"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="edit col-6">
+          <div class="p-2">
+            <div class="mb-4">
+              <h4>Редактировать</h4>
+            </div>
+
+            <form>
+              <div class="mb-2">
+                <select>
+                  <option>Category</option>
+                </select>
+                <label>Выберите категорию</label>
+              </div>
+
+              <div class="mb-2">
+                <input type="text" id="name" placeholder="Название"/>
+              </div>
+
+              <div class="mb-4">
+                <input id="limit" type="number" placeholder="Лимит"/>
+              </div>
+
+              <button type="submit" class="btn btn-success shadow-sm rounded mb-2">
+                СОЗДАТЬ <i class="bi bi-send float-end ms-2"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
-  export default{
-    name:'categories-component'
-  }
+export default {
+  name: "categories-component",
+};
 </script>
