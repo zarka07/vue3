@@ -5,16 +5,15 @@
       <i class="bi bi-bootstrap-reboot"></i>
     </button>
   </div>
-    <hr>
-  
-    <Loader v-if="loading" style="left: 50%" />
+  <hr />
 
-    <div v-else class="row">
-      <bill-component :rate="rate"> </bill-component>
-      <currency-component></currency-component>
-    </div>
-    <div>{{ currency }}</div>
-  
+  <Loader v-if="loading" />
+
+  <div v-else class="row justify-content-evenly">
+    <bill-component :rate="rate"> </bill-component>
+    <currency-component></currency-component>
+  </div>
+  <div>{{ currency }}</div>
 </template>
 
 <script>
@@ -32,7 +31,7 @@ export default {
   },
   data() {
     return {
-      loading: true,
+      loading: false,
       currency: null,
       rate: 0,
       to: "USD",
@@ -52,7 +51,7 @@ export default {
     );
     //this.rate = this.currency.info.rate
     //console.log(this.currency.info);
-    this.loading = false;
+    //this.loading = false;
   },
 };
 </script>
@@ -60,15 +59,15 @@ export default {
 <style scoped>
 .bi-bootstrap-reboot {
   font-size: 150% !important;
-  color: #FFF;
+  color: #fff;
   text-align: center;
 }
 
-.reload{
+.reload {
   width: 50px;
   height: 50px;
-  background-color: rgb(73, 162, 231);
-  border-color:rgb(73, 162, 231);
-  border-radius:50%;
+  background-color: rgb(64, 190, 232);
+  border-color: transparent;
+  border-radius: 50%;
 }
 </style>

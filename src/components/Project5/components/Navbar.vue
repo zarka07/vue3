@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar navbar-light bg-primary">
+  <nav class="navbar navbar-light navb">
     <div class="container-fluid">
       <button
-        class="btn btn-primary"
+        class="btn navb"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#staticBackdrop"
@@ -52,7 +52,7 @@
 
       <div class="dropdown">
         <a
-          class="btn btn-primary dropdown-toggle"
+          class="btn navb dropdown-toggle"
           href="#"
           role="button"
           id="dropdownMenuLink"
@@ -125,6 +125,10 @@ export default {
 </script>
 
 <style scoped>
+.navb{
+  background-color: rgb(64, 190, 232);
+}
+
 .offcanvas-start {
   width: 200px !important;
 }

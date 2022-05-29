@@ -1,13 +1,14 @@
 <template>
-    <div class="col s12 m6 l4">
-      <div class="card light-blue bill-card">
-        <div class="card-content white-text">
-          <span class="card-title">Счет в валюте</span>
-
-          <p class="currency-line">
-            <span>{{rate}} грн</span>
+    <div class="col-4 p-4 bill">
+      <div class="">
+        
+          <span class="m-2 text-light">Счет в валюте</span>
+          
+          <p class="m-2 currency-line">
+            <span class="text-light">{{userBill}} грн</span>
           </p>
-        </div>
+          <hr class="text-light">
+        
       </div>
     </div>
 </template>
@@ -24,8 +25,8 @@ export default {
     },
     props:['rate'],
     computed:{
-      getUserBill(){
-        return this.crmStore.getters.userBill
+      userBill(){
+        return this.crmStore.USER_BILL
       }
     },
     methods(){
@@ -35,3 +36,11 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+  .bill{
+    background-color: rgb(64, 190, 232);
+    min-height:40vh;
+
+  }
+</style>

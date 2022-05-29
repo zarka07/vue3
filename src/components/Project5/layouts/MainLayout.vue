@@ -1,19 +1,15 @@
 <template>
-  <div>
-    <div class="">
-      <Navbar @click="isOpen = !isOpen" />
+  <div class="main">
+    <Navbar @click="isOpen = !isOpen" />
 
-      <main class="">
-        <div class="">
-          <router-view />
-        </div>
-      </main>
-  
-      <div class="">
-        <router-link class="" to="/record">
-          <i class="bi bi-plus-circle"></i>
-        </router-link>
-      </div>
+    <main class="">
+      <router-view />
+    </main>
+
+    <div class="d-flex justify-content-end me-4">
+      <router-link class="" to="/record">
+        <i class="bi bi-plus-circle"></i>
+      </router-link>
     </div>
   </div>
 </template>
@@ -28,14 +24,11 @@ export default {
       crmStore,
     };
   },
-  data: () => ({
-    
-  }),
+  data: () => ({}),
   components: {
-    Navbar
+    Navbar,
   },
   async mounted() {
-    
     // if (!Object.keys(this.crmStore.USER_NAME)) {
     //   await this.crmStore.USER_NAME
     // }
@@ -44,19 +37,20 @@ export default {
 </script>
 
 <style scoped>
+.main{
+  min-height: 70vh;
+}
 
-
-.bi-plus-circle{
-  font-size: 250% !important;
-  color:dodgerblue; 
+.bi-plus-circle {
+  font-size: 350% !important;
+  color: #fff;
   text-align: center;
 }
 
-.bi-plus-circle::before{
-  width:38px;
-  height:38px;
-  background-color: rgb(124, 252, 85);
+.bi-plus-circle::before {
+  width: 56px;
+  height: 56px;
+  background-color: rgb(64, 190, 232);
   border-radius: 50%;
 }
-
 </style>
