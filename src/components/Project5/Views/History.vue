@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="col m-2">
+  <div class="p-4">
+    <div class="col">
       <h3>История записей</h3>
     </div>
     <hr>

@@ -1,17 +1,25 @@
 <template>
-  <div>
-    <div class="page-title">
+  <div class="p-4 planning">
+    <div class="d-flex flex-row mb-3 me-2 justify-content-between">
       <h3>Планирование</h3>
       <h4>12 212</h4>
     </div>
+    <hr />
     <section>
       <div>
         <p>
           <strong>Девушка:</strong>
           12 122 из 14 0000
         </p>
-        <div class="progress">
-          <div class="determinate green" style="width: 40%"></div>
+        <div class="progress" style="height: 5px">
+          <div
+            class="progress-bar"
+            role="progressbar"
+            style="width: 25%"
+            aria-valuenow="25"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
         </div>
       </div>
     </section>
@@ -23,3 +31,9 @@ export default {
   name: "planning-component",
 };
 </script>
+
+<style scoped>
+.planning {
+  min-height: 40vh;
+}
+</style>
