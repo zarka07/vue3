@@ -14,12 +14,12 @@ const routes = [
 	{
 		path: '/project1',
 		name: 'Project1',
-		component: () => import (/*webpackChunkName: "project1" */ '@/views/Project1.vue'),
+		component: () => import(/*webpackChunkName: "project1" */ '@/views/Project1.vue'),
 	},
 	{
 		path: '/project2',
 		name: 'Project2',
-		component: () => import (/*webpackChunkName: "project2" */ '@/views/Project2.vue'),
+		component: () => import(/*webpackChunkName: "project2" */ '@/views/Project2.vue'),
 	},
 	{
 		path: '/project2/post/:id',
@@ -33,17 +33,17 @@ const routes = [
 	{
 		path: '/project3',
 		name: 'Project3',
-		component: () => import (/*webpackChunkName: "project3" */ '@/views/Project3.vue'),
+		component: () => import(/*webpackChunkName: "project3" */ '@/views/Project3.vue'),
 	},
 	{
 		path: '/project3/main',
 		name: 'main',
-		component: () => import (/*webpackChunkName: "main" */ '@/components/Project3/Main.vue'),
+		component: () => import(/*webpackChunkName: "main" */ '@/components/Project3/Main.vue'),
 	},
 	{
 		path: '/project3/form',
 		name: 'Form',
-		component: () => import (/*webpackChunkName: "form" */ '@/components/Project3/Form.vue'),
+		component: () => import(/*webpackChunkName: "form" */ '@/components/Project3/Form.vue'),
 	},
 	{
 		path: '/project3/product/:id',
@@ -57,107 +57,109 @@ const routes = [
 	{
 		path: '/project4',
 		name: 'Project4',
-		component: () => import (/*webpackChunkName: "project4" */ '@/views/Project4.vue'),
+		component: () => import(/*webpackChunkName: "project4" */ '@/views/Project4.vue'),
 	},
 	{
 		path: '/project4/main',
 		name: 'p4main',
-		component: () => import (/*webpackChunkName: "P4Main" */ '@/components/Project4/Main.vue'),
+		component: () => import(/*webpackChunkName: "P4Main" */ '@/components/Project4/Main.vue'),
 	},
 	{
 		path: '/project4/data-processing',
 		name: 'p4main-data-processing',
-		component: () => import (/*webpackChunkName: "DataProcessing" */ '@/components/Project4/DataProcessing.vue'),
+		component: () => import(/*webpackChunkName: "DataProcessing" */ '@/components/Project4/DataProcessing.vue'),
 	},
 	{
 		path: '/project4/get-data',
 		name: 'p4main-get-data',
-		component: () => import (/*webpackChunkName: "GetData" */ '@/components/Project4/GetData.vue'),
+		component: () => import(/*webpackChunkName: "GetData" */ '@/components/Project4/GetData.vue'),
 	},
 	{
 		path: '/project5',
 		name: 'Project5',
-		meta:{layout:'main'},
+		meta: { layout: 'main' },
 		props: true,
 		component: () => import(/* webpackChunkName: "Project5.vue", webpackMode: "lazy" */'@/views/Project5.vue'),
 		children: [
 			{
 				path: '',
 				name: 'Home',
-				meta:{layout:'main'},
+				meta: { layout: 'main' },
 				component: () => import(/* webpackChunkName: "Home.vue", webpackMode: "lazy" */'@/components/Project5/Views/Home.vue')
 			},
 			{
 				path: '/categories',
 				name: 'Categories',
-				meta:{layout:'main'},
+				meta: { layout: 'main' },
 				component: () => import(/* webpackChunkName: "Categories.vue", webpackMode: "lazy" */'@/components/Project5/Views/Categories.vue')
 			},
 			{
 				path: '/detail-record',
 				name: 'Detail-record',
-				meta:{layout:'main'},
+				meta: { layout: 'main' },
 				component: () => import(/* webpackChunkName: "Detail-record.vue", webpackMode: "lazy" */'@/components/Project5/Views/Detail-record.vue')
 			},
 			{
 				path: '/history',
 				name: 'History',
-				meta:{layout:'main'},
+				meta: { layout: 'main' },
 				component: () => import(/* webpackChunkName: "History.vue", webpackMode: "lazy" */'@/components/Project5/Views/History.vue')
 			},
 			{
 				path: '/login',
 				name: 'Login',
-				meta:{layout:'empty'},
+				meta: { layout: 'empty' },
 				component: () => import(/* webpackChunkName: "Login.vue", webpackMode: "lazy" */'@/components/Project5/Views/Login.vue')
 			},
 			{
 				path: '/planning',
 				name: 'Planning',
-				meta:{layout:'main'},
+				meta: { layout: 'main' },
 				component: () => import(/* webpackChunkName: "Planning.vue", webpackMode: "lazy" */'@/components/Project5/Views/Planning.vue')
 			},
 			{
 				path: '/profile',
 				name: 'Profile',
-				meta:{layout:'main'},
+				meta: { layout: 'main' },
 				component: () => import(/* webpackChunkName: "Profile.vue", webpackMode: "lazy" */'@/components/Project5/Views/Profile.vue')
 			},
 			{
 				path: '/record',
 				name: 'Record',
-				meta:{layout:'main'},
+				meta: { layout: 'main' },
 				component: () => import(/* webpackChunkName: "Record.vue", webpackMode: "lazy" */'@/components/Project5/Views/Record.vue')
 			},
 			{
 				path: '/register',
 				name: 'Register',
-				meta:{layout:'empty'},
+				meta: { layout: 'empty' },
 				component: () => import(/* webpackChunkName: "Register.vue", webpackMode: "lazy" */'@/components/Project5/Views/Register.vue')
 			},
-			// { path: '', component: Home }
-			// {
-			//   path: 'profile',
-			//   components: {
-			// 	default: UserProfile,
-			// 	helper: UserProfilePreview,
-			//   },
-			// },
+			{
+				path: '/profile',
+				name: 'Profile',
+				meta: { layout: 'empty' },
+				component: () => import(/* webpackChunkName: "Register.vue", webpackMode: "lazy" */'@/components/Project5/Views/Profile.vue')
+				//   components: {
+				// 	default: UserProfile,
+				// 	helper: UserProfilePreview,
+				//   },
+			},
 		],
 	},
 	{
 		path: '/auth',
 		name: 'Authorization',
-		component: () => import (/*webpackChunkName: "auth" */ '@/views/Authorization.vue'),
+		component: () => import(/*webpackChunkName: "auth" */ '@/views/Authorization.vue'),
 	},
 	{
 		path: '/user',
 		name: 'User',
-		component: () => import (/*webpackChunkName: "User" */ '@/views/User.vue'),
+		component: () => import(/*webpackChunkName: "User" */ '@/views/User.vue'),
 	},
-	
-    
-	
+
+
+
 ];
 
 const router = createRouter({

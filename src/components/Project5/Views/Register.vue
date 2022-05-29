@@ -12,6 +12,11 @@
           v-model.trim="email"
         />
         <label for="floatingInput">Email </label>
+        <div v-if="v$.$invalid" class="text-danger errors">
+          <span v-for="item in v$.$silentErrors" :key="item.uid">
+            <i v-if="item.$property === 'email'">{{ item.$message }}</i>
+          </span>
+        </div>
       </div>
 
       <div class="form-floating">
@@ -24,6 +29,11 @@
           v-model.trim="password"
         />
         <label for="floatingPassword">Пароль</label>
+        <div v-if="v$.$invalid" class="text-danger errors">
+          <span v-for="item in v$.$silentErrors" :key="item.uid">
+            <i v-if="item.$property === 'password'">{{ item.$message }}</i>
+          </span>
+        </div>
       </div>
 
       <div class="input-group mb-3 mt-3">
@@ -36,6 +46,12 @@
           aria-describedby="basic-addon1"
           v-model.trim="name"
         />
+        <br />
+        <div v-if="v$.$invalid" class="text-danger errors">
+          <span v-for="item in v$.$silentErrors" :key="item.uid">
+            <i v-if="item.$property === 'name'">{{ item.$message }}</i>
+          </span>
+        </div>
       </div>
 
       <div class="form-check">
@@ -51,14 +67,7 @@
         </label>
       </div>
 
-      <div v-if="v$.$invalid" class="errors">
-        <small v-for="item in v$.$silentErrors" :key="item.uid">
-          Ошибка в поле {{ item.$property }}: {{ item.$message.toLowerCase() }}
-          <br
-        /></small>
-      </div>
-
-      <div v-else class="mt-4 d-grid gap-2">
+      <div v-if="!v$.$invalid" class="mt-4 d-grid gap-2">
         <button type="submit" class="btn btn-success">
           Зарегистрироваться
           <i class="bi bi-arrow-right-square-fill float-end"></i>
@@ -104,7 +113,7 @@ export default {
   methods: {
     async onSubmit() {
       if (this.v$.$invalid) {
-        console.log('invalid')
+        
         return;
       }
       const formData = {
@@ -164,7 +173,6 @@ small {
 }
 
 .errors {
-  border: 2px dotted red;
   margin: 10px;
 }
 </style>

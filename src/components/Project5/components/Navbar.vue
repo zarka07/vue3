@@ -76,7 +76,7 @@
 
 <script>
 import { CRMstore } from "@/stores/CRMstore";
-//import M from 'materialize-css';
+
 export default {
   name: "navbar-component",
   setup() {
@@ -99,6 +99,8 @@ export default {
     async logout() {
       await this.crmStore.logout();
       // this.$router.push("/login?message=logout");
+      this.$toast.info(`Вы вышли из системы`);
+      setTimeout(this.$toast.clear, 2000)
       this.$router.push("/login");
     },
     login() {

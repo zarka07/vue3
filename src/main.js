@@ -4,6 +4,7 @@ import App from './App.vue';
 import { createPinia } from 'pinia';
 import router from '@/router';
 import { initializeApp } from "firebase/app";
+import Toaster from '@meforma/vue-toaster';
 //import { getAuth, onAuthStateChanged } from "firebase/auth";
 //import { getDatabase } from "firebase/database";
 import "bootstrap/dist/js/bootstrap.js";
@@ -126,6 +127,7 @@ let app = initializeApp(firebaseConfig)
 app = createApp(App).
     use(router).
     use(i18n).
+    use(Toaster, {position: 'bottom'}).
     use(createPinia())
     
 app.mount('#app')
