@@ -1,10 +1,20 @@
 <template>
-  <div class="col-6 p-4 currency">
+  <div v-if="loading" class="col-6 p-4 currency" aria-hidden="true">
+    <div class="m-1">
+      <p class="card-text placeholder-glow">
+        <span class="placeholder col-5"></span>
+        <span class="placeholder col-9 ms-2 mt-4"></span>
+        <span class="placeholder col-12 ms-2 mt-2"></span>
+      </p>
+    </div>
+    <hr />
+  </div>
+  <div v-else class="col-6 p-4 currency">
     <div class="mb-2">
       <span class="text-light">Курс валют</span>
     </div>
     <table class="text-light table">
-      <thead >
+      <thead>
         <tr>
           <th scope="col">Валюта</th>
           <th scope="col">Курс</th>
@@ -14,9 +24,9 @@
 
       <tbody>
         <tr>
-          <td >грн</td>
-          <td >12121</td>
-          <td >12.12.12</td>
+          <td>{{ toValue }}</td>
+          <td>{{ result }}</td>
+          <td>{{ rateDate || date }}</td>
         </tr>
       </tbody>
     </table>
@@ -26,6 +36,14 @@
 <script>
 export default {
   name: "currency-component",
+
+  props: ["loading", "toValue", "result", "rateDate"],
+
+  computed: {
+    date() {
+      return new Date().toLocaleDateString();
+    },
+  },
 };
 </script>
 

@@ -1,57 +1,61 @@
 <template>
   <div class="d-flex flex-row mt-3 mb-3 justify-content-between">
     <h3 class="m-3">Счет</h3>
-    <button class="reload m-2">
+    <button class="reload m-2" @click="refresh">
       <i class="bi bi-bootstrap-reboot"></i>
     </button>
   </div>
   <hr />
 
-  <Loader v-if="loading" />
-
-  <div v-else class="row justify-content-evenly">
-    <bill-component :rate="rate"> </bill-component>
-    <currency-component></currency-component>
+  <div class="row justify-content-evenly">
+    <BillComponent :loading="loading" :fromValue="from" :result="result" :toValue="to" />
+    <CurrencyComponent :loading="loading" :toValue="to" :result="result" :rateDate="date" />
   </div>
-  <div>{{ currency }}</div>
 </template>
 
 <script>
-import Loader from "../components/Loader.vue";
 import BillComponent from "../components/BillComponent.vue";
 import CurrencyComponent from "../components/CurrencyComponent.vue";
 import { CRMstore } from "@/stores/CRMstore";
 export default {
   name: "home-component",
+
+  components: {
+    BillComponent,
+    CurrencyComponent,
+  },
+
   setup() {
     const crmStore = CRMstore();
     return {
       crmStore,
     };
   },
+
   data() {
     return {
-      loading: false,
+      loading: true,
       currency: null,
-      rate: 0,
+      result: 0,
       to: "USD",
-      from: "EUR",
+      from: "UAH",
+      date: "",
     };
   },
-  components: {
-    "bill-component": BillComponent,
-    "currency-component": CurrencyComponent,
-    Loader,
+
+  methods: {
+    async refresh() {
+      this.loading = true;
+      this.currency = await this.crmStore.getCurrency(this.to, this.from);
+      this.loading = false;
+    },
   },
+
   async mounted() {
-    this.currency = await this.crmStore.$patch(
-      "getCurrency",
-      this.to,
-      this.from
-    );
-    //this.rate = this.currency.info.rate
-    //console.log(this.currency.info);
-    //this.loading = false;
+    this.currency = await this.crmStore.getCurrency(this.to, this.from);
+    this.result = this.currency.result;
+    this.date = this.currency.date;
+    this.loading = false;
   },
 };
 </script>

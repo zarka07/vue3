@@ -5,11 +5,10 @@ import { createPinia } from 'pinia';
 import router from '@/router';
 import { initializeApp } from "firebase/app";
 import Toaster from '@meforma/vue-toaster';
+
 //import { getAuth, onAuthStateChanged } from "firebase/auth";
 //import { getDatabase } from "firebase/database";
 import "bootstrap/dist/js/bootstrap.js";
-
-//import messages from './locales/messages';
 import { createI18n } from 'vue-i18n/index';
 require('../public/app.css')
 const messages = {

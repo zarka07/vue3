@@ -119,7 +119,7 @@ export default {
       return `${timeNow} - ${toDay}`;
     },
     username() {
-      return this.crmStore.USER_NAME;
+      return this.crmStore.GET_USER_NAME;
     },
   },
   

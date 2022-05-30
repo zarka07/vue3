@@ -5,7 +5,8 @@ export const CRMstore = defineStore('crmstore', {
     state: () => {
         return {
             error: 'no errors',
-            _userInfo: {}
+            _userInfo: {},
+            currencyInfo: {}
         }
     },
     actions: {
@@ -14,7 +15,7 @@ export const CRMstore = defineStore('crmstore', {
             const user = auth.currentUser;
             if (user) {
                 const uid = user.uid
-                return uid?uid:null
+                return uid ? uid : null
             }
             return
         },
@@ -63,11 +64,11 @@ export const CRMstore = defineStore('crmstore', {
             this.clearInfo();
         },
 
+
         async getCurrency(to, from) {
             const key = process.env.VUE_APP_API_P5ENDPOINT_API_KEY
             let myHeaders = new Headers();
             myHeaders.append("apikey", key);
-            console.log(key)
             const requestOptions = {
                 method: 'GET',
                 redirect: 'follow',
@@ -76,18 +77,17 @@ export const CRMstore = defineStore('crmstore', {
             };
             const amount = 100
             const res = await fetch(`https://api.apilayer.com/fixer/convert?to=${to}&from=${from}&amount=${amount}`, requestOptions)
-            // .then(response => response.text())
-            // .then(result => console.log(result))
-            // .catch(error => console.log('error', error));
-            return res.json()
+
+            return await res.json()
         },
 
         setUserInfo(data) {
-           this._userInfo = data
+            this._userInfo = data
         },
 
         clearInfo() {
-            this._userInfo = {}
+            this._userInfo = {},
+            this.currencyInfo = {}
         },
 
         async getUserInfo() {
@@ -100,20 +100,21 @@ export const CRMstore = defineStore('crmstore', {
                     this.setUserInfo(data);
                 });
 
-            } catch (error) {
-                console.log(error)
+            } catch (e) {
+                this.$toast.error(e)
             }
 
         },
 
-        setError(e){
+        setError(e) {
             this.error = e.message
         }
     },
 
     getters: {
         GET_ERROR: (state) => state.error,
-        USER_NAME: (state) => state._userInfo.username,
-        USER_BILL: (state) => state._userInfo.bill
+        GET_USER_NAME: (state) => state._userInfo.username,
+        GET_USER_BILL: (state) => state._userInfo.bill,
+        GET_CURRENCY_INFO: (state) => state.currencyInfo
     }
 })

@@ -6,9 +6,9 @@
       <router-view />
     </main>
 
-    <div class="d-flex justify-content-end me-4 ">
+    <div class="d-flex justify-content-end me-4">
       <router-link class="" to="/record">
-        <i class="bi bi-plus-circle "></i>
+        <i class="bi bi-plus-circle"></i>
       </router-link>
     </div>
   </div>
@@ -18,26 +18,22 @@ import Navbar from "@/components/Project5/components/Navbar.vue";
 import { CRMstore } from "@/stores/CRMstore";
 export default {
   name: "main-layout",
+
   setup() {
     const crmStore = CRMstore();
     return {
       crmStore,
     };
   },
-  data: () => ({}),
+
   components: {
     Navbar,
-  },
-  async mounted() {
-    // if (!Object.keys(this.crmStore.USER_NAME)) {
-    //   await this.crmStore.USER_NAME
-    // }
   },
 };
 </script>
 
 <style scoped>
-.main{
+.main {
   min-height: 70vh;
 }
 
