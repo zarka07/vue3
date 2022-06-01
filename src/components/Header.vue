@@ -10,9 +10,9 @@
                     </button>
                 </div>
                 
-                <div class="col-xs-12 col-sm-11 col-md-11 p-2 flex-grow-1 bd-highlight "
+                <div class="col-xs-12 col-sm-11 col-md-11 col-xl-11 p-2 flex-grow-1 bd-highlight "
                     style="text-align: center">
-                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <div class="btn-group flex-wrap" role="group" aria-label="Basic mixed styles example">
                         <button type="button" class="btn btn-danger"><router-link to="/project1">Project 1</router-link></button>
                         <button type="button" class="btn btn-warning"><router-link to="/project2">Project 2</router-link></button>
                         <button type="button" class="btn btn-success"><router-link to="/project3">Project 3</router-link></button>

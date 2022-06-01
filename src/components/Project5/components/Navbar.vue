@@ -101,8 +101,8 @@ export default {
   methods: {
     async logout() {
       await this.crmStore.logout();
-      this.$toast.info(`Вы вышли из системы`);
-      this.$router.push("/login");
+      this.$toast.warning(`Вы вышли из системы`);
+      this.$router.push({ name: "Login" });
     },
     toLogin() {
       this.$router.push({ name: "Login" });
@@ -121,10 +121,6 @@ export default {
     username() {
       return this.crmStore.GET_USER_NAME;
     },
-  },
-  
-  beforeUnmount() {
-    
   },
 };
 </script>

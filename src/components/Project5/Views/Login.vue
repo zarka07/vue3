@@ -92,7 +92,7 @@ export default {
       try {
         await this.crmStore.login(formData);
         this.$toast.success(`Вы вошли в систему`);
-        this.$router.push("/project5");
+        this.$router.push('/home');
       } catch (e) {
         this.$toast.error(e.message);
       }

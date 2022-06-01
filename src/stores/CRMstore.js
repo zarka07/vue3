@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia';
 import { getDatabase, ref, set, onValue } from "firebase/database"
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth"
+let _userInfo = localStorage.getItem('user-info');
 export const CRMstore = defineStore('crmstore', {
     state: () => {
         return {
-            error: 'no errors',
-            _userInfo: {},
+            _userInfo: _userInfo ? JSON.parse(_userInfo) : {},
             currencyInfo: {}
         }
     },
@@ -39,37 +39,37 @@ export const CRMstore = defineStore('crmstore', {
                     })
             }
             catch (e) {
-                this.setError(e)
+                this.$toast.error(e)
             }
         },
 
         async login({ email, password }) {
             const auth = getAuth();
-            try {
-                await signInWithEmailAndPassword(auth, email, password)
-                this.getUserInfo()
-            }
-            catch (e) {
-                this.setError(e)
-                throw e
-            }
+            await signInWithEmailAndPassword(auth, email, password)
+            this.setUserInfo()
         },
 
         async logout() {
             const auth = getAuth();
-            await signOut(auth);
-            this.clearInfo();
+            await signOut(auth).then(() => {
+                this.clearInfo();
+            }).catch((e) => {
+                this.$toast.error(e)
+            })
+
         },
 
-        async getUserInfo() {
+        async setUserInfo() {
             try {
                 const uid = await this.getUid()
                 const db = getDatabase()
                 const userInfo = ref(db, '/users/' + uid);
                 onValue(userInfo, (snapshot) => {
                     const data = snapshot.val();
-                    this.setUserInfo(data);
+                    this._userInfo = data
+                    localStorage.setItem("user-info", JSON.stringify(data))
                 });
+
 
             } catch (e) {
                 this.$toast.error(e)
@@ -93,24 +93,20 @@ export const CRMstore = defineStore('crmstore', {
             return await res.json()
         },
 
-        setUserInfo(data) {
-            this._userInfo = data
-        },
-
         clearInfo() {
-            this._userInfo = {},
+            if (this.currencyInfo) {
                 this.currencyInfo = {}
+                this._userInfo = {}
+            }
+            //localStorage.removeItem("userInfo");
         },
 
-        setError(e) {
-            this.error = e.message
-        }
     },
 
     getters: {
-        GET_ERROR: (state) => state.error,
         GET_USER_NAME: (state) => state._userInfo.username,
         GET_USER_BILL: (state) => state._userInfo.bill,
-        GET_CURRENCY_INFO: (state) => state.currencyInfo
+        GET_CURRENCY_INFO: (state) => state.currencyInfo,
+        GET_USER_INFO: (state) => state._userInfo,
     }
 })

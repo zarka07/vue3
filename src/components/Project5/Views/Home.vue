@@ -7,7 +7,7 @@
   </div>
   <hr />
 
-  <div class="row justify-content-evenly flex-sm-wrap flex-md-wrap">
+  <div class="row m-3 justify-content-evenly flex-sm-wrap flex-md-wrap">
     <BillComponent
       class="col-xl-4 col-lg-4 col-md-4 col-sm-4 p-4 bill"
       :billParams="billParams"

@@ -5,11 +5,9 @@ import { createPinia } from 'pinia';
 import router from '@/router';
 import { initializeApp } from "firebase/app";
 import Toaster from '@meforma/vue-toaster';
-
-//import { getAuth, onAuthStateChanged } from "firebase/auth";
-//import { getDatabase } from "firebase/database";
 import "bootstrap/dist/js/bootstrap.js";
 import { createI18n } from 'vue-i18n/index';
+
 require('../public/app.css')
 const messages = {
     en: {
@@ -114,13 +112,13 @@ const firebaseConfig = {
     measurementId: "G-EGYK88QBZM"
 };
 
+
 const i18n = createI18n({
     locale: 'en', // set locale
     fallbackLocale: 'ru', // set fallback locale
     messages,
 })
-//const database = getDatabase(app)
-//const auth = getAuth();
+
 let app = initializeApp(firebaseConfig)
 
 app = createApp(App).
@@ -128,6 +126,6 @@ app = createApp(App).
     use(i18n).
     use(Toaster, {position: 'bottom'}).
     use(createPinia())
-    
 app.mount('#app')
+
 

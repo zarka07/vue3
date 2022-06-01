@@ -1,9 +1,9 @@
 import { createWebHistory, createRouter } from 'vue-router';
-//import Home from '@/components/Project5/Views/Home.vue'
+
 
 import Main from '@/views/Main.vue';
 
-//import UserItem from '@/components/User.vue';
+
 
 const routes = [
 	{
@@ -81,11 +81,18 @@ const routes = [
 		props: true,
 		component: () => import(/* webpackChunkName: "Project5.vue", webpackMode: "lazy" */'@/views/Project5.vue'),
 		children: [
+			
 			{
-				path: '',
+				path: '/home',
 				name: 'Home',
 				meta: { layout: 'main' },
 				component: () => import(/* webpackChunkName: "Home.vue", webpackMode: "lazy" */'@/components/Project5/Views/Home.vue')
+			},
+			{
+				path: '/login',
+				name: 'Login',
+				meta: { layout: 'empty' },
+				component: () => import(/* webpackChunkName: "Login.vue", webpackMode: "lazy" */'@/components/Project5/Views/Login.vue')
 			},
 			{
 				path: '/categories',
@@ -104,12 +111,6 @@ const routes = [
 				name: 'History',
 				meta: { layout: 'main' },
 				component: () => import(/* webpackChunkName: "History.vue", webpackMode: "lazy" */'@/components/Project5/Views/History.vue')
-			},
-			{
-				path: '/login',
-				name: 'Login',
-				meta: { layout: 'empty' },
-				component: () => import(/* webpackChunkName: "Login.vue", webpackMode: "lazy" */'@/components/Project5/Views/Login.vue')
 			},
 			{
 				path: '/planning',
@@ -166,5 +167,17 @@ const router = createRouter({
 	history: createWebHistory(),
 	routes,
 });
-
+// router.beforeEach((to) => {
+// 	// instead of having to check every route record with
+// 	// to.matched.some(record => record.meta.requiresAuth)
+// 	if (!crmStore._userInfo) {
+// 		// this route requires auth, check if logged in
+// 		// if not, redirect to login page.
+// 		return {
+// 			path: '/login',
+// 			// save the location we were at to come back later
+// 			query: { redirect: to.fullPath },
+// 		}
+// 	}
+// })
 export default router;
