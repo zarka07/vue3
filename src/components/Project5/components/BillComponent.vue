@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loading" class="col-4 p-4 bill" aria-hidden="true">
+  <div v-if="billParams.loading" aria-hidden="true">
     <div class="m-1">
       <p class="card-text placeholder-glow">
         <span class="placeholder col-7 mb-3"></span>
@@ -11,14 +11,17 @@
       <hr />
     </div>
   </div>
-  <div v-else class="col-4 p-4 bill">
+  
+  <div v-else >
     <div>
       <span class="m-2 text-light">Счет в валюте</span>
       <p class="m-2 currency-line">
-        <span class="text-light">{{ fromValue }}: {{ userBillFrom }} </span>
+        <span class="text-light">{{ billParams.from }}: {{ userBillFrom }} </span>
       </p>
       <p class="m-2 currency-line">
-        <span class="text-light">{{ toValue }}: {{ userBillTo }} </span>
+        <span class="text-light"
+          >{{ billParams.to }}: {{ userBillTo || "Нет соединения с сервером" }}
+        </span>
       </p>
       <hr />
     </div>
@@ -30,7 +33,7 @@ import { CRMstore } from "@/stores/CRMstore";
 export default {
   name: "bill-component",
 
-  props: ["loading", "fromValue", "result", "toValue"],
+  props: ["billParams"],
 
   setup() {
     const crmStore = CRMstore();
@@ -48,13 +51,15 @@ export default {
     },
 
     userBillFrom() {
-      return this.isBillExist ? this.crmStore.GET_USER_BILL : "---";
+      return this.isBillExist ? this.crmStore.GET_USER_BILL : " ---";
     },
 
     userBillTo() {
-      return this.isBillExist
-        ? (this.crmStore.GET_USER_BILL / this.result).toPrecision(5)
-        : "---";
+      if (this.isBillExist && this.billParams.result != 0) {
+        return (this.crmStore.GET_USER_BILL / this.billParams.result).toPrecision(5);
+      } else {
+        return " ---";
+      }
     },
   },
 };

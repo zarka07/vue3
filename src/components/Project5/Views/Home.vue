@@ -7,9 +7,16 @@
   </div>
   <hr />
 
-  <div class="row justify-content-evenly">
-    <BillComponent :loading="loading" :fromValue="from" :result="result" :toValue="to" />
-    <CurrencyComponent :loading="loading" :toValue="to" :result="result" :rateDate="date" />
+  <div class="row justify-content-evenly flex-sm-wrap flex-md-wrap">
+    <BillComponent
+      class="col-xl-4 col-lg-4 col-md-4 col-sm-4 p-4 bill"
+      :billParams="billParams"
+    />
+    <CurrencyComponent
+      class="col-xl-6 col-lg-6 col-md-6 col-sm-6 p-4 currency"
+      :billParams="billParams"
+      :rateDate="date"
+    />
   </div>
 </template>
 
@@ -34,28 +41,25 @@ export default {
 
   data() {
     return {
-      loading: true,
       currency: null,
-      result: 0,
-      to: "USD",
-      from: "UAH",
       date: "",
+      billParams: { loading: false, from: "UAH", to: "USD", result: 0 },
     };
   },
 
   methods: {
     async refresh() {
-      this.loading = true;
-      this.currency = await this.crmStore.getCurrency(this.to, this.from);
-      this.loading = false;
+      this.billParams.loading = true;
+      //this.currency = await this.crmStore.getCurrency(this.billParams.to, this.billParams.from);
+      this.billParams.loading = false;
     },
   },
 
   async mounted() {
-    this.currency = await this.crmStore.getCurrency(this.to, this.from);
-    this.result = this.currency.result;
-    this.date = this.currency.date;
-    this.loading = false;
+    //this.currency = await this.crmStore.getCurrency(this.billParams.to, this.billParams.from);
+    // this.billParams.result = this.currency.result;
+    // this.date = this.currency.date;
+    this.billParams.loading = false;
   },
 };
 </script>

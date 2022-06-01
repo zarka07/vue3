@@ -48,9 +48,6 @@ export const CRMstore = defineStore('crmstore', {
             try {
                 await signInWithEmailAndPassword(auth, email, password)
                 this.getUserInfo()
-                // .then((userCredential) => {
-                //     const user = userCredential.user
-                //})
             }
             catch (e) {
                 this.setError(e)
@@ -62,32 +59,6 @@ export const CRMstore = defineStore('crmstore', {
             const auth = getAuth();
             await signOut(auth);
             this.clearInfo();
-        },
-
-
-        async getCurrency(to, from) {
-            const key = process.env.VUE_APP_API_P5ENDPOINT_API_KEY
-            let myHeaders = new Headers();
-            myHeaders.append("apikey", key);
-            const requestOptions = {
-                method: 'GET',
-                redirect: 'follow',
-                headers: myHeaders,
-                withCredentials: false,
-            };
-            const amount = 100
-            const res = await fetch(`https://api.apilayer.com/fixer/convert?to=${to}&from=${from}&amount=${amount}`, requestOptions)
-
-            return await res.json()
-        },
-
-        setUserInfo(data) {
-            this._userInfo = data
-        },
-
-        clearInfo() {
-            this._userInfo = {},
-            this.currencyInfo = {}
         },
 
         async getUserInfo() {
@@ -104,6 +75,31 @@ export const CRMstore = defineStore('crmstore', {
                 this.$toast.error(e)
             }
 
+        },
+
+        async getCurrency(to, from) {
+            const key = process.env.VUE_APP_API_P5ENDPOINT_API_KEY
+            let myHeaders = new Headers();
+            myHeaders.append("apikey", key);
+            const requestOptions = {
+                method: 'GET',
+                redirect: 'follow',
+                headers: myHeaders,
+                withCredentials: false,
+            };
+            const amount = this.GET_USER_BILL
+            const res = await fetch(`https://api.apilayer.com/fixer/convert?to=${to}&from=${from}&amount=${amount}`, requestOptions)
+
+            return await res.json()
+        },
+
+        setUserInfo(data) {
+            this._userInfo = data
+        },
+
+        clearInfo() {
+            this._userInfo = {},
+                this.currencyInfo = {}
         },
 
         setError(e) {

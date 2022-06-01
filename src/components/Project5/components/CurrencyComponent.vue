@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loading" class="col-6 p-4 currency" aria-hidden="true">
+  <div v-if="billParams.loading" aria-hidden="true">
     <div class="m-1">
       <p class="card-text placeholder-glow">
         <span class="placeholder col-5"></span>
@@ -9,7 +9,7 @@
     </div>
     <hr />
   </div>
-  <div v-else class="col-6 p-4 currency">
+  <div v-else >
     <div class="mb-2">
       <span class="text-light">Курс валют</span>
     </div>
@@ -24,8 +24,8 @@
 
       <tbody>
         <tr>
-          <td>{{ toValue }}</td>
-          <td>{{ result }}</td>
+          <td>{{ billParams.to }}</td>
+          <td>{{ billParams.result || 'Нет соединения с сервером'}}</td>
           <td>{{ rateDate || date }}</td>
         </tr>
       </tbody>
@@ -37,7 +37,7 @@
 export default {
   name: "currency-component",
 
-  props: ["loading", "toValue", "result", "rateDate"],
+  props: ["billParams", "rateDate"],
 
   computed: {
     date() {
