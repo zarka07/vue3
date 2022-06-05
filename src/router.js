@@ -1,10 +1,5 @@
 import { createWebHistory, createRouter } from 'vue-router';
-
-
 import Main from '@/views/Main.vue';
-
-
-
 const routes = [
 	{
 		path: '/',
@@ -83,7 +78,7 @@ const routes = [
 		children: [
 			
 			{
-				path: '/home',
+				path: '',
 				name: 'Home',
 				meta: { layout: 'main' },
 				component: () => import(/* webpackChunkName: "Home.vue", webpackMode: "lazy" */'@/components/Project5/Views/Home.vue')
@@ -167,17 +162,8 @@ const router = createRouter({
 	history: createWebHistory(),
 	routes,
 });
-// router.beforeEach((to) => {
-// 	// instead of having to check every route record with
-// 	// to.matched.some(record => record.meta.requiresAuth)
-// 	if (!crmStore._userInfo) {
-// 		// this route requires auth, check if logged in
-// 		// if not, redirect to login page.
-// 		return {
-// 			path: '/login',
-// 			// save the location we were at to come back later
-// 			query: { redirect: to.fullPath },
-// 		}
-// 	}
-// })
+// router.beforeEach((to, from, next) => {
+// 	if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })
+// 	else next()
+//   })
 export default router;

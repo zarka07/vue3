@@ -7,6 +7,8 @@ import { initializeApp } from "firebase/app";
 import Toaster from '@meforma/vue-toaster';
 import "bootstrap/dist/js/bootstrap.js";
 import { createI18n } from 'vue-i18n/index';
+//import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { CRMstore } from "@/stores/CRMstore";
 
 require('../public/app.css')
 const messages = {
@@ -113,6 +115,7 @@ const firebaseConfig = {
 };
 
 
+
 const i18n = createI18n({
     locale: 'en', // set locale
     fallbackLocale: 'ru', // set fallback locale
@@ -121,6 +124,7 @@ const i18n = createI18n({
 
 let app = initializeApp(firebaseConfig)
 
+
 app = createApp(App).
     use(router).
     use(i18n).
@@ -128,4 +132,24 @@ app = createApp(App).
     use(createPinia())
 app.mount('#app')
 
+// is deactivated because conflict between main paths exist
+// const auth = getAuth();
+// onAuthStateChanged(auth, (user) => {
+//   if (user) {
+//       console.log('user exist')
+      
+//     router.push({name:'Home'})
+//   } else {
+//       console.log('user not exist')
+//     router.push({name:'Login'})
+//   }
+// });
 
+export default{
+    setup() {
+        const crmStore = CRMstore();
+        return {
+          crmStore,
+        };
+      },
+}
