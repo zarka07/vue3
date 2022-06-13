@@ -5,7 +5,7 @@ let _userInfo = localStorage.getItem('userInfo');
 export const CRMstore = defineStore('crmstore', {
     state: () => {
         return {
-            _userInfo: _userInfo ? JSON.parse(_userInfo) : {},
+            _userInfo: JSON.parse(_userInfo) || {},
             currencyInfo: {},
             categorie: {}
         }

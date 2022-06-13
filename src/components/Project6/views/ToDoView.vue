@@ -152,6 +152,7 @@ export default {
     logout(){
       localStorage.removeItem("auth")
       localStorage.removeItem("username")
+      localStorage.removeItem("todo_list")
       this.$router.push({name:'LoginView'})
       location.reload()
     }
