@@ -49,12 +49,7 @@ export default {
 </script>
 <style scoped>
 header{
-    background-color: lightgreen;
-    /* position:fixed; 
-    left:0;           
-    top:86px;        
-    width:100vw;      
-    z-index:200;  */
+    background-color: #198754;
 }
 
 a {
