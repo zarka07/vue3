@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { getDatabase, ref, set, onValue, child, push, update } from "firebase/database"
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth"
-let _userInfo = localStorage.getItem('user-info');
+let _userInfo = localStorage.getItem('userInfo');
 export const CRMstore = defineStore('crmstore', {
     state: () => {
         return {

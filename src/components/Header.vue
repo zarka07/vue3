@@ -63,7 +63,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 nav a.router-link-exact-active {
   text-decoration: none;
 }
