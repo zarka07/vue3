@@ -1,5 +1,22 @@
 import { createWebHistory, createRouter } from 'vue-router';
 import Main from '@/views/Main.vue';
+const isAuthenticated = JSON.parse(localStorage.getItem("auth"))
+const ifNotAuthenticated = (to, from, next) => {
+	if (!isAuthenticated) {
+		next()
+		return
+	}
+	next('/todo')
+}
+
+const ifAuthenticated = (to, from, next) => {
+	if (isAuthenticated) {
+		next()
+		return
+	}
+	next({name:'LoginView'})
+}
+
 const routes = [
 	{
 		path: '/',
@@ -20,9 +37,6 @@ const routes = [
 		path: '/project2/post/:id',
 		name: 'PostId',
 		props: true,
-		// route level code-splitting
-		// this generates a separate chunk (about.[hash].js) for this route
-		// which is lazy-loaded when the route is visited.
 		component: () => import(/* webpackChunkName: "Post.vue", webpackMode: "lazy" */'./components/Project2/Post.vue')
 	},
 	{
@@ -44,9 +58,6 @@ const routes = [
 		path: '/project3/product/:id',
 		name: 'ProductId',
 		props: true,
-		// route level code-splitting
-		// this generates a separate chunk (about.[hash].js) for this route
-		// which is lazy-loaded when the route is visited.
 		component: () => import(/* webpackChunkName: "Product.vue", webpackMode: "lazy" */'./components/Project3/Product.vue')
 	},
 	{
@@ -76,7 +87,7 @@ const routes = [
 		props: true,
 		component: () => import(/* webpackChunkName: "Project5.vue", webpackMode: "lazy" */'@/views/Project5.vue'),
 		children: [
-			
+
 			{
 				path: '',
 				name: 'Home',
@@ -144,6 +155,26 @@ const routes = [
 		],
 	},
 	{
+		path: '/project6',
+		name: 'Project6',
+		component: () => import(/* webpackChunkName: "Project6.vue", webpackMode: "lazy" */'@/views/Project6.vue'),
+		children: [
+
+			{
+				path: '',
+				name: 'LoginView',
+				component: () => import(/* webpackChunkName: "LoginView.vue", webpackMode: "lazy" */'@/components/Project6/views/LoginView.vue'),
+				beforeEnter: ifNotAuthenticated,
+			},
+			{
+				path: '/todo',
+				name: 'ToDoView',
+				component: () => import(/* webpackChunkName: "ToDoView.vue", webpackMode: "lazy" */'@/components/Project6/views/ToDoView.vue'),
+				beforeEnter: ifAuthenticated,
+			},
+		]
+	},
+	{
 		path: '/auth',
 		name: 'Authorization',
 		component: () => import(/*webpackChunkName: "auth" */ '@/views/Authorization.vue'),
@@ -152,18 +183,11 @@ const routes = [
 		path: '/user',
 		name: 'User',
 		component: () => import(/*webpackChunkName: "User" */ '@/views/User.vue'),
-	},
-
-
-
-];
-
+	}
+]
 const router = createRouter({
 	history: createWebHistory(),
 	routes,
 });
-// router.beforeEach((to, from, next) => {
-// 	if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })
-// 	else next()
-//   })
+
 export default router;

@@ -9,11 +9,11 @@
 
   <div class="row m-3 justify-content-evenly flex-sm-wrap flex-md-wrap">
     <BillComponent
-      class="col-xl-4 col-lg-4 col-md-4 col-sm-4 p-4 bill"
+      class="col-xl-4 col-lg-4 col-md-4 col-sm-4 p-4 bg-gradient bill"
       :billParams="billParams"
     />
     <CurrencyComponent
-      class="col-xl-6 col-lg-6 col-md-6 col-sm-6 p-4 currency"
+      class="col-xl-6 col-lg-6 col-md-6 col-sm-6 p-4 bg-gradient currency"
       :billParams="billParams"
       :rateDate="date"
     />

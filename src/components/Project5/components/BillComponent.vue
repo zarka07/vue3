@@ -11,16 +11,19 @@
       <hr />
     </div>
   </div>
-  
-  <div v-else >
+
+  <div v-else>
     <div>
       <span class="m-2 text-light">Счет в валюте</span>
       <p class="m-2 currency-line">
-        <span class="text-light">{{ billParams.from }}: {{ userBillFrom }} </span>
+        <span class="text-light"
+          >{{ billParams.from }}: {{ userBillFrom }} &#8372;
+        </span>
       </p>
       <p class="m-2 currency-line">
         <span class="text-light"
-          >{{ billParams.to }}: {{ userBillTo || "Нет соединения с сервером" }}
+          >{{ billParams.to }}:
+          {{ userBillTo || "Нет соединения с сервером" }}&#36;
         </span>
       </p>
       <hr />
@@ -62,6 +65,7 @@ export default {
       }
     },
   },
+
 };
 </script>
 
