@@ -59,9 +59,4 @@ export default {
   text-align: center !important;
   color: #050505 !important;
 }
-
-.loader {
-  
-}
-
 </style>

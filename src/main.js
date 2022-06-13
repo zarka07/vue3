@@ -10,6 +10,8 @@ import { createI18n } from 'vue-i18n/index';
 //import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { CRMstore } from "@/stores/CRMstore";
 
+
+
 require('../public/app.css')
 const messages = {
     en: {

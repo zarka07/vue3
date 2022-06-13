@@ -19,7 +19,7 @@
 
         <div class="dropdown col-xs-12 col-sm-6 col-md-6">
           <button
-            class="btn btn-secondary dropdown-toggle"
+            class="btn dropdown-toggle"
             type="button"
             id="dropdownMenuButton1"
             data-bs-toggle="dropdown"
@@ -88,7 +88,6 @@ export default {
 
 .title {
   text-align: center;
-  /* padding-top:5px; */
   color: #ffc107;
 }
 
@@ -97,8 +96,7 @@ export default {
 }
 
 .btn {
-  background-color: #4caf50;
-
+  background-color: #ffc107;
   text-align: center;
 }
 
