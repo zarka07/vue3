@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia';
 import { getDatabase, ref, set, onValue, child, push, update } from "firebase/database"
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth"
-let _userInfo = localStorage.getItem('userInfo');
+//let _userInfo = localStorage.getItem('userInfo');
 export const CRMstore = defineStore('crmstore', {
     state: () => {
         return {
-            _userInfo: JSON.parse(_userInfo) || {},
+            _userInfo: JSON.parse(localStorage.getItem('userInfo')) || {},
             currencyInfo: {},
             categorie: {}
         }
@@ -52,7 +52,7 @@ export const CRMstore = defineStore('crmstore', {
         async login({ email, password }) {
             const auth = getAuth();
             await signInWithEmailAndPassword(auth, email, password)
-            this.setUserInfo()
+            await this.setUserInfo()
         },
 
         async logout() {
@@ -75,6 +75,7 @@ export const CRMstore = defineStore('crmstore', {
                     this._userInfo = data
                     localStorage.setItem("userInfo", JSON.stringify(data))
                 });
+
 
             } catch (e) {
                 this.$toast.error(e)

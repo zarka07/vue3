@@ -91,8 +91,8 @@ export default {
 
       try {
         await this.crmStore.login(formData);
+        await this.$router.push({name:'Home'});
         this.$toast.success(`Вы вошли в систему`);
-        this.$router.push({name:'Home'});
       } catch (e) {
         this.$toast.error(e.message);
       }

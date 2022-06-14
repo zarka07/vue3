@@ -1,8 +1,10 @@
 import { createWebHistory, createRouter } from 'vue-router';
 import Main from '@/views/Main.vue';
-const isAuthenticated = JSON.parse(localStorage.getItem("auth"))
+import { CRMstore } from './stores/CRMstore';
+
+const isAuthForProject6 = JSON.parse(localStorage.getItem("auth"))
 const ifNotAuthenticated = (to, from, next) => {
-	if (!isAuthenticated) {
+	if (!isAuthForProject6) {
 		next()
 		return
 	}
@@ -10,7 +12,7 @@ const ifNotAuthenticated = (to, from, next) => {
 }
 
 const ifAuthenticated = (to, from, next) => {
-	if (isAuthenticated) {
+	if (isAuthForProject6) {
 		next()
 		return
 	}
@@ -83,7 +85,7 @@ const routes = [
 	{
 		path: '/project5',
 		name: 'Project5',
-		meta: { layout: 'main' },
+		meta: { layout: 'main', auth: false },
 		props: true,
 		component: () => import(/* webpackChunkName: "Project5.vue", webpackMode: "lazy" */'@/views/Project5.vue'),
 		children: [
@@ -91,66 +93,62 @@ const routes = [
 			{
 				path: '',
 				name: 'Home',
-				meta: { layout: 'main' },
+				meta: { layout: 'main', auth: true },
 				component: () => import(/* webpackChunkName: "Home.vue", webpackMode: "lazy" */'@/components/Project5/Views/Home.vue')
 			},
 			{
 				path: '/login',
 				name: 'Login',
-				meta: { layout: 'empty' },
+				meta: { layout: 'empty', auth: false },
 				component: () => import(/* webpackChunkName: "Login.vue", webpackMode: "lazy" */'@/components/Project5/Views/Login.vue')
 			},
 			{
 				path: '/categories',
 				name: 'Categories',
-				meta: { layout: 'main' },
+				meta: { layout: 'main', auth: true },
 				component: () => import(/* webpackChunkName: "Categories.vue", webpackMode: "lazy" */'@/components/Project5/Views/Categories.vue')
 			},
 			{
 				path: '/detail-record',
 				name: 'Detail-record',
-				meta: { layout: 'main' },
+				meta: { layout: 'main', auth: true },
 				component: () => import(/* webpackChunkName: "Detail-record.vue", webpackMode: "lazy" */'@/components/Project5/Views/Detail-record.vue')
 			},
 			{
 				path: '/history',
 				name: 'History',
-				meta: { layout: 'main' },
+				meta: { layout: 'main', auth: true },
 				component: () => import(/* webpackChunkName: "History.vue", webpackMode: "lazy" */'@/components/Project5/Views/History.vue')
 			},
 			{
 				path: '/planning',
 				name: 'Planning',
-				meta: { layout: 'main' },
+				meta: { layout: 'main', auth: true },
 				component: () => import(/* webpackChunkName: "Planning.vue", webpackMode: "lazy" */'@/components/Project5/Views/Planning.vue')
 			},
 			{
 				path: '/profile',
 				name: 'Profile',
-				meta: { layout: 'main' },
+				meta: { layout: 'main', auth: true },
 				component: () => import(/* webpackChunkName: "Profile.vue", webpackMode: "lazy" */'@/components/Project5/Views/Profile.vue')
 			},
 			{
 				path: '/record',
 				name: 'Record',
-				meta: { layout: 'main' },
+				meta: { layout: 'main', auth: true },
 				component: () => import(/* webpackChunkName: "Record.vue", webpackMode: "lazy" */'@/components/Project5/Views/Record.vue')
 			},
 			{
 				path: '/register',
 				name: 'Register',
-				meta: { layout: 'empty' },
+				meta: { layout: 'empty', auth: false },
 				component: () => import(/* webpackChunkName: "Register.vue", webpackMode: "lazy" */'@/components/Project5/Views/Register.vue')
 			},
 			{
 				path: '/profile',
 				name: 'Profile',
-				meta: { layout: 'main' },
+				meta: { layout: 'main', auth: true },
 				component: () => import(/* webpackChunkName: "Register.vue", webpackMode: "lazy" */'@/components/Project5/Views/Profile.vue')
-				//   components: {
-				// 	default: UserProfile,
-				// 	helper: UserProfilePreview,
-				//   },
 			},
 		],
 	},
@@ -159,7 +157,6 @@ const routes = [
 		name: 'Project6',
 		component: () => import(/* webpackChunkName: "Project6.vue", webpackMode: "lazy" */'@/views/Project6.vue'),
 		children: [
-
 			{
 				path: '',
 				name: 'LoginView',
@@ -189,5 +186,16 @@ const router = createRouter({
 	history: createWebHistory(),
 	routes,
 });
+
+router.beforeEach((to, from, next)=>{
+	const crmStore = CRMstore()
+	const requireAuth = to.matched.some(record => record.meta.auth)
+	console.log(requireAuth+' '+crmStore.GET_USER_NAME)
+	if(requireAuth&&!crmStore.GET_USER_NAME){
+		next({name:'Login'})
+	} else{
+		next()
+	}
+})
 
 export default router;
