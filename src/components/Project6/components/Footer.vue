@@ -69,6 +69,8 @@ export default {
   flex-wrap: wrap;
   font-weight: 500;
   justify-content: flex-end;
+  color:#FFF;
+  text-decoration: none;
 }
 
 a {

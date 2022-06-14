@@ -43,9 +43,6 @@ export default {
     showLoader() {
         return this.loader.loading;
       },
-      // showError(){
-      //   return this.$store.state.error.statusCode
-      // }
   }
   
 }

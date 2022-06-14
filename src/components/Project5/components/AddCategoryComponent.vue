@@ -70,11 +70,6 @@ import { required } from "@vuelidate/validators";
 export default {
   name: "add-category",
 
-  mounted(){
-    const uid = this.crmStore.getUid()
-    console.log(uid)
-  },
-
   emits:['categoryCreated'],
 
   setup() {

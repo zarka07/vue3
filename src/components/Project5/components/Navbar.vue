@@ -122,6 +122,10 @@ export default {
       return this.crmStore.GET_USER_NAME;
     },
   },
+
+  mounted(){
+    //this.crmStore.setUserInfo()
+  }
 };
 </script>
 
@@ -144,6 +148,7 @@ export default {
   color: black;
   margin: 15px;
   border: none;
+  text-decoration: none;
 }
 
 .sidebar-links a:hover {
