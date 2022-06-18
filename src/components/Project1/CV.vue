@@ -90,7 +90,7 @@
 
             <p>
               Creating pet projects using Vue 2,3, router, axios, Vuetify,
-              Quasar, pinia, bootstrap5;
+              Quasar, pinia, bootstrap5, localStorage;
             </p>
             <p>
               Creating hospital database using MSSQL Databases, procedures,
