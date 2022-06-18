@@ -7,19 +7,18 @@ export const CRMstore = defineStore('crmstore', {
         return {
             _userInfo: JSON.parse(localStorage.getItem('userInfo')) || {},
             currencyInfo: {},
-            categorie: {}
+            categories: JSON.parse(localStorage.getItem('userCategories')) || {},
+            categoryKey: '',
+            userUid: JSON.parse(localStorage.getItem('userUid')) || ''
         }
     },
     actions: {
-        getUid() {
-
+        async getUid() {
             const auth = getAuth()
             const user = auth.currentUser;
-            //console.log(user)
             if (user) {
-                const uid = user.uid
-                // console.log('here')
-                return uid ? uid : null
+                this.userUid = user.uid
+                return this.userUid ? this.userUid : null
             }
 
             return
@@ -50,9 +49,17 @@ export const CRMstore = defineStore('crmstore', {
         },
 
         async login({ email, password }) {
-            const auth = getAuth();
-            await signInWithEmailAndPassword(auth, email, password)
-            await this.setUserInfo()
+            try {
+                const auth = getAuth();
+                const uid = await this.getUid()
+                this.userUid = uid
+                localStorage.setItem("userUid", JSON.stringify(uid))
+                await signInWithEmailAndPassword(auth, email, password)
+                await this.setUserInfo()
+            } catch (error) {
+                this.$toast.warning(error)
+            }
+
         },
 
         async logout() {
@@ -84,6 +91,30 @@ export const CRMstore = defineStore('crmstore', {
 
         },
 
+        async fetchCategories() {
+            try {
+                const uid = await this.getUid()
+                if (!uid) {
+                    this.getUid()
+                }
+                const db = await getDatabase();
+                this.categoryKey = await push(child(ref(db, '/users/'), 'categories')).key;
+                const categories = ref(db, '/users/' + uid + '/categories/');
+                onValue(categories, (snapshot) => {
+                    if (snapshot.exists()) {
+                        this.categories = snapshot.val()
+                        const cats = Object.keys(this.categories).map(key => ({
+                            ...this.categories[key], id: key
+                        }))
+                        localStorage.setItem("userCategories", JSON.stringify(cats))
+                    }
+                    else return
+                })
+            } catch (error) {
+                this.$toast.error(error)
+            }
+        },
+
         async setNewCategory(data) {
             try {
                 const uid = await this.getUid()
@@ -93,15 +124,36 @@ export const CRMstore = defineStore('crmstore', {
                 }
                 const newCategory = {
                     categoryName: data.name,
-                    categorylimit: data.limit
+                    categoryLimit: data.limit
                 };
                 const db = await getDatabase();
-                const newKey = await push(child(ref(db, '/users/'), 'categories')).key;
+                this.categoryKey = await push(child(ref(db, '/users/'), 'categories')).key;
                 const updates = {};
-                updates['users/' + uid + '/categories/' + newKey + '/'] = newCategory;
-                //return update(ref(db), updates);
+                updates['users/' + uid + '/categories/' + this.categoryKey + '/'] = newCategory;
                 update(ref(db), updates);
-                return { newCategory, id: newKey }
+                return { newCategory, id: this.categoryKey }
+            } catch (e) {
+                this.$toast.error(e.message)
+                throw e
+            }
+        },
+
+        async updateCategory(data) {
+            try {
+                const uid = await this.getUid()
+                if (!uid) {
+                    this.$toast.error('Необходимо авторизоваться заново')
+                    return
+                }
+                const updatedCategory = {
+                    categoryId: data.id,
+                    categoryName: data.name,
+                    categoryLimit: data.limit
+                };
+                const db = await getDatabase();
+                const updates = {};
+                updates['users/' + uid + '/categories/' + updatedCategory.categoryId + '/'] = updatedCategory;
+                update(ref(db), updates);
             } catch (e) {
                 this.$toast.error(e.message)
                 throw e
@@ -128,8 +180,10 @@ export const CRMstore = defineStore('crmstore', {
             if (this.currencyInfo) {
                 this.currencyInfo = {}
                 this._userInfo = {}
+                this.categories = {}
+                this.userUid = ''
             }
-            localStorage.removeItem("userInfo");
+            localStorage.clear()
         },
 
     },
@@ -137,7 +191,7 @@ export const CRMstore = defineStore('crmstore', {
     getters: {
         GET_USER_NAME: (state) => state._userInfo.username,
         GET_USER_BILL: (state) => state._userInfo.bill,
-
+        GET_USER_CATEGORIES: (state) => state._userInfo.categories,
         GET_CURRENCY_INFO: (state) => state.currencyInfo,
         GET_USER_INFO: (state) => state._userInfo,
     }

@@ -123,12 +123,7 @@ export default {
       };
 
       try {
-        await this.crmStore.register(formData);
-        if(this.crmStore.GET_ERROR){
-          this.$toast.error(this.crmStore.GET_ERROR);
-          return
-        }
-        this.$router.push("/login");
+        await this.crmStore.register(formData).then(this.$router.push("/login"));
       } catch (e) {
         this.$toast.error(e.message);
       }

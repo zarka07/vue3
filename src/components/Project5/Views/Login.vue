@@ -80,7 +80,7 @@ export default {
     };
   },
   methods: {
-    async onSubmit() {
+    onSubmit() {
       if (this.v$.$invalid) {
         return;
       }
@@ -90,8 +90,8 @@ export default {
       };
 
       try {
-        await this.crmStore.login(formData);
-        await this.$router.push({name:'Home'});
+        this.crmStore.login(formData);
+        this.$router.push({name:'Home'});
         this.$toast.success(`Вы вошли в систему`);
       } catch (e) {
         this.$toast.error(e.message);

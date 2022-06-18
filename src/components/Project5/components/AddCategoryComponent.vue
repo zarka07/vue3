@@ -55,7 +55,11 @@
           </div> -->
         </div>
 
-        <button v-if="!v$.$invalid" type="submit" class="btn btn-success shadow-sm rounded mb-2">
+        <button
+          v-if="!v$.$invalid"
+          type="submit"
+          class="btn btn-success shadow-sm rounded mb-2"
+        >
           СОЗДАТЬ <i class="bi bi-send float-end ms-2"></i>
         </button>
       </form>
@@ -70,7 +74,7 @@ import { required } from "@vuelidate/validators";
 export default {
   name: "add-category",
 
-  emits:['categoryCreated'],
+  emits: ["categoryCreated"],
 
   setup() {
     const crmStore = CRMstore();
@@ -79,7 +83,7 @@ export default {
       v$: useVuelidate(),
     };
   },
-    
+
   data: () => ({
     categoryName: "",
     categoryLimit: null,
@@ -92,9 +96,9 @@ export default {
     };
   },
   methods: {
-    async addCategory() {
+    addCategory() {
       if (this.v$.$invalid) {
-        console.log(this.v$);
+        this.$toast.warning(this.v$);
         return;
       }
 
@@ -102,16 +106,12 @@ export default {
         name: this.categoryName,
         limit: this.categoryLimit,
       };
-      try {
-        const newCategory = await this.crmStore.setNewCategory(category);
-        this.categoryName = "";
-        this.categoryLimit = null;
+
+      this.crmStore.setNewCategory(category)
+        this.categoryName = ""
+        this.categoryLimit = null
         this.v$.$reset()
-        this.$emit('categoryCreated', newCategory)
-        this.$toast.success(`Категория успешно добавлена`);
-      } catch (e) {
-        this.$toast.error(e.message);
-      }
+        this.$emit("categoryCreated")
     },
   },
 };
