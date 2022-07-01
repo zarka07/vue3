@@ -1,9 +1,9 @@
 <template>
   <div class="header">
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-      <div class="container-fluid d-flex bd-highlight" style="flex-wrap: wrap">
+      <div class="container-fluid d-flex bd-highlight p-0" style="flex-wrap: wrap">
         <div
-          class="col-xs-12 col-sm-1 col-md-1 flex-grow-1 bd-highlight"
+          class="row col-xs-12 col-sm-1 col-md-1 flex-grow-1 bd-highlight "
           style="text-align: center"
         >
           <button type="button" class="btn">
@@ -12,7 +12,7 @@
         </div>
 
         <div
-          class="col-xs-12 col-sm-11 col-md-11 col-xl-11 flex-grow-1 bd-highlight"
+          class="row col-xs-12 col-sm-11 col-md-11 col-xl-11 flex-grow-1 bd-highlight m-1"
           style="text-align: center"
         >
           <div
