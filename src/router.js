@@ -16,7 +16,7 @@ const ifAuthenticated = (to, from, next) => {
 		next()
 		return
 	}
-	next({name:'LoginView'})
+	next({ name: 'LoginView' })
 }
 
 const routes = [
@@ -172,6 +172,23 @@ const routes = [
 		]
 	},
 	{
+		path: '/project7',
+		name: 'Project7',
+		component: () => import(/* webpackChunkName: "Project7.vue", webpackMode: "lazy" */'@/views/Project7.vue'),
+		children: [
+			{
+				path: '',
+				name: 'HomeView',
+				component: () => import(/* webpackChunkName: "HomeView.vue", webpackMode: "lazy" */'@/components/Project7/views/HomeView.vue'),
+			},
+			{
+				path: '/about',
+				name: 'AboutView',
+				component: () => import(/* webpackChunkName: "AboutView.vue", webpackMode: "lazy" */'@/components/Project7/views/AboutView.vue'),
+			},
+		]
+	},
+	{
 		path: '/auth',
 		name: 'Authorization',
 		component: () => import(/*webpackChunkName: "auth" */ '@/views/Authorization.vue'),
@@ -187,13 +204,13 @@ const router = createRouter({
 	routes,
 });
 
-router.beforeEach((to, from, next)=>{
+router.beforeEach((to, from, next) => {
 	const crmStore = CRMstore()
 	const requireAuth = to.matched.some(record => record.meta.auth)
-	console.log(requireAuth+' '+crmStore.GET_USER_NAME)
-	if(requireAuth&&!crmStore.GET_USER_NAME){
-		next({name:'Login'})
-	} else{
+	console.log(requireAuth + ' ' + crmStore.GET_USER_NAME)
+	if (requireAuth && !crmStore.GET_USER_NAME) {
+		next({ name: 'Login' })
+	} else {
 		next()
 	}
 })

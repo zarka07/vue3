@@ -38,8 +38,7 @@
           <!-- product title -->
           <div class="col-md-8 col-md-offset-0 description">
             <h3>
-              <router-link
-                :to="{ name: 'ProductId', params: { id: product.id } }"
+              <router-link :to="{ name: 'ProductId', params: { id: product.id } }"
                 >{{ product.title }}
               </router-link>
             </h3>
@@ -75,9 +74,7 @@
               </span>
               <div
                 class="inventory-message"
-                v-else-if="
-                  product.availableInventory - cartCount(product.id) < 5
-                "
+                v-else-if="product.availableInventory - cartCount(product.id) < 5"
               >
                 Осталось:
                 {{ product.availableInventory - cartCount(product.id) }} шт!

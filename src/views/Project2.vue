@@ -11,7 +11,7 @@
     </div>
     <Header />
 
-    <div class="main" style="min-height: 77vh">
+    <div class="" style="min-height: 77vh">
       <div class="Header row" style="margin: 0">
         <div class="title col-xs-12 col-sm-6 col-md-6">
           <h2>{{ $t("AppVue.Vue") }}</h2>
@@ -28,11 +28,7 @@
             {{ $t("AppVue.Language") }}
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li
-              v-for="locale in locales"
-              :key="locale"
-              @click="changeLang(locale)"
-            >
+            <li v-for="locale in locales" :key="locale" @click="changeLang(locale)">
               <a class="dropdown-item" href="#">
                 {{ $t("AppVue.Language") }}: {{ locale }}
               </a>
@@ -104,5 +100,9 @@ export default {
   min-width: 5rem;
   text-align: center;
   background-color: rgb(186, 234, 218);
+}
+
+.btn .dropdown-toggle {
+  z-index: 0;
 }
 </style>

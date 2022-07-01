@@ -6,13 +6,9 @@
           <img class="logo__img" src="/assets/logoCITI.png" alt="Logo" />
         </div>
         <div class="footer__links">
-          <router-link :to="{ name: 'LoginView' }"
-            >Terms &#38; Conditions</router-link
-          >
+          <router-link :to="{ name: 'LoginView' }">Terms &#38; Conditions</router-link>
           <router-link :to="{ name: 'LoginView' }">Privacy</router-link>
-          <router-link :to="{ name: 'LoginView' }"
-            >Notice at Collection</router-link
-          >
+          <router-link :to="{ name: 'LoginView' }">Notice at Collection</router-link>
           <router-link :to="{ name: 'LoginView' }">CA Privacy Hub</router-link>
           <router-link :to="{ name: 'LoginView' }">Contact us</router-link>
           <router-link :to="{ name: 'LoginView' }">Sitemap</router-link>
@@ -20,9 +16,9 @@
       </div>
 
       <div class="row footer__secondline">
-        <span>
-          Copyright © 2020 Citigroup Inc. Citibank, N.A. Member FDIC. Equal
-          Opportunity Lender.
+        <span class="foot">
+          Copyright © 2020 Citigroup Inc. Citibank, N.A. Member FDIC. Equal Opportunity
+          Lender.
         </span>
       </div>
     </div>
@@ -55,7 +51,7 @@ export default {
 
 .footer__firstline {
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   margin-top: 5px;
@@ -69,12 +65,12 @@ export default {
   flex-wrap: wrap;
   font-weight: 500;
   justify-content: flex-end;
-  color:#FFF;
-  text-decoration: none;
 }
 
 a {
   margin: 5px 0 2px 10px;
+  color: #fff !important;
+  text-decoration: none !important;
 }
 
 .footer__secondline {
@@ -91,7 +87,7 @@ a {
   width: auto;
 }
 
-img{
-  vertical-align:baseline;
+img {
+  vertical-align: baseline;
 }
 </style>

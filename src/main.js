@@ -130,7 +130,7 @@ let app = initializeApp(firebaseConfig)
 app = createApp(App).
     use(router).
     use(i18n).
-    use(Toaster, {position: 'bottom'}).
+    use(Toaster, { position: 'bottom' }).
     use(createPinia())
 app.mount('#app')
 
@@ -139,7 +139,7 @@ app.mount('#app')
 // onAuthStateChanged(auth, (user) => {
 //   if (user) {
 //       console.log('user exist')
-      
+
 //     router.push({name:'Home'})
 //   } else {
 //       console.log('user not exist')
@@ -147,11 +147,11 @@ app.mount('#app')
 //   }
 // });
 
-export default{
+export default {
     setup() {
         const crmStore = CRMstore();
         return {
-          crmStore,
+            crmStore,
         };
-      },
+    },
 }

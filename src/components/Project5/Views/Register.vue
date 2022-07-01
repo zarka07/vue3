@@ -113,7 +113,6 @@ export default {
   methods: {
     async onSubmit() {
       if (this.v$.$invalid) {
-        
         return;
       }
       const formData = {

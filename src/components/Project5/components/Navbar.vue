@@ -64,10 +64,18 @@
 
         <ul class="dropdown-menu me-1" aria-labelledby="dropdownMenuLink">
           <li v-if="username">
-            <a class="dropdown-item p-1 mb-1" @click="toProfile"><i class="bi bi-file-person me-2"></i>Профиль</a>
-            <a class="dropdown-item p-1" @click="logout"><i class="bi bi-box-arrow-left me-2"></i>Выйти</a>
+            <a class="dropdown-item p-1 mb-1" @click="toProfile"
+              ><i class="bi bi-file-person me-2"></i>Профиль</a
+            >
+            <a class="dropdown-item p-1" @click="logout"
+              ><i class="bi bi-box-arrow-left me-2"></i>Выйти</a
+            >
           </li>
-          <li v-else><a class="dropdown-item" @click="toLogin"><i class="bi bi-box-arrow-right me-4"></i>Войти</a></li>
+          <li v-else>
+            <a class="dropdown-item" @click="toLogin"
+              ><i class="bi bi-box-arrow-right me-4"></i>Войти</a
+            >
+          </li>
         </ul>
       </div>
     </div>
@@ -100,16 +108,19 @@ export default {
 
   methods: {
     async logout() {
-      await this.crmStore.logout();
-      this.$toast.warning(`Вы вышли из системы`);
-      this.$router.push({ name: "Login" });
+      await this.crmStore
+        .logout()
+        .then(
+          this.$toast.warning(`Вы вышли из системы`),
+          this.$router.push({ name: "Login" })
+        );
     },
     toLogin() {
       this.$router.push({ name: "Login" });
     },
-    toProfile(){
-      this.$router.push({name: "Profile"})
-    }
+    toProfile() {
+      this.$router.push({ name: "Profile" });
+    },
   },
 
   computed: {
@@ -123,9 +134,9 @@ export default {
     },
   },
 
-  mounted(){
+  mounted() {
     //this.crmStore.setUserInfo()
-  }
+  },
 };
 </script>
 
@@ -161,6 +172,6 @@ export default {
 }
 
 .dropdown-menu {
-  min-width:5rem;
+  min-width: 5rem;
 }
 </style>

@@ -45,20 +45,14 @@
                 </option>
               </select>
 
-              <select
-                id="year"
-                v-model="selectedDate.year"
-                @change="checkAll()"
-              >
+              <select id="year" v-model="selectedDate.year" @change="checkAll()">
                 <option disabled value="">Год</option>
                 <option v-for="(year, index) in years" :key="index">
                   {{ year }}
                 </option>
               </select>
 
-              <p class="showError" v-if="!showSubmit">
-                Пожалуйста, выберите ответ
-              </p>
+              <p class="showError" v-if="!showSubmit">Пожалуйста, выберите ответ</p>
 
               <div v-if="selectedDate.month" @click="checkAll()">
                 <img class="zodiac" :src="'zodiac/' + src" />
@@ -85,7 +79,9 @@ export default {
     questions: {
       type: Object,
       required: false,
-      default(){return {}} 
+      default() {
+        return {};
+      },
     },
   },
   data() {
@@ -95,8 +91,24 @@ export default {
       style: "",
       checked: false,
       years: [
-        1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001,
-        2002, 2003, 2004, 2005, 2006, 2007,
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
       ],
       selectedDate: {},
       src: "",
@@ -167,11 +179,7 @@ export default {
       return [this.src, this.description];
     },
     checkAll() {
-      if (
-        this.selectedDate.year &&
-        this.selectedDate.month &&
-        this.selectedDate.day
-      ) {
+      if (this.selectedDate.year && this.selectedDate.month && this.selectedDate.day) {
         this.showSubmit = true;
       }
     },

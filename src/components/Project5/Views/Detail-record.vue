@@ -12,11 +12,7 @@
 
           <ul class="right hide-on-small-and-down">
             <li>
-              <a
-                class="dropdown-trigger black-text"
-                href="#"
-                data-target="dropdown"
-              >
+              <a class="dropdown-trigger black-text" href="#" data-target="dropdown">
                 USER NAME
                 <i class="material-icons right">arrow_drop_down</i>
               </a>

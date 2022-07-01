@@ -2,33 +2,33 @@ import axios from 'axios'
 import { LoaderStore } from '@/stores/LoaderStore';
 import { ErrorStore } from '@/stores/ErrorStore';
 
-export default{
-    data(){
+export default {
+    data() {
         const loaderStore = LoaderStore()
         const errorStore = ErrorStore()
-        return{
-         loaderStore,
-         errorStore,
-         loading: false,
-         statusCode: '',
-         isError: false
+        return {
+            loaderStore,
+            errorStore,
+            loading: false,
+            statusCode: '',
+            isError: false
         }
     },
-    methods:{
-        async get(path, cb = null){
+    methods: {
+        async get(path, cb = null) {
             this.loaderStore.showLoader()
             return await axios
                 .get(process.env.VUE_APP_API_P2ENDPOINT_URL + path)
-                .then(response => cb!==null?cb(response.data):response.data)
+                .then(response => cb !== null ? cb(response.data) : response.data)
                 .catch(error => {
-                    if(error.response.status){
+                    if (error.response.status) {
                         const statusCode = error.response.status
                         switch (statusCode) {
                             case 400:
                             case 404:
                                 this.errorStore.showError(statusCode)
                                 break;
-                            case 401:  
+                            case 401:
                             case 403:
                                 this.errorStore.showError(statusCode)
                                 //Auth.logout()
@@ -51,7 +51,7 @@ export default{
                                 error({
                                     statusCode,
                                 })
-                        }       
+                        }
                     }
                 })
                 .finally(() => {

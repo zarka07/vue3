@@ -9,7 +9,7 @@
     </div>
     <hr />
   </div>
-  <div v-else >
+  <div v-else>
     <div class="mb-2">
       <span class="text-light">Курс валют</span>
     </div>
@@ -25,7 +25,7 @@
       <tbody>
         <tr>
           <td>{{ billParams.to }}</td>
-          <td>{{ billParams.result || 'Нет соединения с сервером'}}</td>
+          <td>{{ billParams.result || "Нет соединения с сервером" }}</td>
           <td>{{ rateDate || date }}</td>
         </tr>
       </tbody>

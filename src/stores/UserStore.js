@@ -4,8 +4,8 @@ let cartItems = localStorage.getItem('products-list');
 let cartItemsCount = localStorage.getItem('products-count');
 
 export const UserStore = defineStore('auth', {
-    state:() => {
-        return { 
+    state: () => {
+        return {
             username: '',
             email: '',
             password: '',
@@ -14,39 +14,39 @@ export const UserStore = defineStore('auth', {
             cartItemsCount: cartItemsCount ? JSON.parse(cartItemsCount) : 0,
         }
     },
-    getters:{
-        CURRENT_ITEMS_COUNT(state){
+    getters: {
+        CURRENT_ITEMS_COUNT(state) {
             return state.cartItemsCount
         }
     },
-    actions:{
-        addToCart(id){
-            if(id){
+    actions: {
+        addToCart(id) {
+            if (id) {
                 this.cartItems.push(id);
                 this.cartItemsCount++;
                 localStorage.setItem("products-list", JSON.stringify(this.cartItems))
                 localStorage.setItem("products-count", JSON.stringify(this.cartItemsCount))
             }
         },
-        resetCart(){
+        resetCart() {
             this.cartItems = [];
             this.cartItemsCount = 0;
             localStorage.removeItem("products-list");
             localStorage.removeItem("products-count");
         },
-        resetUser(){
+        resetUser() {
             this.username = '',
-            this.email = '',
-            this.password = ''
+                this.email = '',
+                this.password = ''
         },
-        addUser(formData){
+        addUser(formData) {
             this.username = formData.username,
-            this.email = formData.email,
-            this.password = formData.password
+                this.email = formData.email,
+                this.password = formData.password
         },
-        signIn(formData){
+        signIn(formData) {
             this.email = formData.email,
-            this.password = formData.password
+                this.password = formData.password
         },
     }
 })

@@ -2,20 +2,11 @@
   height: 10vh;
 }
 
-.navbar-header{
-  
-}
 
 header h2{
   padding: 20px 20px;
 }
 
-/* body {
-    max-width: 970px !important;
-} */
-.cart {
-  /* padding: 20px 50px; */
-}
 .boxes {
   margin-top: 20px;
 }
@@ -54,12 +45,8 @@ header h2{
 
 .product {
   margin-top: 17px;
-  /* margin-left: 20px; */
   max-height:300px;
   max-width:100%;
-}
-.figure {
-
 }
 
 .rating-active:before {
@@ -69,10 +56,8 @@ header h2{
 .rating {
   display: inline;
   margin: 10px 0 10px 0;
-  /*float:right;*/
 }
 .rating > span {
-  /* display: inline-block; */
   position: relative;
   width: 0.8em;
 }
@@ -88,11 +73,5 @@ header h2{
 
 h3 a{
   color: black;
+  text-decoration: none;
 }
-
-
-/* @media (min-width: 1200px) {
-    .container{
-        max-width: 970px;
-    }
-} */

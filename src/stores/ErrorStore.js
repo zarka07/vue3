@@ -1,16 +1,16 @@
 import { defineStore } from 'pinia';
 
 export const ErrorStore = defineStore('error', {
-    state:() => {
-        return { 
+    state: () => {
+        return {
             isError: false,
             statusCode: null,
         }
     },
-    actions:{
-        showError(statusCode){
+    actions: {
+        showError(statusCode) {
             this.statusCode = statusCode,
-            this.isError = true
+                this.isError = true
         },
     }
 })

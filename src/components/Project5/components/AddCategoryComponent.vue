@@ -1,20 +1,13 @@
 <template>
   <div
-    class="
-      create
-      border border-success
-      col-xl-5 col-lg-5 col-md-5 col-sm-5
-      bg-info
-      flex-wrap
-      m-2
-    "
+    class="create border border-success col-xl-5 col-lg-5 col-md-5 col-sm-5 bg-info flex-wrap m-2"
   >
     <div class="p-2">
       <div class="mb-4">
         <h4>Создать</h4>
       </div>
 
-      <form @submit.prevent="addCategory()">
+      <form @submit.prevent="addCategory">
         <div class="form-floating mb-3">
           <input
             type="text"
@@ -39,13 +32,11 @@
             class="form-control"
             id="floatingLimit"
             placeholder="Лимит"
-            min="0"
+            min="1"
             v-model="categoryLimit"
           />
           <label for="floatingLimit">Лимит</label>
-          <div class="error" v-if="!v$.categoryLimit.required">
-            Введите лимит
-          </div>
+          <div class="error" v-if="!v$.categoryLimit.required">Введите лимит</div>
           <!-- <div v-if="v$.$dirty" class="text-danger errors">
             <span v-for="item in v$.$silentErrors" :key="item.uid">
               <i v-if="item.$property === 'categorieLimit'">{{
@@ -74,7 +65,7 @@ import { required } from "@vuelidate/validators";
 export default {
   name: "add-category",
 
-  emits: ["categoryCreated"],
+  emits: ["create-category"],
 
   setup() {
     const crmStore = CRMstore();
@@ -86,7 +77,7 @@ export default {
 
   data: () => ({
     categoryName: "",
-    categoryLimit: null,
+    categoryLimit: "",
   }),
 
   validations() {
@@ -96,22 +87,23 @@ export default {
     };
   },
   methods: {
-    addCategory() {
+    async addCategory() {
       if (this.v$.$invalid) {
-        this.$toast.warning(this.v$);
+        for (let err of this.v$.$silentErrors) {
+          this.$toast.warning(err.$message);
+        }
         return;
       }
 
-      const category = {
+      const newCategory = await this.crmStore.setNewCategory({
         name: this.categoryName,
         limit: this.categoryLimit,
-      };
-
-      this.crmStore.setNewCategory(category)
-        this.categoryName = ""
-        this.categoryLimit = null
-        this.v$.$reset()
-        this.$emit("categoryCreated")
+      });
+      this.categoryName = "";
+      this.categoryLimit = "";
+      this.v$.$reset();
+      this.$emit("create-category", newCategory);
+      this.$toast.success("Категория добавлена!");
     },
   },
 };

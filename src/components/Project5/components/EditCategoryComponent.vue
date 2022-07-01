@@ -1,13 +1,6 @@
 <template>
   <div
-    class="
-      edit
-      border border-success
-      col-xl-5 col-lg-5 col-md-5 col-sm-5
-      bg-light
-      flex-wrap
-      m-2
-    "
+    class="edit border border-success col-xl-5 col-lg-5 col-md-5 col-sm-5 bg-light flex-wrap m-2"
   >
     <div class="p-2">
       <div class="mb-4">
@@ -22,11 +15,7 @@
             v-model="current"
           >
             <option disabled>Категории:</option>
-            <option
-              v-for="category in categories"
-              :key="category.id"
-              :value="category.id"
-            >
+            <option v-for="category in categories" :key="category.id" :value="category">
               {{ category.categoryName }}
             </option>
           </select>
@@ -37,8 +26,8 @@
           <input
             type="text"
             id="name"
-            :placeholder="categoryName"
-            v-model="categoryName"
+            :placeholder="current.categoryName"
+            v-model="current.categoryName"
           />
         </div>
 
@@ -46,13 +35,17 @@
           <input
             id="limit"
             type="number"
-            :placeholder="categoryLimit"
-            v-model="categoryLimit"
+            :placeholder="current.categoryLimit"
+            v-model="current.categoryLimit"
           />
         </div>
 
-        <button type="submit" class="btn btn-success shadow-sm rounded mb-2">
-          СОЗДАТЬ <i class="bi bi-send float-end ms-2"></i>
+        <button
+          v-if="current.hasOwnProperty('categoryLimit')"
+          type="submit"
+          class="btn btn-success shadow-sm rounded mb-2"
+        >
+          ОБНОВИТЬ <i class="bi bi-send float-end ms-2"></i>
         </button>
       </form>
     </div>
@@ -61,8 +54,6 @@
 
 <script>
 import { CRMstore } from "@/stores/CRMstore";
-import useVuelidate from "@vuelidate/core";
-import { required } from "@vuelidate/validators";
 export default {
   name: "edit-categorie",
 
@@ -72,57 +63,29 @@ export default {
     const crmStore = CRMstore();
     return {
       crmStore,
-      v$: useVuelidate(),
     };
   },
 
   data() {
     return {
-      selected: null,
-      categoryName: '',
-      categoryLimit: null,
-      current: null
+      current: {},
     };
   },
 
-  validations() {
-    return {
-      categoryName: { required },
-      categoryLimit: { required },
-    };
+  mounted() {
+    console.log(this.categories);
   },
 
-  watch: {
-    current(categoryId) {
-      const cat = this.categories.find(category => category.id === categoryId)
-      this.categoryName = cat.categoryName
-      this.categoryLimit = cat.categoryLimit
+  methods: {
+    submit() {
+      try {
+        this.crmStore.updateCategory(this.current);
+        this.current = {};
+        this.$toast.success("Категория обновлена!");
+      } catch (e) {
+        this.$toast.warning(e.message);
+      }
     },
   },
-
-  methods:{
-    submit(){
-      if (this.v$.$invalid) {
-        this.$toast.warning(this.v$);
-        return;
-      }
-      
-      try {
-        const updatedCategory = {
-        id : this.current,
-        name : this.categoryName,
-        limit : this.categoryLimit,
-        }
-        this.crmStore.updateCategory(updatedCategory)
-        this.categoryName = ""
-        this.categoryLimit = null
-        this.v$.$reset()
-        this.$emit("categoryUpdated")
-        
-      } catch (error) {
-        this.$toast.warning(error.message)
-      }
-    }
-  }
 };
 </script>

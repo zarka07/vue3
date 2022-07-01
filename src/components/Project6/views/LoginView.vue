@@ -13,59 +13,46 @@
       <div class="bottom-section">
         <div class="bottom-section__description">
           <p class="bottom__description__analytics">
-            <strong>Business Analytics</strong> — a new, convenient tool for
-            managing and forecasting your business performance, which will help
-            analyze your own finances and cash flows, visualize your reporting,
-            business processes, KPI's
+            <strong>Business Analytics</strong> — a new, convenient tool for managing and
+            forecasting your business performance, which will help analyze your own
+            finances and cash flows, visualize your reporting, business processes, KPI's
           </p>
 
           <div class="description__article">
-            <img
-              class="article__vector"
-              src="/assets/vectorCITI.png"
-              alt="vector"
-            />
+            <img class="article__vector" src="/assets/vectorCITI.png" alt="vector" />
             <div class="article">
               <div class="article__title">
                 <strong>Interactive Reporting </strong>
               </div>
               <div class="article__text">
-                In just a few clicks, you can connect your data from 1C, CRM
-                (Bitrix24, AmoCRM, ZohoCRM), E-commerce (PROM.UA, Rozetka,
-                ebay), Logistic (Nova Poshta), Google Analytics and many more
-                systems that reflect different aspects of business activities.
+                In just a few clicks, you can connect your data from 1C, CRM (Bitrix24,
+                AmoCRM, ZohoCRM), E-commerce (PROM.UA, Rozetka, ebay), Logistic (Nova
+                Poshta), Google Analytics and many more systems that reflect different
+                aspects of business activities.
               </div>
             </div>
           </div>
           <div class="description__article">
-            <img
-              class="article__vector"
-              src="/assets/vectorCITI.png"
-              alt="vector"
-            />
+            <img class="article__vector" src="/assets/vectorCITI.png" alt="vector" />
             <div class="article">
               <div class="article__title">
                 <strong>Automated data updates</strong>
               </div>
               <div class="article__text">
-                The application automatically updates and structures the data in
-                just 60 seconds, saving you time and money.
+                The application automatically updates and structures the data in just 60
+                seconds, saving you time and money.
               </div>
             </div>
           </div>
           <div class="description__article">
-            <img
-              class="article__vector"
-              src="/assets/vectorCITI.png"
-              alt="vector"
-            />
+            <img class="article__vector" src="/assets/vectorCITI.png" alt="vector" />
             <div class="article">
               <div class="article__title">
                 <strong>Data Security</strong>
               </div>
               <div class="article__text">
-                The Bank guarantees the safety of your personal data, ensuring
-                their integrity and confidentiality.
+                The Bank guarantees the safety of your personal data, ensuring their
+                integrity and confidentiality.
               </div>
             </div>
           </div>
@@ -84,8 +71,7 @@
             />
             <div v-if="usernameErr" class="fieldError">Incorrect value</div>
 
-            <label for="floatingPassword" class="form__label">Password</label
-            ><br />
+            <label for="floatingPassword" class="form__label">Password</label><br />
             <input
               type="password"
               class="form__input"
@@ -140,8 +126,8 @@ export default {
         if (this.password === 12345) {
           this.auth.status = true;
           this.auth.username = this.username;
-          this.$router.push({name:'ToDoView'})
-          location.reload()
+          this.$router.push({ name: "ToDoView" });
+          location.reload();
         } else {
           this.passwordErr = true;
           return;

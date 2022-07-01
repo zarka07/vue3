@@ -1,0 +1,27 @@
+div.slide-fade__component {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slide-fade-enter-from {
+  transform: translateX(100vw);
+  opacity: 0.3;
+}
+
+.slide-fade-leave-to {
+  transform: translateX(-100vw);
+  opacity: 0.3;
+}
+
+.slide-fade-enter-active {
+  transition: all 1.5s;
+}
+
+.slide-fade-leave-active {
+  transition: all 1.5s;
+}
+
+nav {
+  padding: 15px;
+}

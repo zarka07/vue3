@@ -1,16 +1,16 @@
 import { defineStore } from 'pinia';
 
 export const LoaderStore = defineStore('loader', {
-    state:() => {
-        return { 
+    state: () => {
+        return {
             loading: false,
         }
     },
-    actions:{
-        showLoader(){
+    actions: {
+        showLoader() {
             this.loading = true
         },
-        hideLoader(){
+        hideLoader() {
             this.loading = false
         }
     }

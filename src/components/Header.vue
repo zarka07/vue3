@@ -7,19 +7,12 @@
           style="text-align: center"
         >
           <button type="button" class="btn">
-            <router-link to="/"
-              ><img :src="src" id="brand" alt="brand"
-            /></router-link>
+            <router-link to="/"><img :src="src" id="brand" alt="brand" /></router-link>
           </button>
         </div>
 
         <div
-          class="
-            col-xs-12 col-sm-11 col-md-11 col-xl-11
-            
-            flex-grow-1
-            bd-highlight
-          "
+          class="col-xs-12 col-sm-11 col-md-11 col-xl-11 flex-grow-1 bd-highlight"
           style="text-align: center"
         >
           <div
@@ -45,6 +38,9 @@
             <button type="button" class="btn btn-danger">
               <router-link to="/project6">Project 6 </router-link>
             </button>
+            <button type="button" class="btn btn-warning">
+              <router-link to="/project7">Project 7 </router-link>
+            </button>
           </div>
         </div>
       </div>
@@ -68,12 +64,12 @@ nav a.router-link-exact-active {
   text-decoration: none !important;
 }
 
-a {
+button > a {
   text-decoration: none;
   color: #fff;
 }
 
-a:after {
+button > a:after {
   position: absolute;
   content: "";
   width: 0;
@@ -84,9 +80,9 @@ a:after {
   transition: all ease-in 0.25s;
 }
 
-a:hover:after {
+button > a:hover:after {
   width: 100%;
-  color:#FFF!important;
+  color: #fff !important;
 }
 
 .header {

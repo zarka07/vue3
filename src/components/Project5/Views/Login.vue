@@ -46,12 +46,9 @@
       <div class="form-button mt-3 account have-not-account">
         <p>
           Нет аккаунта?
-          <router-link class="register" to="/register"
-            >Зарегистрироваться</router-link
-          >
+          <router-link class="register" to="/register">Зарегистрироваться</router-link>
         </p>
       </div>
-
     </form>
   </div>
 </template>
@@ -91,7 +88,7 @@ export default {
 
       try {
         this.crmStore.login(formData);
-        this.$router.push({name:'Home'});
+        this.$router.push({ name: "Home" });
         this.$toast.success(`Вы вошли в систему`);
       } catch (e) {
         this.$toast.error(e.message);

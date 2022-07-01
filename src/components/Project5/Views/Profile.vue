@@ -3,15 +3,15 @@
     <div class="page-title">
       <h3>Профиль</h3>
     </div>
-    <hr>
+    <hr />
     <form class="form">
       <div class="input-field mb-4">
-        <input id="description" type="text" placeholder="Имя"/>
+        <input id="description" type="text" placeholder="Имя" />
       </div>
 
-      <button type="submit" class="btn btn-success shadow-sm rounded ">
-          ОБНОВИТЬ <i class="bi bi-send float-end ms-2"></i>
-        </button>
+      <button type="submit" class="btn btn-success shadow-sm rounded">
+        ОБНОВИТЬ <i class="bi bi-send float-end ms-2"></i>
+      </button>
     </form>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style scoped>
-.profile{
+.profile {
   min-height: 40vh;
 }
 </style>

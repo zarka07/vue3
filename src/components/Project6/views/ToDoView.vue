@@ -14,19 +14,14 @@
           v-model="new_todo"
           v-on:keyup.enter="addItem"
         />
-        <div
-          class="btn btn-add"
-          v-bind:class="{ active: new_todo }"
-          @click="addItem"
-        >
+        <div class="btn btn-add" v-bind:class="{ active: new_todo }" @click="addItem">
           +
         </div>
       </form>
 
       <div v-if="pending.length > 0">
         <p class="status busy">
-          You have {{ pending.length }} pending item<span
-            v-if="pending.length > 1"
+          You have {{ pending.length }} pending item<span v-if="pending.length > 1"
             >s</span
           >
         </p>
@@ -70,14 +65,9 @@
           v-if="completed.length > 0"
           @click="toggleShowComplete"
         >
-          <span v-if="!showComplete">Show</span
-          ><span v-else>Hide</span> Complete
+          <span v-if="!showComplete">Show</span><span v-else>Hide</span> Complete
         </div>
-        <div
-          class="btn btn-secondary"
-          v-if="todoList.length > 0"
-          @click="clearAll"
-        >
+        <div class="btn btn-secondary" v-if="todoList.length > 0" @click="clearAll">
           Clear All
         </div>
       </div>
@@ -149,13 +139,13 @@ export default {
     clearAll() {
       this.todoList = [];
     },
-    logout(){
-      localStorage.removeItem("auth")
-      localStorage.removeItem("username")
-      localStorage.removeItem("todo_list")
-      this.$router.push({name:'LoginView'})
-      location.reload()
-    }
+    logout() {
+      localStorage.removeItem("auth");
+      localStorage.removeItem("username");
+      localStorage.removeItem("todo_list");
+      this.$router.push({ name: "LoginView" });
+      location.reload();
+    },
   },
 
   computed: {
@@ -170,9 +160,7 @@ export default {
       });
     },
     completedPercentage: function () {
-      return (
-        Math.floor((this.completed.length / this.todoList.length) * 100) + "%"
-      );
+      return Math.floor((this.completed.length / this.todoList.length) * 100) + "%";
     },
     today: function () {
       var weekday = [
@@ -215,13 +203,13 @@ export default {
   position: relative;
 }
 
-.username{
-  font-size:100%;
+.username {
+  font-size: 100%;
 }
 
-.logout{
-  color:#00569a;
-  width:99%;
+.logout {
+  color: #00569a;
+  width: 99%;
 }
 
 .main__logo {

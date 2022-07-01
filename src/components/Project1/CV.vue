@@ -14,9 +14,7 @@
               <p class="contactMe">CONTACT ME AT:</p>
               <p v-for="contact in contacts" :key="contact" class="contacts">
                 <i :class="contact.icon"></i>
-                <a :href="contact.href" target="_blank">{{
-                  contact.description
-                }}</a>
+                <a :href="contact.href" target="_blank">{{ contact.description }}</a>
               </p>
             </div>
             <!-- key skills -->
@@ -53,9 +51,7 @@
           <div>
             <p class="contactMe">LANGUAGE SKILLS:</p>
             <ul class="skills" style="padding-left: 0px">
-              <li>
-                English: Intermediate (between B1 and B2 according to CEFR);
-              </li>
+              <li>English: Intermediate (between B1 and B2 according to CEFR);</li>
               <li>French: below average</li>
             </ul>
           </div>
@@ -70,32 +66,29 @@
 
           <div>
             <h4 class="goal">MY GOAL</h4>
-            <p>
-              Front-end Developer position with different and interesting
-              tasks!
-            </p>
+            <p>Front-end Developer position with different and interesting tasks!</p>
             <h4 class="goal">PRACTICAL EXPERIENCE:</h4>
             <h6>
               <b>6 month of commercial experience (08.2021 - 02.2022):</b>
             </h6>
-            <p>Maintenance and upgrading existing app using Vue2, Vuex, router, RestAPI, Vant, Wrld.js, i18n;</p>
+            <p>
+              Maintenance and upgrading existing app using Vue2, Vuex, router, RestAPI,
+              Vant, Wrld.js, i18n;
+            </p>
             <p>Creating a new application from a template;</p>
             <h6>
               <b>Non-commercial experience (11.2019 - today):</b>
             </h6>
             <p>
-              Creating web-site for car-repair self-service using HTML+CSS,
-              hosting in web;
+              Creating web-site for car-repair self-service using HTML+CSS, hosting in
+              web;
             </p>
 
             <p>
-              Creating pet projects using Vue 2,3, router, axios, Vuetify,
-              Quasar, pinia, bootstrap5, localStorage;
+              Creating pet projects using Vue 2,3, router, axios, Vuetify, Quasar, pinia,
+              bootstrap5, localStorage;
             </p>
-            <p>
-              Creating hospital database using MSSQL Databases, procedures,
-              triggers.
-            </p>
+            <p>Creating hospital database using MSSQL Databases, procedures, triggers.</p>
             <h4 class="goal">OTHER EXPERIENCE:</h4>
             <h6><b>Author of specialized texts</b></h6>
             <p>https://monolith.in.ua</p>
@@ -146,12 +139,7 @@ export default {
         href: "https://www.linkedin.com/in/serhii-tarasov/",
       },
     ],
-    skills: [
-      "emotional stability",
-      "creativity",
-      "scrupulosity",
-      "self-motivation",
-    ],
+    skills: ["emotional stability", "creativity", "scrupulosity", "self-motivation"],
   }),
 };
 </script>
@@ -168,7 +156,7 @@ export default {
   }
   .dev {
     font-weight: 500;
-    font-size: 3.2rem;
+    font-size: 3rem;
   }
 }
 
@@ -198,7 +186,7 @@ export default {
   }
   .dev {
     font-weight: 500;
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 }
 

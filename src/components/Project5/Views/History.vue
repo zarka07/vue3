@@ -3,7 +3,7 @@
     <div class="col">
       <h3>История записей</h3>
     </div>
-    <hr>
+    <hr />
     <div class="history-chart">
       <canvas></canvas>
     </div>
@@ -49,13 +49,13 @@ export default {
 </script>
 
 <style scoped>
-.bi-box-arrow-up-right{
+.bi-box-arrow-up-right {
   font-size: 100% !important;
   color: #fff;
   text-align: center;
 }
 
-.arrow-btn{
+.arrow-btn {
   width: 50px;
   height: 30px;
   background-color: rgb(64, 190, 232);
@@ -63,11 +63,11 @@ export default {
   /* border-radius: 50%; */
 }
 
-.rate{
-  height:20px;
-  width:auto;
-  background-color:rgb(251, 69, 69);
-  padding:4px;
+.rate {
+  height: 20px;
+  width: auto;
+  background-color: rgb(251, 69, 69);
+  padding: 4px;
   font-size: 80%;
 }
 </style>

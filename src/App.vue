@@ -1,51 +1,45 @@
 <template>
-  <div >
+  <div>
     <div v-if="showLoader">
-      <Loader/>
+      <Loader />
     </div>
     <div>
       <router-view></router-view>
     </div>
-    
   </div>
-  
-
 </template>
 
 <script>
-
-import { UserStore } from '@/stores/UserStore';
-import { LoaderStore } from '@/stores/LoaderStore';
-import Loader from '@/components/Project2/Loader.vue';
+import { UserStore } from "@/stores/UserStore";
+import { LoaderStore } from "@/stores/LoaderStore";
+import Loader from "@/components/Project2/Loader.vue";
 //import AuthorizationItem from '@/views/Authorization.vue';
 //import UserItem from '@/views/User.vue'
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Loader
+    Loader,
     //AuthorizationItem, UserItem,
   },
-  setup(){
-    
-    const store = UserStore()
-    const loader = LoaderStore()
-    return{
+  setup() {
+    const store = UserStore();
+    const loader = LoaderStore();
+    return {
       store,
-      loader
-    }
+      loader,
+    };
   },
-  methods:{
-    toUser(){
-      this.$router.push('/user')
-    }
+  methods: {
+    toUser() {
+      this.$router.push("/user");
+    },
   },
-  computed:{
+  computed: {
     showLoader() {
-        return this.loader.loading;
-      },
-  }
-  
-}
+      return this.loader.loading;
+    },
+  },
+};
 </script>
 
 <style scoped>

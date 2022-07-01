@@ -36,7 +36,7 @@
       </div>
 
       <div class="mt-4">
-        <button type="submit" class="btn btn-success shadow-sm rounded ">
+        <button type="submit" class="btn btn-success shadow-sm rounded">
           СОЗДАТЬ <i class="bi bi-send float-end ms-2"></i>
         </button>
       </div>
@@ -49,6 +49,3 @@ export default {
   mounted() {},
 };
 </script>
-
-
-

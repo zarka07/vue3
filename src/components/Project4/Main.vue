@@ -15,21 +15,15 @@
         <img alt="logo" class="goroskop" src="/assets/goroskop.png" />
       </div>
 
-      <div class="title">
-        Узнайте, как 2022 год изменит жизнь каждого из нас!
-      </div>
+      <div class="title">Узнайте, как 2022 год изменит жизнь каждого из нас!</div>
       <div class="subtitle">
-        К сожалению, 2022 год принес нам немало неприятностей, даже откровенных
-        проблем и несчастий. Не смотря на это, 3 знака зодиака очень скоро
-        обретут долгожданное счастье! 2023 год затронет своими потрясениями
-        каждого из нас.
+        К сожалению, 2022 год принес нам немало неприятностей, даже откровенных проблем и
+        несчастий. Не смотря на это, 3 знака зодиака очень скоро обретут долгожданное
+        счастье! 2023 год затронет своими потрясениями каждого из нас.
       </div>
     </div>
     <!-- question component -->
-    <question-component
-      :questions="questions[iterator]"
-      @nextQuestion="nextQuestion"
-    >
+    <question-component :questions="questions[iterator]" @nextQuestion="nextQuestion">
     </question-component>
   </div>
 </template>
@@ -54,8 +48,7 @@ export default {
       questions: [
         {
           description: {
-            style:
-              "flex-direction: row;justify-content: space-around;text-align:left",
+            style: "flex-direction: row;justify-content: space-around;text-align:left",
             title: "Укажите свой пол:",
             value: "gender",
             type: "radio",
