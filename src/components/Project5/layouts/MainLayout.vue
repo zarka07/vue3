@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main__layout">
     <Navbar @click="isOpen = !isOpen" />
 
     <main class="">
@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style scoped>
-.main {
+.main__layout {
   min-height: 70vh;
 }
 

@@ -130,13 +130,17 @@ export default {
       return `${timeNow} - ${toDay}`;
     },
     username() {
-      return this.crmStore.GET_USER_NAME;
+      return this.crmStore._userInfo.username;
     },
   },
-
-  mounted() {
-    //this.crmStore.setUserInfo()
+  mounted(){
+    console.log('mounted: ',this.crmStore._userInfo.username)
   },
+  watch:{
+    username: function(){
+      return this.crmStore._userInfo.username
+    }
+  }
 };
 </script>
 

@@ -13,10 +13,10 @@
       </section>
       <section id="run" class="main__article__runningtext">
         <div class="article__runningtext__top marquee marquee__top">
-          <span>FULL-CYCLE EVENT AGENCY FULL-CYCLE EVENT AGENCY</span>
+          <span class="marq">FULL-CYCLE EVENT AGENCY FULL-CYCLE EVENT AGENCY</span>
         </div>
         <div class="article__runningtext__bottom marquee marquee__bottom">
-          <span>FULL-CYCLE EVENT AGENCY FULL-CYCLE EVENT AGENCY</span>
+          <span class="marq">FULL-CYCLE EVENT AGENCY FULL-CYCLE EVENT AGENCY</span>
         </div>
       </section>
       <section class="main__article__textRotated">

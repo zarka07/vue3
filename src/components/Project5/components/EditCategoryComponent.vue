@@ -72,10 +72,6 @@ export default {
     };
   },
 
-  mounted() {
-    console.log(this.categories);
-  },
-
   methods: {
     submit() {
       try {

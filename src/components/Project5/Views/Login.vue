@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <Loader v-if="isLoaded" />
+  <div v-else class="container">
     <form class="form" @submit.prevent="onSubmit()">
       <p class="formDescription">Домашняя бухгалтерия</p>
 
@@ -14,7 +15,7 @@
         />
         <label for="floatingInput">Email</label>
         <div v-if="v$.$invalid" class="text-danger errors">
-          <span v-for="item in v$.$silentErrors" :key="item.uid">
+          <span class="error" v-for="item in v$.$silentErrors" :key="item.uid">
             <i v-if="item.$property === 'email'">{{ item.$message }}</i>
           </span>
         </div>
@@ -57,8 +58,10 @@
 import useVuelidate from "@vuelidate/core";
 import { required, email, minLength } from "@vuelidate/validators";
 import { CRMstore } from "@/stores/CRMstore";
+import Loader from "../components/Loader.vue";
 export default {
   name: "login-component",
+  components: { Loader },
   setup() {
     const crmStore = CRMstore();
     return {
@@ -69,6 +72,7 @@ export default {
   data: () => ({
     email: "",
     password: "",
+    isLoaded: false,
   }),
   validations() {
     return {
@@ -87,11 +91,12 @@ export default {
       };
 
       try {
-        this.crmStore.login(formData);
-        this.$router.push({ name: "Home" });
-        this.$toast.success(`Вы вошли в систему`);
+          this.crmStore.login(formData);
+          console.log('all done ')
+          setTimeout(()=>this.$router.push({ name: "Home" }),1500)
+          setTimeout(()=>this.$toast.success(`Вы вошли в систему`),2000)
       } catch (e) {
-        this.$toast.error(e.message);
+        console.log(e.message);
       }
     },
   },

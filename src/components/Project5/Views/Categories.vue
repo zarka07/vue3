@@ -42,15 +42,14 @@ export default {
   methods: {
     addCategory: function (value) {
       this.categories.push(value);
-      console.log(this.categories);
     },
   },
 
   async mounted() {
     await this.crmStore
       .fetchCategories()
-      .then((res) => (this.categories = res))
-      .then((this.isLoaded = false));
+      .then((res) => (this.categories = res,console.log(this.categories)))
+      .then((this.isLoaded = false))
   },
 };
 </script>

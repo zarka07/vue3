@@ -1,29 +1,20 @@
 import { defineStore } from 'pinia';
 import { getDatabase, ref, set, onValue, child, push, update } from "firebase/database"
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth"
+
 //let _userInfo = localStorage.getItem('userInfo');
+//let userUID = JSON.parse(localStorage.getItem('userUid'))
 export const CRMstore = defineStore('crmstore', {
     state: () => {
         return {
             _userInfo: JSON.parse(localStorage.getItem('userInfo')) || {},
             currencyInfo: {},
-            //categories: [],
             categoryKey: '',
-            userUid: JSON.parse(localStorage.getItem('userUid')) || ''
+            categories: localStorage.getItem('categories') || [],
+            userUid: localStorage.getItem('uid') || '',
         }
     },
     actions: {
-        async getUid() {
-            const auth = getAuth()
-            const user = auth.currentUser;
-            if (user) {
-                this.userUid = user.uid
-                return this.userUid ? this.userUid : null
-            }
-
-            return
-        },
-
         async register({ email, password, name }) {
             const auth = getAuth();
             try {
@@ -39,7 +30,6 @@ export const CRMstore = defineStore('crmstore', {
                             email,
                             bill: 100
                         })
-
                     })
             }
             catch (e) {
@@ -49,17 +39,27 @@ export const CRMstore = defineStore('crmstore', {
         },
 
         async login({ email, password }) {
+            const auth = getAuth();
             try {
-                const auth = getAuth();
-                const uid = await this.getUid()
-                this.userUid = uid
-                localStorage.setItem("userUid", JSON.stringify(uid))
                 await signInWithEmailAndPassword(auth, email, password)
-                await this.setUserInfo()
-            } catch (error) {
-                this.$toast.warning(error)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        //console.log(user)
+                        const db = getDatabase()
+                        localStorage.setItem('uid', user.uid)
+                        const userInfo = ref(db, '/users/' + user.uid)
+                        onValue(userInfo, (snapshot) => {
+                            const data = snapshot.val();
+                            console.log(data)
+                            localStorage.setItem("userInfo", JSON.stringify(data))
+                        })
+                    })
             }
-
+            catch (e) {
+                console.log(e.message)
+                localStorage.clear()
+                throw e
+            }
         },
 
         async logout() {
@@ -72,35 +72,10 @@ export const CRMstore = defineStore('crmstore', {
 
         },
 
-        async setUserInfo() {
-            try {
-                const uid = await this.getUid()
-                const db = getDatabase()
-                const userInfo = ref(db, '/users/' + uid);
-                onValue(userInfo, (snapshot) => {
-                    const data = snapshot.val();
-                    this._userInfo = data
-                    localStorage.setItem("userInfo", JSON.stringify(data))
-                });
-
-
-            } catch (e) {
-                this.$toast.error(e)
-                throw e
-            }
-
-        },
-
         async fetchCategories() {
-
-            const uid = await this.getUid()
-            if (!uid) {
-                await this.getUid()
-            }
-            console.log('uid: ' + uid)
             const db = getDatabase();
             this.categoryKey = push(child(ref(db, '/users/'), 'categories')).key;
-            const categories = ref(db, '/users/' + uid + '/categories/');
+            const categories = ref(db, '/users/' + this.userUid + '/categories/');
             let result = {}
             onValue(categories, (snapshot) => {
                 if (snapshot.exists()) {
@@ -112,13 +87,7 @@ export const CRMstore = defineStore('crmstore', {
         },
 
         async setNewCategory(data) {
-
             const uid = await this.getUid()
-            if (!uid) {
-                await this.getUid()
-                return
-            }
-
             const db = getDatabase();
             this.categoryKey = push(child(ref(db, '/users/'), 'categories')).key;
             const newCategory = {
@@ -134,14 +103,9 @@ export const CRMstore = defineStore('crmstore', {
 
         async updateCategory(data) {
             try {
-                const uid = await this.getUid()
-                if (!uid) {
-                    this.$toast.error('Необходимо авторизоваться заново')
-                    return
-                }
                 const db = await getDatabase();
                 const updates = {};
-                updates['users/' + uid + '/categories/' + data.id] = data;
+                updates['users/' + this.userUid + '/categories/' + data.id] = data;
                 update(ref(db), updates);
             } catch (e) {
                 this.$toast.error(e.message)
@@ -166,20 +130,13 @@ export const CRMstore = defineStore('crmstore', {
         },
 
         clearInfo() {
-            if (this.currencyInfo) {
-                this.currencyInfo = {}
-                this._userInfo = {}
-                this.categories = {}
-                this.userUid = ''
-                this.categoryKey = ''
-            }
+            this.$reset()
             localStorage.clear()
         },
 
     },
 
     getters: {
-        GET_USER_NAME: (state) => state._userInfo.username,
         GET_USER_BILL: (state) => state._userInfo.bill,
         GET_USER_CATEGORIES: (state) => state.categories,
         GET_CURRENCY_INFO: (state) => state.currencyInfo,

@@ -117,7 +117,6 @@ const firebaseConfig = {
 };
 
 
-
 const i18n = createI18n({
     locale: 'en', // set locale
     fallbackLocale: 'ru', // set fallback locale

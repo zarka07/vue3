@@ -1,7 +1,6 @@
 import { createWebHistory, createRouter } from 'vue-router';
 import Main from '@/views/Main.vue';
 import { CRMstore } from './stores/CRMstore';
-
 const isAuthForProject6 = JSON.parse(localStorage.getItem("auth"))
 const ifNotAuthenticated = (to, from, next) => {
 	if (!isAuthForProject6) {
@@ -18,6 +17,7 @@ const ifAuthenticated = (to, from, next) => {
 	}
 	next({ name: 'LoginView' })
 }
+
 
 const routes = [
 	{
@@ -94,61 +94,64 @@ const routes = [
 				path: '',
 				name: 'Home',
 				meta: { layout: 'main', auth: true },
+				//beforeEnter: ifAuthenticated,
 				component: () => import(/* webpackChunkName: "Home.vue", webpackMode: "lazy" */'@/components/Project5/Views/Home.vue')
 			},
 			{
 				path: '/login',
 				name: 'Login',
 				meta: { layout: 'empty', auth: false },
+				//beforeEnter: ifNotAuthenticated,
 				component: () => import(/* webpackChunkName: "Login.vue", webpackMode: "lazy" */'@/components/Project5/Views/Login.vue')
 			},
 			{
 				path: '/categories',
 				name: 'Categories',
 				meta: { layout: 'main', auth: true },
+				//beforeEnter: ifAuthenticated,
 				component: () => import(/* webpackChunkName: "Categories.vue", webpackMode: "lazy" */'@/components/Project5/Views/Categories.vue')
 			},
 			{
 				path: '/detail-record',
 				name: 'Detail-record',
 				meta: { layout: 'main', auth: true },
+				//beforeEnter: ifAuthenticated,
 				component: () => import(/* webpackChunkName: "Detail-record.vue", webpackMode: "lazy" */'@/components/Project5/Views/Detail-record.vue')
 			},
 			{
 				path: '/history',
 				name: 'History',
 				meta: { layout: 'main', auth: true },
+				//beforeEnter: ifAuthenticated,
 				component: () => import(/* webpackChunkName: "History.vue", webpackMode: "lazy" */'@/components/Project5/Views/History.vue')
 			},
 			{
 				path: '/planning',
 				name: 'Planning',
 				meta: { layout: 'main', auth: true },
+				//beforeEnter: ifAuthenticated,
 				component: () => import(/* webpackChunkName: "Planning.vue", webpackMode: "lazy" */'@/components/Project5/Views/Planning.vue')
 			},
 			{
 				path: '/profile',
 				name: 'Profile',
 				meta: { layout: 'main', auth: true },
+				//beforeEnter: ifAuthenticated,
 				component: () => import(/* webpackChunkName: "Profile.vue", webpackMode: "lazy" */'@/components/Project5/Views/Profile.vue')
 			},
 			{
 				path: '/record',
 				name: 'Record',
 				meta: { layout: 'main', auth: true },
+				//beforeEnter: ifAuthenticated,
 				component: () => import(/* webpackChunkName: "Record.vue", webpackMode: "lazy" */'@/components/Project5/Views/Record.vue')
 			},
 			{
 				path: '/register',
 				name: 'Register',
 				meta: { layout: 'empty', auth: false },
+				//beforeEnter:ifNotAuthenticated,
 				component: () => import(/* webpackChunkName: "Register.vue", webpackMode: "lazy" */'@/components/Project5/Views/Register.vue')
-			},
-			{
-				path: '/profile',
-				name: 'Profile',
-				meta: { layout: 'main', auth: true },
-				component: () => import(/* webpackChunkName: "Register.vue", webpackMode: "lazy" */'@/components/Project5/Views/Profile.vue')
 			},
 		],
 	},
@@ -207,8 +210,8 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
 	const crmStore = CRMstore()
 	const requireAuth = to.matched.some(record => record.meta.auth)
-	console.log(requireAuth + ' ' + crmStore.GET_USER_NAME)
-	if (requireAuth && !crmStore.GET_USER_NAME) {
+	//console.log(requireAuth + ' ' + crmStore.userUid)
+	if (requireAuth && !crmStore.userUid) {
 		next({ name: 'Login' })
 	} else {
 		next()
