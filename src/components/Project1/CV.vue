@@ -24,8 +24,8 @@
           </div>
           <div class="skills">
             <div>JS + <span class="vue">Vue.js</span></div>
-            <div class="vue">(Vuex/Router/Vuetify/Quasar)</div>
-            <div class="js">i18n/axios/wrld.js/</div>
+            <div class="vue">(Vuex/Pinia/Router/Vuetify/Quasar)</div>
+            <div class="js">i18n/axios/wrld.js/Bootstrap5/Firebase</div>
           </div>
           <!-- minor skills -->
           <div>
@@ -51,8 +51,8 @@
           <div>
             <p class="contactMe">LANGUAGE SKILLS:</p>
             <ul class="skills" style="padding-left: 0px">
-              <li>English: Intermediate (between B1 and B2 according to CEFR);</li>
-              <li>French: below average</li>
+              <li><u>English:</u> Intermediate (between B1 and B2 according to CEFR);</li>
+              <li><u>French:</u> below average</li>
             </ul>
           </div>
         </div>
@@ -66,10 +66,10 @@
 
           <div>
             <h4 class="goal">MY GOAL</h4>
-            <p>Front-end Developer position with different and interesting tasks!</p>
+            <p>Obtaining a position of Front-end Developer with different and interesting tasks!</p>
             <h4 class="goal">PRACTICAL EXPERIENCE:</h4>
             <h6>
-              <b>6 month of commercial experience (08.2021 - 02.2022):</b>
+              <b>6 months of commercial experience (08.2021 - 02.2022):</b>
             </h6>
             <p>
               Maintenance and upgrading existing app using Vue2, Vuex, router, RestAPI,
@@ -77,18 +77,18 @@
             </p>
             <p>Creating a new application from a template;</p>
             <h6>
-              <b>Non-commercial experience (11.2019 - today):</b>
+              <b>2+ years of non-commercial experience (11.2019 - today):</b>
             </h6>
             <p>
-              Creating web-site for car-repair self-service using HTML+CSS, hosting in
+              Creating a web-site for car-repair self-service using HTML+CSS, hosting in
               web;
             </p>
 
             <p>
-              Creating pet projects using Vue 2,3, router, axios, Vuetify, Quasar, pinia,
+              Creating pet projects using Vue 2,3, Vuex, router, axios, Vuetify, Quasar, pinia,
               bootstrap5, localStorage;
             </p>
-            <p>Creating hospital database using MSSQL Databases, procedures, triggers.</p>
+            <p>Creating database using MSSQL Databases, procedures, triggers.</p>
             <h4 class="goal">OTHER EXPERIENCE:</h4>
             <h6><b>Author of specialized texts</b></h6>
             <p>https://monolith.in.ua</p>
@@ -139,7 +139,7 @@ export default {
         href: "https://www.linkedin.com/in/serhii-tarasov/",
       },
     ],
-    skills: ["emotional stability", "creativity", "scrupulosity", "self-motivation"],
+    skills: ["emotional stability", "attentiveness", "scrupulosity", "self-motivation"],
   }),
 };
 </script>
