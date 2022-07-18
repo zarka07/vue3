@@ -59,14 +59,17 @@
         <!-- right section -->
         <div class="col-md-8 right">
           <div>
-            <h1 class="name">SERHII TARASOV</h1>
+            <h1 class="name">SERHII TARASO<img class="v-img" src="vue-logo.png" /></h1>
             <h3 class="dev">FRONT-END (Vue) DEVELOPER</h3>
             <hr size="6" style="color: black; opacity: 1" />
           </div>
 
           <div>
             <h4 class="goal">MY GOAL</h4>
-            <p>Obtaining a position of Front-end Developer with different and interesting tasks!</p>
+            <p>
+              Obtaining a position of Front-end Developer with different and interesting
+              tasks!
+            </p>
             <h4 class="goal">PRACTICAL EXPERIENCE:</h4>
             <h6>
               <b>6 months of commercial experience (08.2021 - 02.2022):</b>
@@ -85,8 +88,8 @@
             </p>
 
             <p>
-              Creating pet projects using Vue 2,3, Vuex, router, axios, Vuetify, Quasar, pinia,
-              bootstrap5, localStorage;
+              Creating pet projects using Vue 2,3, Vuex, router, axios, Vuetify, Quasar,
+              pinia, bootstrap5, localStorage;
             </p>
             <p>Creating database using MSSQL Databases, procedures, triggers.</p>
             <h4 class="goal">OTHER EXPERIENCE:</h4>
@@ -154,6 +157,10 @@ export default {
     font-weight: 700;
     font-size: 4.2rem;
   }
+  .v-img {
+    height: 48px;
+    width: auto;
+  }
   .dev {
     font-weight: 500;
     font-size: 3rem;
@@ -168,6 +175,11 @@ export default {
   .name {
     font-weight: 700;
     font-size: 4rem;
+    width:100vw;
+  }
+  .v-img {
+    height: 46px;
+    width: auto;
   }
   .dev {
     font-weight: 500;
@@ -184,6 +196,10 @@ export default {
     font-weight: 700;
     font-size: 3.2rem;
   }
+  .v-img {
+    height: 38px;
+    width: auto;
+  }
   .dev {
     font-weight: 500;
     font-size: 1.8rem;
@@ -199,6 +215,10 @@ export default {
     font-weight: 700;
     font-size: 3.2rem;
   }
+  .v-img {
+    height: 38px;
+    width: auto;
+  }
   .dev {
     font-weight: 500;
     font-size: 2rem;
@@ -213,6 +233,10 @@ export default {
   .name {
     font-weight: 700;
     font-size: 2.5rem;
+  }
+  .v-img {
+    height: 30px;
+    width: auto;
   }
   .dev {
     font-weight: 500;
@@ -281,6 +305,8 @@ a {
 .name {
   color: #42b983;
   font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
 }
 
 .js {
