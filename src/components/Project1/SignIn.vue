@@ -74,18 +74,20 @@
 
 <script>
 import { UserStore } from "@/stores/UserStore";
+import getApiForProject1 from "@/mixins/getApiForProject1";
 import { email, required, minLength } from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
-
+import { LoaderStore } from "@/stores/LoaderStore";
 export default {
   name: "signin-component",
+  mixins: [getApiForProject1],
   setup() {
-    return { v$: useVuelidate() };
+    const mainStore = UserStore();
+    const loader = LoaderStore();
+    return { v$: useVuelidate(), mainStore, loader };
   },
   data() {
-    const mainStore = UserStore();
     return {
-      mainStore,
       email: "",
       password: "",
     };
@@ -117,15 +119,58 @@ export default {
       const isFormCorrect = await this.v$.$validate();
       if (!isFormCorrect) return;
       const formData = {
-        email: this.email,
+        login: this.email,
         password: this.password,
       };
       try {
-        this.mainStore.signIn(formData);
-        this.$emit("showUser");
+        this.loader.loading = true;
+        await this.login(formData).then((result) =>
+          this.getUserInfo(result.data).then((response) => {
+            if (response.data) {
+              this.mainStore.userInfo = response.data;
+              this.$emit("showUser");
+            }
+          })
+        );
+        this.loader.loading = false;
       } catch (e) {
-        console.log(e);
+        let statusText = e.response.statusText;
+        let statusCode = e.response.status;
+        switch (statusCode) {
+          case 400:
+            alert(statusCode +" "+ statusText);
+            break;
+          case 401:
+            alert(statusCode +" "+ statusText);
+            break;
+          case 403:
+            alert(statusCode +" "+ statusText);
+            break;
+          case 404:
+            alert(statusCode +" "+ statusText);
+            break;
+            case 405:
+            alert(statusCode +" "+ statusText);
+            break;
+          case 422:
+            alert(statusCode +" "+ statusText);
+            break;
+          case 500:
+          case 501:
+          case 502:
+          case 503:
+          case 504:
+          case 505:
+            alert(statusCode +" "+ statusText);
+            break;
+          default:
+            alert(statusCode +" "+ statusText);
+        }
+        this.loader.loading = false;
       }
+    },
+    clearForm() {
+      (this.email = ""), (this.password = "");
     },
   },
 };

@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import { UserStore } from "@/stores/UserStore";
 import { LoaderStore } from "@/stores/LoaderStore";
 import Loader from "@/components/Project2/Loader.vue";
 //import AuthorizationItem from '@/views/Authorization.vue';
@@ -22,10 +21,8 @@ export default {
     //AuthorizationItem, UserItem,
   },
   setup() {
-    const store = UserStore();
     const loader = LoaderStore();
     return {
-      store,
       loader,
     };
   },

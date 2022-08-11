@@ -45,13 +45,13 @@
                 </div>
               </div>
               <!-- gender input -->
-              <div class="col-md-12">
+              <!-- <div class="col-md-12">
                 <select class="form-select mt-3" required>
                   <option selected disabled value="">Gender</option>
                   <option value="Male">Male</option>
                   <option value="Femail">Femail</option>
                 </select>
-              </div>
+              </div> -->
               <!-- password input -->
               <div class="col-md-12">
                 <div :class="{ error: v$.password.$errors.length }">
@@ -114,15 +114,18 @@
 import { UserStore } from "@/stores/UserStore";
 import { email, required, minLength } from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
+import getApiForProject1 from "@/mixins/getApiForProject1";
+import { LoaderStore } from "@/stores/LoaderStore";
 export default {
   name: "signup-component",
+  mixins: [getApiForProject1],
   setup() {
-    return { v$: useVuelidate() };
+    const mainStore = UserStore();
+    const loader = LoaderStore();
+    return { v$: useVuelidate(), loader, mainStore };
   },
   data() {
-    const mainStore = UserStore();
     return {
-      mainStore,
       username: "",
       email: "",
       password: "",
@@ -158,20 +161,60 @@ export default {
       const isFormCorrect = await this.v$.$validate();
       if (!isFormCorrect) return;
       const formData = {
-        email: this.email,
+        login: this.email,
         password: this.password,
-        username: this.username,
+        fullname: this.username,
       };
       try {
-        this.mainStore.addUser(formData);
-        this.$emit("showUser");
-        console.log("show user");
+        this.loader.loading = true;
+        await this.register(formData).then((response) => {
+          if (response.data) {
+            this.signIn();
+            this.clearForm();
+          }
+        });
+        this.loader.loading = false;
       } catch (e) {
-        console.log(e);
+        let statusText = e.response.statusText;
+        let statusCode = e.response.status;
+        switch (statusCode) {
+          case 400:
+            alert(statusCode + " " + statusText);
+            break;
+          case 401:
+            alert(statusCode + " " + statusText);
+            break;
+          case 403:
+            alert(statusCode + " " + statusText);
+            break;
+          case 404:
+            alert(statusCode + " " + statusText);
+            break;
+          case 405:
+            alert(statusCode + " " + statusText);
+            break;
+          case 422:
+            alert(statusCode + " " + statusText);
+            break;
+          case 500:
+          case 501:
+          case 502:
+          case 503:
+          case 504:
+          case 505:
+            alert(statusCode + " " + statusText);
+            break;
+          default:
+            alert(statusCode + " " + statusText);
+        }
+        this.loader.loading = false;
       }
     },
     signIn() {
       this.$emit("sign-in");
+    },
+    clearForm() {
+      (this.username = ""), (this.email = ""), (this.password = "");
     },
   },
 };

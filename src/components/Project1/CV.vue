@@ -59,7 +59,7 @@
         <!-- right section -->
         <div class="col-md-8 right">
           <div>
-            <h1 class="name">SERHII TARASO<img class="v-img" src="vue-logo.png" /></h1>
+            <h1 class="name">SERHII TARASO<img class="v-img" src="vue-logo.png" alt="V"/></h1>
             <h3 class="dev">FRONT-END (Vue) DEVELOPER</h3>
             <hr size="6" style="color: black; opacity: 1" />
           </div>

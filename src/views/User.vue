@@ -5,10 +5,11 @@
       <div class="row">
         <div class="userinfo col-md-12">
           <p>You are successfully logged with user info:</p>
-          <p v-if="username">username: {{ username }}</p>
-          <p>email: {{ email }}</p>
-          <p>password: {{ password }}</p>
-          <div class="d-grid gap-2 col-6 mx-auto">
+          <p v-if="fullname">fullname: {{ fullname }}</p>
+          <p v-if="avatar">
+            <img :src="avatar" alt="avatar" class="avatar">
+          </p>
+          <div class="d-grid gap-2 col-2 mx-auto">
             <button
               class="btn btn-primary"
               style="margin-top: 1em"
@@ -42,9 +43,7 @@ export default {
   },
   data() {
     return {
-      email: this.mainStore.email,
-      password: this.mainStore.password,
-      username: this.mainStore.username,
+      
     };
   },
   methods: {
@@ -53,6 +52,14 @@ export default {
       this.$router.push("/");
     },
   },
+  computed:{
+    fullname(){
+      return this.mainStore.userInfo.fullname
+    },
+    avatar(){
+      return this.mainStore.userInfo.avatar
+    }
+  }
 };
 </script>
 
@@ -60,5 +67,10 @@ export default {
 .userinfo {
   height: 63vh;
   text-align: center;
+}
+
+.avatar{
+  width:150px;
+  height:150px;
 }
 </style>

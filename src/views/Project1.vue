@@ -14,7 +14,7 @@ import { UserStore } from "@/stores/UserStore";
 
 export default {
   name: "project1-component",
-  components: { Authorization, User },
+  components: { Authorization, User, },
   setup() {
     const store = UserStore();
     return {

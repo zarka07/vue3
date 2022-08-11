@@ -6,9 +6,7 @@ let cartItemsCount = localStorage.getItem('products-count');
 export const UserStore = defineStore('auth', {
     state: () => {
         return {
-            username: '',
-            email: '',
-            password: '',
+            userInfo:{},
             currentPage: 1,
             cartItems: cartItems ? JSON.parse(cartItems) : [],
             cartItemsCount: cartItemsCount ? JSON.parse(cartItemsCount) : 0,
@@ -35,18 +33,16 @@ export const UserStore = defineStore('auth', {
             localStorage.removeItem("products-count");
         },
         resetUser() {
-            this.username = '',
-                this.email = '',
-                this.password = ''
+            this.userInfo = {}
         },
-        addUser(formData) {
-            this.username = formData.username,
-                this.email = formData.email,
-                this.password = formData.password
-        },
-        signIn(formData) {
-            this.email = formData.email,
-                this.password = formData.password
-        },
+        // addUser(formData) {
+        //     this.username = formData.username,
+        //         this.email = formData.email,
+        //         this.password = formData.password
+        // },
+        // signIn(formData) {
+        //     this.email = formData.email,
+        //         this.password = formData.password
+        // },
     }
 })
