@@ -4,8 +4,9 @@
     <div class="container">
       <div class="row">
         <div class="userinfo col-md-12">
+          <hr>
           <p>You are successfully logged with user info:</p>
-          <p v-if="fullname">fullname: {{ fullname }}</p>
+          <p v-if="fullname">Fullname: <b>{{ fullname }}</b></p>
           <p v-if="avatar">
             <img :src="avatar" alt="avatar" class="avatar">
           </p>
@@ -19,6 +20,7 @@
               Logout
             </button>
           </div>
+          <hr>
         </div>
       </div>
     </div>
