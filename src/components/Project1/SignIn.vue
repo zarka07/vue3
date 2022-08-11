@@ -6,7 +6,7 @@
           <div class="form-content">
             <div class="form-items">
               <h3>Sign In</h3>
-              <form class="requires-validation" novalidate>
+              <form class="requires-validation" novalidate netlify name="signin-form">
                 <!-- email input -->
                 <div class="col-md-12">
                   <div :class="{ error: v$.email.$errors.length }">
@@ -16,6 +16,7 @@
                       v-model="email"
                       placeholder="E-mail"
                       autocomplete="email"
+                      name="email"
                     />
                     <div
                       class="input-errors"
@@ -35,6 +36,7 @@
                       v-model="password"
                       placeholder="Password"
                       autocomplete="current-password"
+                      name="password"
                       required
                     />
 
