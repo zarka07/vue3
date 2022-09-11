@@ -62,7 +62,7 @@
           {{ username ?? "anonimus" }}
         </a>
 
-        <ul class="dropdown-menu me-1" aria-labelledby="dropdownMenuLink">
+        <ul class="dropdown-menu dropdown-menu-end me-1" aria-labelledby="dropdownMenuLink">
           <li v-if="username">
             <a class="dropdown-item p-1 mb-1" @click="toProfile"
               ><i class="bi bi-file-person me-2"></i>Профиль</a
@@ -177,5 +177,6 @@ export default {
 
 .dropdown-menu {
   min-width: 5rem;
+  padding:10px;
 }
 </style>
