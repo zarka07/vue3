@@ -2,15 +2,13 @@ import { defineStore } from 'pinia';
 import { getDatabase, ref, set, onValue, child, push, update } from "firebase/database"
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth"
 
-//let _userInfo = localStorage.getItem('userInfo');
-//let userUID = JSON.parse(localStorage.getItem('userUid'))
 export const CRMstore = defineStore('crmstore', {
     state: () => {
         return {
             _userInfo: JSON.parse(localStorage.getItem('userInfo')) || {},
             currencyInfo: {},
             categoryKey: '',
-            categories: localStorage.getItem('categories') || [],
+            categories: JSON.parse(localStorage.getItem('categories')) || [],
             userUid: localStorage.getItem('uid') || '',
         }
     },
@@ -44,17 +42,21 @@ export const CRMstore = defineStore('crmstore', {
                 await signInWithEmailAndPassword(auth, email, password)
                     .then((userCredential) => {
                         const user = userCredential.user;
-                        //console.log(user)
                         const db = getDatabase()
                         localStorage.setItem('uid', user.uid)
                         const userInfo = ref(db, '/users/' + user.uid)
                         onValue(userInfo, (snapshot) => {
-                            const data = snapshot.val();
-                            console.log(data)
+                            let data = snapshot.val();
                             localStorage.setItem("userInfo", JSON.stringify(data))
-                        })
+                            if (data.categories) {
+                                localStorage.setItem("categories", JSON.stringify(data.categories))
+                            }
+                            return data;
+                        });
+
                     })
-            }
+                    return 1
+                }
             catch (e) {
                 console.log(e.message)
                 localStorage.clear()
@@ -81,13 +83,15 @@ export const CRMstore = defineStore('crmstore', {
                 if (snapshot.exists()) {
                     let categories = snapshot.val() || {}
                     result = Object.keys(categories).map(key => ({ ...categories[key], id: key }))
+                    localStorage.setItem('categories', JSON.stringify(result))
                 }
             })
-            return result
+            //this.categories = result
+            //return result
         },
 
         async setNewCategory(data) {
-            const uid = await this.getUid()
+            const uid = this.userUid
             const db = getDatabase();
             this.categoryKey = push(child(ref(db, '/users/'), 'categories')).key;
             const newCategory = {
@@ -98,12 +102,13 @@ export const CRMstore = defineStore('crmstore', {
             const updates = {};
             updates['users/' + uid + '/categories/' + this.categoryKey + '/'] = newCategory;
             update(ref(db), updates);
+            this.fetchCategories();
             return { newCategory }
         },
 
         async updateCategory(data) {
             try {
-                const db = await getDatabase();
+                const db = getDatabase();
                 const updates = {};
                 updates['users/' + this.userUid + '/categories/' + data.id] = data;
                 update(ref(db), updates);

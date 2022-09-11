@@ -95,14 +95,15 @@ export default {
         return;
       }
 
-      const newCategory = await this.crmStore.setNewCategory({
+      //const newCategory = 
+      await this.crmStore.setNewCategory({
         name: this.categoryName,
         limit: this.categoryLimit,
       });
       this.categoryName = "";
       this.categoryLimit = "";
       this.v$.$reset();
-      this.$emit("create-category", newCategory);
+      this.$emit("categoryAdded")
       this.$toast.success("Категория добавлена!");
     },
   },

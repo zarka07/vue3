@@ -7,9 +7,14 @@
     <Loader v-if="isLoaded" />
     <section v-else>
       <div class="row justify-content-evenly">
-        <AddCategory @create-category="addCategory" />
+        <AddCategory @categoryAdded="updateCategories"/>
 
-        <EditCategory :categories="categories" />
+        <EditCategory
+        v-if="categories.length"
+          :categories="categories"
+          :key="categories.length + updateCount"
+        />
+        <p class="text-center col-xl-5 col-lg-5 col-md-5 col-sm-5 flex-wrap" v-else>You didn't add categories</p>
       </div>
     </section>
   </div>
@@ -35,21 +40,19 @@ export default {
   data() {
     return {
       isLoaded: true,
-      categories: [],
+      categories: this.crmStore.categories,
+      updateCount: 0,
     };
   },
 
-  methods: {
-    addCategory: function (value) {
-      this.categories.push(value);
-    },
+  methods:{
+    updateCategories(){
+      this.updateCount++;
+    }
   },
 
   async mounted() {
-    await this.crmStore
-      .fetchCategories()
-      .then((res) => (this.categories = res,console.log(this.categories)))
-      .then((this.isLoaded = false))
+    await this.crmStore.fetchCategories().then((this.isLoaded = false));
   },
 };
 </script>
