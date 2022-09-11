@@ -123,8 +123,8 @@ export default {
 
       try {
         await this.crmStore.register(formData).then(this.$router.push("/login"));
-      } catch (e) {
-        this.$toast.error(e.message);
+      } catch (error) {
+        this.$toast.error(error.message);
       }
     },
   },
@@ -171,6 +171,6 @@ small {
 }
 
 .errors {
-  margin: 10px;
+  width:100%;
 }
 </style>
