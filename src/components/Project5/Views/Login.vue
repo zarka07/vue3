@@ -81,7 +81,7 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
+    async onSubmit() {
       if (this.v$.$invalid) {
         return;
       }
@@ -91,12 +91,14 @@ export default {
       };
 
       try {
-          this.crmStore.login(formData);
-          console.log('all done ')
-          setTimeout(()=>this.$router.push({ name: "Home" }),1500)
-          setTimeout(()=>this.$toast.success(`Вы вошли в систему`),2000)
+          await this.crmStore.login(formData);
+          if(localStorage.getItem("userInfo")){
+            this.$router.push({ name: "Home" })
+            this.$toast.success(`Вы вошли в систему`)
+          }
+          else return
       } catch (e) {
-        console.log(e.message);
+        this.$toast.warning(e.message)
       }
     },
   },
