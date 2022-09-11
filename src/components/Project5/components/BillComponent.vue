@@ -20,7 +20,7 @@
       </p>
       <p class="m-2 currency-line">
         <span class="text-light"
-          >{{ billParams.to }}: {{ userBillTo || "Нет соединения с сервером" }}&#36;
+          >{{ billParams.to }}: {{ userBillTo || "Нет соединения с сервером" }} &#36;
         </span>
       </p>
       <hr />
@@ -56,7 +56,7 @@ export default {
 
     userBillTo() {
       if (this.isBillExist && this.billParams.result != 0) {
-        return (this.crmStore.GET_USER_BILL / this.billParams.result).toPrecision(5);
+        return (this.crmStore.GET_USER_BILL/(this.crmStore.GET_USER_BILL / this.billParams.result)).toPrecision(3);
       } else {
         return " ---";
       }

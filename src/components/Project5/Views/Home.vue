@@ -9,11 +9,11 @@
 
   <div class="row m-3 justify-content-evenly flex-sm-wrap flex-md-wrap">
     <BillComponent
-      class="col-xl-4 col-lg-4 col-md-4 col-sm-4 p-4 bg-gradient bill"
+      class="col-xl-4 col-lg-4 col-md-4 col-sm-10 p-4 mb-4 bg-gradient bill"
       :billParams="billParams"
     />
     <CurrencyComponent
-      class="col-xl-6 col-lg-6 col-md-6 col-sm-6 p-4 bg-gradient currency"
+      class="col-xl-6 col-lg-6 col-md-6 col-sm-10 p-4 mb-4 bg-gradient currency"
       :billParams="billParams"
       :rateDate="date"
     />
@@ -50,15 +50,15 @@ export default {
   methods: {
     async refresh() {
       this.billParams.loading = true;
-      //this.currency = await this.crmStore.getCurrency(this.billParams.to, this.billParams.from);
+      this.currency = await this.crmStore.getCurrency(this.billParams.to, this.billParams.from);
       this.billParams.loading = false;
     },
   },
 
   async mounted() {
-    //this.currency = await this.crmStore.getCurrency(this.billParams.to, this.billParams.from);
-    // this.billParams.result = this.currency.result;
-    // this.date = this.currency.date;
+    this.currency = await this.crmStore.getCurrency(this.billParams.to, this.billParams.from);
+    this.billParams.result = this.currency.result;
+    this.date = this.currency.date;
     this.billParams.loading = false;
   },
 };

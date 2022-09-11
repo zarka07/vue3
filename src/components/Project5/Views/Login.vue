@@ -140,6 +140,6 @@ export default {
 }
 
 .errors {
-  margin: 10px;
+  width:100%;
 }
 </style>
