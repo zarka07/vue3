@@ -1,25 +1,27 @@
 <template>
-  <div
+  <div v-if="categories.length"
     class="edit border border-success col-xl-5 col-lg-5 col-md-5 col-sm-5 bg-light flex-wrap m-2"
   >
     <div class="p-2">
       <div class="mb-4">
-        <h4>Редактировать</h4>
+        <h4>Edit</h4>
       </div>
 
       <form @submit.prevent="submit()">
         <div class="mb-2">
+          <label for="selectCategory">Choose the category</label>
           <select
             class="form-select"
+            id="selectCategory"
             aria-label="Default select example"
             v-model="current"
           >
-            <option disabled>Категории:</option>
+            <option disabled>Categories:</option>
             <option v-for="category in categories" :key="category.id" :value="category">
               {{ category.categoryName }}
             </option>
           </select>
-          <label>Выберите категорию </label>
+          
         </div>
 
         <div class="mb-2">
@@ -45,17 +47,18 @@
           type="submit"
           class="btn btn-success shadow-sm rounded mb-2"
         >
-          ОБНОВИТЬ <i class="bi bi-send float-end ms-2"></i>
+          UPDATE <i class="bi bi-send float-end ms-2"></i>
         </button>
       </form>
     </div>
   </div>
+  <p class="text-center col-xl-5 col-lg-5 col-md-5 col-sm-5 flex-wrap" v-else>You didn't add categories</p>
 </template>
 
 <script>
 import { CRMstore } from "@/stores/CRMstore";
 export default {
-  name: "edit-categorie",
+  name: "edit-category",
 
   props: ["categories"],
 

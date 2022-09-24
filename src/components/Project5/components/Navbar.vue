@@ -19,7 +19,7 @@
         aria-labelledby="staticBackdropLabel"
       >
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="staticBackdropLabel">Все страницы</h5>
+          <h5 class="offcanvas-title" id="staticBackdropLabel">All pages</h5>
           <button
             type="button"
             class="btn-close"
@@ -65,15 +65,15 @@
         <ul class="dropdown-menu dropdown-menu-end me-1" aria-labelledby="dropdownMenuLink">
           <li v-if="username">
             <a class="dropdown-item p-1 mb-1" @click="toProfile"
-              ><i class="bi bi-file-person me-2"></i>Профиль</a
+              ><i class="bi bi-file-person me-2"></i>Profile</a
             >
             <a class="dropdown-item p-1" @click="logout"
-              ><i class="bi bi-box-arrow-left me-2"></i>Выйти</a
+              ><i class="bi bi-box-arrow-left me-2"></i>Logout</a
             >
           </li>
           <li v-else>
             <a class="dropdown-item" @click="toLogin"
-              ><i class="bi bi-box-arrow-right me-4"></i>Войти</a
+              ><i class="bi bi-box-arrow-right me-4"></i>Login</a
             >
           </li>
         </ul>
@@ -98,11 +98,11 @@ export default {
   data: () => ({
     interval: null,
     links: [
-      { title: "Счет", url: "/project5", exact: true },
-      { title: "История", url: "/history" },
-      { title: "Планирование", url: "/planning" },
-      { title: "Новая запись", url: "/record" },
-      { title: "Категория", url: "/categories" },
+      { title: "Bill", url: "/project5", exact: true },
+      { title: "History", url: "/history" },
+      { title: "Planning", url: "/planning" },
+      { title: "New entry", url: "/record" },
+      { title: "Categories", url: "/categories" },
     ],
   }),
 
@@ -111,7 +111,7 @@ export default {
       await this.crmStore
         .logout()
         .then(
-          this.$toast.warning(`Вы вышли из системы`),
+          this.$toast.warning(`You successfully logged out`),
           this.$router.push({ name: "Login" })
         );
     },

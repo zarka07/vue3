@@ -20,13 +20,13 @@
               <ul id="dropdown" class="dropdown-content">
                 <li>
                   <a href="#" class="black-text">
-                    <i class="material-icons">account_circle</i>Профиль
+                    <i class="material-icons">account_circle</i>Profile
                   </a>
                 </li>
                 <li class="divider"></li>
                 <li>
                   <a href="#" class="black-text">
-                    <i class="material-icons">assignment_return</i>Выйти
+                    <i class="material-icons">assignment_return</i>Logout
                   </a>
                 </li>
               </ul>
@@ -37,19 +37,19 @@
 
       <ul class="sidenav app-sidenav open">
         <li>
-          <a href="#" class="waves-effect waves-orange pointer">Счет</a>
+          <a href="#" class="waves-effect waves-orange pointer">Bill</a>
         </li>
         <li>
-          <a href="#" class="waves-effect waves-orange pointer">История</a>
+          <a href="#" class="waves-effect waves-orange pointer">History</a>
         </li>
         <li>
-          <a href="#" class="waves-effect waves-orange pointer">Планирование</a>
+          <a href="#" class="waves-effect waves-orange pointer">Planning</a>
         </li>
         <li>
-          <a href="#" class="waves-effect waves-orange pointer">Новая запись</a>
+          <a href="#" class="waves-effect waves-orange pointer">New entry</a>
         </li>
         <li>
-          <a href="#" class="waves-effect waves-orange pointer">Категории</a>
+          <a href="#" class="waves-effect waves-orange pointer">Categories</a>
         </li>
       </ul>
 
@@ -58,16 +58,16 @@
           <div>
             <div>
               <div class="breadcrumb-wrap">
-                <a href="/history" class="breadcrumb">История</a>
-                <a class="breadcrumb"> Расход </a>
+                <a href="/history" class="breadcrumb">History</a>
+                <a class="breadcrumb"> Expenses </a>
               </div>
               <div class="row">
                 <div class="col s12 m6">
                   <div class="card red">
                     <div class="card-content white-text">
-                      <p>Описание:</p>
-                      <p>Сумма:</p>
-                      <p>Категория:</p>
+                      <p>Description:</p>
+                      <p>Summ:</p>
+                      <p>Category:</p>
 
                       <small>12.12.12</small>
                     </div>

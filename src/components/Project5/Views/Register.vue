@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <form class="form" @submit.prevent="onSubmit">
-      <p class="formDescription">Домашняя бухгалтерия</p>
+      <p class="formDescription">Home bookkeeping</p>
       <div class="form-floating mb-3">
         <input
           type="email"
@@ -28,7 +28,7 @@
           autocomplete="current-password"
           v-model.trim="password"
         />
-        <label for="floatingPassword">Пароль</label>
+        <label for="floatingPassword">Password</label>
         <div v-if="v$.$invalid" class="text-danger errors">
           <span v-for="item in v$.$silentErrors" :key="item.uid">
             <i v-if="item.$property === 'password'">{{ item.$message }}</i>
@@ -63,21 +63,21 @@
           v-model="agree"
         />
         <label class="form-check-label" for="flexCheckDefault">
-          С правилами согласен
+          Agree with rules
         </label>
       </div>
 
       <div v-if="!v$.$invalid" class="mt-4 d-grid gap-2">
         <button type="submit" class="btn btn-success">
-          Зарегистрироваться
+          Register
           <i class="bi bi-arrow-right-square-fill float-end"></i>
         </button>
       </div>
 
       <div class="form-button mt-3 account have-not-account">
         <p>
-          Уже есть аккаунт?
-          <router-link class="register" to="/login">Войти</router-link>
+          Just have an account?
+          <router-link class="register" to="/login">Login</router-link>
         </p>
       </div>
     </form>

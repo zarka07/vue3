@@ -1,15 +1,15 @@
 <template>
   <div class="p-4 planning">
     <div class="d-flex flex-row mb-3 me-2 justify-content-between">
-      <h3>Планирование</h3>
+      <h3>PLanning</h3>
       <h4>12 212</h4>
     </div>
     <hr />
     <section>
       <div>
         <p>
-          <strong>Девушка:</strong>
-          12 122 из 14 0000
+          <strong>Girl:</strong>
+          12 122 from 14 0000
         </p>
         <div class="progress" style="height: 5px">
           <div

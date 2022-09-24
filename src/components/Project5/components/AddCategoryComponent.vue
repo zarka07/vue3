@@ -4,7 +4,7 @@
   >
     <div class="p-2">
       <div class="mb-4">
-        <h4>Создать</h4>
+        <h4>Create</h4>
       </div>
 
       <form @submit.prevent="addCategory">
@@ -13,10 +13,10 @@
             type="text"
             class="form-control"
             id="floatingName"
-            placeholder="Введите название"
+            placeholder="Enter title"
             v-model="categoryName"
           />
-          <label for="floatingName">Название</label>
+          <label for="floatingName">Title</label>
           <!-- <div v-if="v$.$dirty" class="text-danger errors">
             <span v-for="item in v$.$silentErrors" :key="item.uid">
               <i v-if="item.$property === 'categorieName'">{{
@@ -31,12 +31,12 @@
             type="number"
             class="form-control"
             id="floatingLimit"
-            placeholder="Лимит"
+            placeholder="Limit"
             min="1"
             v-model="categoryLimit"
           />
-          <label for="floatingLimit">Лимит</label>
-          <div class="error" v-if="!v$.categoryLimit.required">Введите лимит</div>
+          <label for="floatingLimit">Limit</label>
+          <div class="error" v-if="!v$.categoryLimit.required">Enter limit</div>
           <!-- <div v-if="v$.$dirty" class="text-danger errors">
             <span v-for="item in v$.$silentErrors" :key="item.uid">
               <i v-if="item.$property === 'categorieLimit'">{{
@@ -51,7 +51,7 @@
           type="submit"
           class="btn btn-success shadow-sm rounded mb-2"
         >
-          СОЗДАТЬ <i class="bi bi-send float-end ms-2"></i>
+          CREATE <i class="bi bi-send float-end ms-2"></i>
         </button>
       </form>
     </div>

@@ -11,21 +11,21 @@
   </div>
   <div v-else>
     <div class="mb-2">
-      <span class="text-light">Курс валют</span>
+      <span class="text-light">Currency</span>
     </div>
     <table class="text-light table">
       <thead>
         <tr>
-          <th scope="col">Валюта</th>
-          <th scope="col">Курс</th>
-          <th scope="col">Дата</th>
+          <th scope="col">Value</th>
+          <th scope="col">Current</th>
+          <th scope="col">Date</th>
         </tr>
       </thead>
 
       <tbody>
         <tr>
           <td>{{ billParams.to }}</td>
-          <td>{{ (100/billParams.result).toPrecision(4) || "Нет соединения с сервером" }}</td>
+          <td>{{ (100/billParams.result).toPrecision(4) || "Server not responding" }}</td>
           <td>{{ rateDate || date }}</td>
         </tr>
       </tbody>

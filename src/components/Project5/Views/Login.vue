@@ -2,7 +2,7 @@
   <Loader v-if="isLoaded" />
   <div v-else class="container">
     <form class="form" @submit.prevent="onSubmit()">
-      <p class="formDescription">Домашняя бухгалтерия</p>
+      <p class="formDescription">Home bookkeeping</p>
 
       <div class="form-floating mb-3">
         <input
@@ -10,7 +10,7 @@
           class="form-control"
           id="floatingInput"
           placeholder="name@example.com"
-          autocomplete="username "
+          autocomplete="username"
           v-model.trim="email"
         />
         <label for="floatingInput">Email</label>
@@ -26,7 +26,7 @@
           type="password"
           class="form-control"
           id="floatingPassword"
-          placeholder="Пароль"
+          placeholder="Password"
           autocomplete="current-password"
           v-model.trim="password"
         />
@@ -40,14 +40,14 @@
 
       <div v-if="!v$.$invalid" class="mt-4 d-grid gap-2">
         <button type="submit" class="btn btn-success">
-          Войти <i class="bi bi-arrow-right-square-fill float-end"></i>
+          Login <i class="bi bi-arrow-right-square-fill float-end"></i>
         </button>
       </div>
 
       <div class="form-button mt-3 account have-not-account">
         <p>
-          Нет аккаунта?
-          <router-link class="register" to="/register">Зарегистрироваться</router-link>
+          Don't have an account?
+          <router-link class="register" to="/register">Register</router-link>
         </p>
       </div>
     </form>
@@ -94,7 +94,7 @@ export default {
           await this.crmStore.login(formData);
           if(localStorage.getItem("userInfo")){
             this.$router.push({ name: "Home" })
-            this.$toast.success(`Вы вошли в систему`)
+            this.$toast.success(`Your login is successful`)
           }
           else return
       } catch (e) {

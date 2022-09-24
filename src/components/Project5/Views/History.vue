@@ -1,7 +1,7 @@
 <template>
   <div class="p-4">
     <div class="col">
-      <h3>История записей</h3>
+      <h3>History</h3>
     </div>
     <hr />
     <div class="history-chart">
@@ -13,11 +13,11 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Сумма</th>
-            <th scope="col">Дата</th>
-            <th scope="col">Категория</th>
-            <th scope="col">Тип</th>
-            <th scope="col">Открыть</th>
+            <th scope="col">Sum</th>
+            <th scope="col">Date</th>
+            <th scope="col">Category</th>
+            <th scope="col">Type</th>
+            <th scope="col">Open</th>
           </tr>
         </thead>
 
@@ -28,7 +28,7 @@
             <td>12.12.32</td>
             <td>name</td>
             <td>
-              <span class="rate shadow-sm rounded">Расход</span>
+              <span class="rate shadow-sm rounded">Expenses</span>
             </td>
             <td>
               <button class="arrow-btn shadow-sm rounded">

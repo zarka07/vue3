@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-row mt-3 mb-3 justify-content-between">
-    <h3 class="m-3">Счет</h3>
+    <h3 class="m-3">Bill</h3>
     <button class="reload m-2" @click="refresh">
       <i class="bi bi-bootstrap-reboot"></i>
     </button>
