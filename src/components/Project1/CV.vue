@@ -25,7 +25,7 @@
           <div class="skills">
             <div>JS + <span class="vue">Vue.js</span></div>
             <div class="vue">(Vuex/Pinia/Router/Vuetify/Quasar)</div>
-            <div class="js">i18n/axios/wrld.js/Bootstrap5/Firebase</div>
+            <div class="js">i18n/axios/RestAPI/Bootstrap5/Firebase</div>
           </div>
           <!-- minor skills -->
           <div>
@@ -83,25 +83,16 @@
               <b>2+ years of non-commercial experience (11.2019 - today):</b>
             </h6>
             <p>
-              Creating a web-site for car-repair self-service using HTML+CSS, hosting in
-              web;
+              Creating pet projects using Vue 2, 3, Vuex, Pinia, router, axios, Vuetify, Quasar,
+              bootstrap5, i18n, localStorage, Firebase, wrld.js, MSSQL Databases.
             </p>
-
-            <p>
-              Creating pet projects using Vue 2,3, Vuex, router, axios, Vuetify, Quasar,
-              pinia, bootstrap5, localStorage;
-            </p>
-            <p>Creating database using MSSQL Databases, procedures, triggers.</p>
             <h4 class="goal">OTHER EXPERIENCE:</h4>
-            <h6><b>Author of specialized texts</b></h6>
+            <h6><b>Author of specialized texts (cars servicing)</b></h6>
             <p>https://monolith.in.ua</p>
             <h6><b>Site maintenance</b></h6>
             <p>https://ugt.com.ua</p>
             <p>https://tenoptom.com.ua</p>
             <h4 class="goal">EDUCATIONAL HISTORY:</h4>
-            <h6><b>Computer academy STEP (Kharkiv)</b></h6>
-            <p>Software development | Nov. 2019 - Nov. 2020;</p>
-            <p>Technologies: C++/ JS/ HTML-CSS/ MSSQL Databases</p>
             <h6><b>KHNADU (Kharkiv)</b></h6>
             <p>Cars and cars industry | Sep 2012 - Jun 2017.</p>
           </div>
