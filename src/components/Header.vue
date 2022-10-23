@@ -41,6 +41,9 @@
             <button type="button" class="btn btn-warning">
               <router-link to="/project7">Project 7 </router-link>
             </button>
+            <button type="button" class="btn btn-info">
+              <a href="https://refactoring--serhii-tarasov-cats-api.netlify.app/">Project 8</a>
+            </button>
           </div>
         </div>
       </div>
