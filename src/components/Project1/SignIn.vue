@@ -9,31 +9,31 @@
               <form class="requires-validation" novalidate netlify name="signin-form">
                 <!-- email input -->
                 <div class="col-md-12">
-                  <div :class="{ error: v$.email.$errors.length }">
+                  <div :class="{ error: v$.email.$silentErrors.length }">
                     <input
                       class="form-control"
                       type="email"
-                      v-model="email"
+                      v-model="form.email"
                       placeholder="E-mail"
                       autocomplete="email"
                       name="email"
                     />
                     <div
                       class="input-errors"
-                      v-for="error of v$.email.$errors"
+                      v-for="error of v$.email.$silentErrors"
                       :key="error.$uid"
                     >
-                      <div class="error-msg">{{ error.$message }}</div>
+                      <div class="error-msg pt-1">{{ error.$message }}</div>
                     </div>
                   </div>
                 </div>
                 <!-- password input -->
                 <div class="col-md-12">
-                  <div :class="{ error: v$.password.$errors.length }">
+                  <div :class="{ error: v$.password.$silentErrors.length }">
                     <input
                       class="form-control"
                       type="password"
-                      v-model="password"
+                      v-model="form.password"
                       placeholder="Password"
                       autocomplete="current-password"
                       name="password"
@@ -42,10 +42,10 @@
 
                     <div
                       class="input-errors"
-                      v-for="error of v$.password.$errors"
+                      v-for="error of v$.password.$silentErrors"
                       :key="error.$uid"
                     >
-                      <div class="error-msg">{{ error.$message }}</div>
+                      <div class="error-msg pt-1">{{ error.$message }}</div>
                     </div>
                   </div>
                 </div>
@@ -74,112 +74,60 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { UserStore } from "@/stores/UserStore";
-import getApiForProject1 from "@/mixins/getApiForProject1";
 import { email, required, minLength } from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import { LoaderStore } from "@/stores/LoaderStore";
-export default {
-  name: "signin-component",
-  mixins: [getApiForProject1],
-  setup() {
-    const mainStore = UserStore();
-    const loader = LoaderStore();
-    return { v$: useVuelidate(), mainStore, loader };
-  },
-  data() {
-    return {
-      email: "",
-      password: "",
-    };
-  },
-  validations() {
-    return {
-      email: { email, required },
-      password: { required, minLength: minLength(8) },
-    };
-  },
-  emits: {
-    showUser: {
-      type: String,
-      required: false,
-      default: "",
-    },
-    back: {
-      type: String,
-      required: false,
-      default: "",
-    },
-  },
-  methods: {
-    async signIn() {
-      if (this.v$.$invalid) {
-        this.v$.$touch();
-        return;
-      }
-      const isFormCorrect = await this.v$.$validate();
-      if (!isFormCorrect) return;
-      const formData = {
-        login: this.email,
-        password: this.password,
-      };
-      try {
-        this.loader.loading = true;
-        await this.login(formData).then((result) =>
-          this.getUserInfo(result.data).then((response) => {
-            if (response.data) {
-              this.mainStore.userInfo = response.data;
-              this.$emit("showUser");
-            }
-          })
-        );
-        this.loader.loading = false;
-      } catch (e) {
-        let statusText = e.response.statusText;
-        let statusCode = e.response.status;
-        switch (statusCode) {
-          case 400:
-            alert(statusCode +" "+ statusText);
-            break;
-          case 401:
-            alert(statusCode +" "+ statusText);
-            break;
-          case 403:
-            alert(statusCode +" "+ statusText);
-            break;
-          case 404:
-            alert(statusCode +" "+ statusText);
-            break;
-            case 405:
-            alert(statusCode +" "+ statusText);
-            break;
-          case 422:
-            alert(statusCode +" "+ statusText);
-            break;
-          case 500:
-          case 501:
-          case 502:
-          case 503:
-          case 504:
-          case 505:
-            alert(statusCode +" "+ statusText);
-            break;
-          default:
-            alert(statusCode +" "+ statusText);
-        }
-        this.loader.loading = false;
-      }
-    },
-    clearForm() {
-      (this.email = ""), (this.password = "");
-    },
-  },
+import { reactive, defineEmits } from "vue";
+
+const mainStore = UserStore();
+const loader = LoaderStore();
+const form = reactive({
+  email: "",
+  password: "",
+});
+const rules = {
+  email: { required, email },
+  password: { required, minLength: minLength(6) },
 };
+const emit = defineEmits(["sign-in"]);
+const v$ = useVuelidate(rules, form);
+
+function signIn() {
+  if (v$._value.$silentErrors.length != 0) {
+    return;
+  }
+  loader.loading = true;
+  try {
+    login(form);
+    loader.loading = false;
+  } catch (e) {
+    console.log(e);
+    loader.loading = false;
+  }
+}
+function login() {
+  const email = mainStore.userInfo.email;
+  const password = mainStore.userInfo.password;
+  if (email == form.email && password == form.password) {
+    emit("showUser");
+    clearForm();
+  } else {
+    alert("Login or password is incorrect");
+    clearForm();
+  }
+}
+function clearForm() {
+  form.email = "";
+  form.password = "";
+}
+
 </script>
 
 <style scoped>
 .error-msg {
   color: red;
+  font-size: small;
 }
 </style>

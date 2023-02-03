@@ -6,7 +6,12 @@ let cartItemsCount = localStorage.getItem('products-count');
 export const UserStore = defineStore('auth', {
     state: () => {
         return {
-            userInfo:{},
+            userInfo:{
+                username:'',
+                email:'',
+                password:'',
+                avatar:''
+            },
             currentPage: 1,
             cartItems: cartItems ? JSON.parse(cartItems) : [],
             cartItemsCount: cartItemsCount ? JSON.parse(cartItemsCount) : 0,

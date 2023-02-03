@@ -7,24 +7,14 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Authorization from "@/views/Authorization.vue";
 import User from "@/views/User.vue";
 import { UserStore } from "@/stores/UserStore";
-
-export default {
-  name: "project1-component",
-  components: { Authorization, User, },
-  setup() {
-    const store = UserStore();
-    return {
-      store,
-    };
-  },
-  methods: {
-    toUser() {
-      this.$router.push("/user");
-    },
-  },
-};
+import { useRouter } from 'vue-router';
+const store = UserStore();
+const router = useRouter();
+function toUser() {
+  router.push("/user");
+}
 </script>

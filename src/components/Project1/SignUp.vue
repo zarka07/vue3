@@ -8,17 +8,17 @@
             <form class="requires-validation" novalidate>
               <!-- username input -->
               <div class="col-md-12">
-                <div :class="{ error: v$.username.$errors.length }">
+                <div :class="{ error: v$.username.$silentErrors.length }">
                   <input
                     class="form-control"
                     type="text"
-                    v-model="username"
+                    v-model="form.username"
                     placeholder="Username"
                     autocomplete="username"
                   />
                   <div
                     class="input-errors"
-                    v-for="error of v$.username.$errors"
+                    v-for="error of v$.username.$silentErrors"
                     :key="error.$uid"
                   >
                     <div class="error-msg">{{ error.$message }}</div>
@@ -27,17 +27,17 @@
               </div>
               <!-- email input -->
               <div class="col-md-12">
-                <div :class="{ error: v$.email.$errors.length }">
+                <div :class="{ error: v$.email.$silentErrors.length }">
                   <input
                     class="form-control"
                     type="email"
-                    v-model="email"
+                    v-model="form.email"
                     placeholder="E-mail"
                     autocomplete="email"
                   />
                   <div
                     class="input-errors"
-                    v-for="error of v$.email.$errors"
+                    v-for="error of v$.email.$silentErrors"
                     :key="error.$uid"
                   >
                     <div class="error-msg">{{ error.$message }}</div>
@@ -54,17 +54,17 @@
               </div> -->
               <!-- password input -->
               <div class="col-md-12">
-                <div :class="{ error: v$.password.$errors.length }">
+                <div :class="{ error: v$.password.$silentErrors.length }">
                   <input
                     class="form-control"
                     type="password"
-                    v-model="password"
+                    v-model="form.password"
                     placeholder="Password (at least 8 long)"
                     autocomplete="new-password"
                   />
                   <div
                     class="input-errors"
-                    v-for="error of v$.password.$errors"
+                    v-for="error of v$.password.$silentErrors"
                     :key="error.$uid"
                   >
                     <div class="error-msg">{{ error.$message }}</div>
@@ -73,13 +73,15 @@
               </div>
               <!-- checkbox  -->
               <div class="form-check">
-                <div :class="{ error: v$.agree.$errors.length }">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    v-model="agree"
-                    @change="v$.agree.$touch()"
-                  />
+                <div :class="{ error: v$.agree.$silentErrors.length }">
+                  <input class="form-check-input" type="checkbox" v-model="form.agree" />
+                  <div
+                    class="input-errors"
+                    v-for="error of v$.agree.$silentErrors"
+                    :key="error.$uid"
+                  >
+                    <div class="error-msg">{{ error.$message }}</div>
+                  </div>
                   <label class="form-check-label"
                     >I confirm that all data are correct</label
                   >
@@ -110,114 +112,58 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { reactive, defineEmits, computed } from "vue";
 import { UserStore } from "@/stores/UserStore";
 import { email, required, minLength } from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
-import getApiForProject1 from "@/mixins/getApiForProject1";
 import { LoaderStore } from "@/stores/LoaderStore";
-export default {
-  name: "signup-component",
-  mixins: [getApiForProject1],
-  setup() {
-    const mainStore = UserStore();
-    const loader = LoaderStore();
-    return { v$: useVuelidate(), loader, mainStore };
-  },
-  data() {
-    return {
-      username: "",
-      email: "",
-      password: "",
-      agree: false,
-    };
-  },
-  validations() {
-    return {
-      email: { email, required },
-      password: { required, minLength: minLength(8) },
-      username: { required },
-      agree: { checked: (v) => v },
-    };
-  },
-  emits: {
-    "sign-in": {
-      type: String,
-      required: false,
-      default: "",
-    },
-    showUser: {
-      type: String,
-      required: false,
-      default: "",
-    },
-  },
-  methods: {
-    async signUp() {
-      if (this.v$.$invalid) {
-        this.v$.$touch();
-        return;
-      }
-      const isFormCorrect = await this.v$.$validate();
-      if (!isFormCorrect) return;
-      const formData = {
-        login: this.email,
-        password: this.password,
-        fullname: this.username,
-      };
-      try {
-        this.loader.loading = true;
-        await this.register(formData).then((response) => {
-          if (response.data) {
-            this.signIn();
-            this.clearForm();
-          }
-        });
-        this.loader.loading = false;
-      } catch (e) {
-        let statusText = e.response.statusText;
-        let statusCode = e.response.status;
-        switch (statusCode) {
-          case 400:
-            alert(statusCode + " " + statusText);
-            break;
-          case 401:
-            alert(statusCode + " " + statusText);
-            break;
-          case 403:
-            alert(statusCode + " " + statusText);
-            break;
-          case 404:
-            alert(statusCode + " " + statusText);
-            break;
-          case 405:
-            alert(statusCode + " " + statusText);
-            break;
-          case 422:
-            alert(statusCode + " " + statusText);
-            break;
-          case 500:
-          case 501:
-          case 502:
-          case 503:
-          case 504:
-          case 505:
-            alert(statusCode + " " + statusText);
-            break;
-          default:
-            alert(statusCode + " " + statusText);
-        }
-        this.loader.loading = false;
-      }
-    },
-    signIn() {
-      this.$emit("sign-in");
-    },
-    clearForm() {
-      (this.username = ""), (this.email = ""), (this.password = "");
-    },
-  },
+
+const mainStore = UserStore();
+const loader = LoaderStore();
+const form = reactive({
+  username: "",
+  email: "",
+  password: "",
+  agree: false,
+});
+const rules = computed(() => {
+  return {
+    username: { required },
+    email: { required, email },
+    password: { required, minLength: minLength(6) },
+    agree: { checked: (v) => v },
+  };
+});
+const emit = defineEmits(["sign-in"]);
+
+const v$ = useVuelidate(rules, form);
+
+const signIn = () => {
+  emit("sign-in");
+  clearForm();
 };
+const signUp = () => {
+  if (v$._value.$silentErrors.length != 0) {
+    return;
+  }
+  loader.loading = true;
+  try {
+    mainStore.userInfo.username = form.username;
+    mainStore.userInfo.email = form.email;
+    mainStore.userInfo.password = form.password;
+    emit("sign-in");
+    clearForm();
+  } catch (e) {
+    console.log(e);
+    clearForm();
+  }
+  loader.loading = false;
+};
+function clearForm() {
+  form.username = "";
+  (form.email = ""), (form.password = "");
+}
 </script>
 
 <style scoped>
@@ -235,5 +181,6 @@ export default {
 
 .error-msg {
   color: red;
+  font-size: small;
 }
 </style>

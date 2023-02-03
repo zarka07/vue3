@@ -4,11 +4,13 @@
     <div class="container">
       <div class="row">
         <div class="userinfo col-md-12">
-          <hr>
+          <hr />
           <p>You are successfully logged with user info:</p>
-          <p v-if="fullname">Fullname: <b>{{ fullname }}</b></p>
+          <p v-if="name">
+            Name: <b>{{ name }}</b>
+          </p>
           <p v-if="avatar">
-            <img :src="avatar" alt="avatar" class="avatar">
+            <img :src="avatar" alt="avatar" class="avatar" />
           </p>
           <div class="d-grid gap-2 col-2 mx-auto">
             <button
@@ -20,7 +22,7 @@
               Logout
             </button>
           </div>
-          <hr>
+          <hr />
         </div>
       </div>
     </div>
@@ -29,40 +31,19 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { UserStore } from "@/stores/UserStore";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-export default {
-  name: "user-item",
-  components: { Header, Footer },
-  setup() {
-    const mainStore = UserStore();
-
-    return {
-      mainStore,
-    };
-  },
-  data() {
-    return {
-      
-    };
-  },
-  methods: {
-    logout() {
-      this.mainStore.resetUser();
-      this.$router.push("/");
-    },
-  },
-  computed:{
-    fullname(){
-      return this.mainStore.userInfo.fullname
-    },
-    avatar(){
-      return this.mainStore.userInfo.avatar
-    }
-  }
-};
+import { useRouter } from 'vue-router';
+const mainStore = UserStore();
+const name = mainStore.userInfo.username
+const avatar = mainStore.userInfo.avatar
+const router = useRouter()
+function logout() {
+  mainStore.resetUser();
+  router.push("/");
+}
 </script>
 
 <style scoped>
@@ -71,8 +52,8 @@ export default {
   text-align: center;
 }
 
-.avatar{
-  width:150px;
-  height:150px;
+.avatar {
+  width: 150px;
+  height: 150px;
 }
 </style>
