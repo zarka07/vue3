@@ -29,7 +29,7 @@
     <!-- buttons-->
     <div class="d-grid gap-2 col-4 mx-auto mt-2">
       <button class="btn btn-danger" type="button" @click="closeAgreement">
-        {{ $t("Agreement.NotAgree") }}
+        {{ t("Agreement.NotAgree") }}
       </button>
       <button
         class="btn btn-success"
@@ -37,44 +37,35 @@
         :disabled="!isReaded"
         @click="showPost"
       >
-        {{ $t("Agreement.Agree") }}
+        {{ t("Agreement.Agree") }}
       </button>
     </div>
   </div>
 </template>
-<script>
+<script setup>
 import { ModalStore } from "@/stores/ModalStore";
-export default {
-  name: "agreement-component",
-  data() {
-    return {
-      isReaded: false,
-    };
-  },
-  setup() {
-    const modalStore = ModalStore();
-    return {
-      modalStore,
-    };
-  },
-  methods: {
-    closeAgreement() {
-      this.modalStore.showModal(false);
-      this.$router.push({ name: "PostList" });
-    },
-    showPost() {
-      let answer = this.$t("Agreement.Molodec");
-      alert(answer + "!");
-      this.modalStore.showModal(false);
-    },
-    onBodyScroll() {
-      const modal = this.$refs.modal;
-      if (modal.clientHeight + modal.scrollTop >= modal.scrollHeight) {
-        this.isReaded = true;
-      }
-    },
-  },
-};
+import { useI18n } from "vue-i18n";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+const modalStore = ModalStore();
+const router = useRouter();
+const { t } = useI18n({ useScope: "global" });
+let isReaded = ref(false);
+const modal = ref(null);
+function closeAgreement() {
+  modalStore.showModal(false);
+  router.push({ name: "PostList" });
+}
+function showPost() {
+  let answer = t("Agreement.Molodec");
+  alert(answer + "!");
+  modalStore.showModal(false);
+}
+function onBodyScroll() {
+  if (modal.value.clientHeight + modal.value.scrollTop >= modal.value.scrollHeight) {
+    isReaded.value = true;
+  }
+}
 </script>
 
 <style scoped>

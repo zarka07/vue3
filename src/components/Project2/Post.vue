@@ -1,37 +1,36 @@
 <template>
   <div>
     <Header />
-
     <div>
       <div>
         <div class="postNumber">
           <h3>
-            {{ $t("PostVue.Comments") }} {{ $t("PostVue.Post") }} {{ $route.params.id }}
+            {{ t("PostVue.Comments") }} {{ t("PostVue.Post") }} {{ route.params.id }}
           </h3>
         </div>
         <!-- comment -->
         <div class="comment" v-for="comment in comments" :key="comment.id">
           <p>
-            <b>{{ $t("PostVue.Name") }}:</b> {{ comment.name }}
+            <b>{{ t("PostVue.Name") }}:</b> {{ comment.name }}
           </p>
           <p>
-            <b>{{ $t("PostVue.Email") }}:</b> {{ comment.email }}
+            <b>{{ t("PostVue.Email") }}:</b> {{ comment.email }}
           </p>
           <p>
-            <b>{{ $t("PostVue.Body") }}:</b> {{ comment.body }}
+            <b>{{ t("PostVue.Body") }}:</b> {{ comment.body }}
           </p>
         </div>
         <!-- modal -->
         <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-2">
           <button class="btn btn-success" type="button" @click="showModal">
-            {{ $t("Agreement.ShowAgreement") }}
+            {{ t("Agreement.ShowAgreement") }}
           </button>
           <button class="btn btn-primary" type="button" @click="back">
-            {{ $t("PostVue.Back") }}
+            {{ t("PostVue.Back") }}
           </button>
         </div>
         <!-- agreement -->
-        <div class="modal" v-if="this.modalStore.show">
+        <div class="modal" v-if="modalStore.show">
           <div class="modalContent"><Agreement /></div>
         </div>
       </div>
@@ -39,49 +38,53 @@
     <Footer />
   </div>
 </template>
-<script>
-import getApi from "../../mixins/getApiForProject2";
-import getPosts from "../../mixins/getPostsForProject2";
+<script setup>
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import Agreement from "@/components/Project2/Agreement.vue";
+import axios from "axios";
 import { ModalStore } from "@/stores/ModalStore";
+import { ref, onMounted, defineEmits } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import { LoaderStore } from "@/stores/LoaderStore";
+import { useI18n } from "vue-i18n";
+import { ErrorStore } from "@/stores/ErrorStore";
+const error = ErrorStore();
+const { t } = useI18n();
+const loader = LoaderStore();
+const emit = defineEmits(["currentPage"]);
+const router = useRouter();
+const route = useRoute();
+let comments = ref([]);
+//const path = "posts/" + route.params.id
+const commentsPath = "posts/" + route.params.id + "/comments";
+const modalStore = ModalStore();
 
-export default {
-  name: "Post-component",
-  components: { Header, Footer, Agreement },
-  mixins: [getApi, getPosts],
-  setup() {
-    const modalStore = ModalStore();
-    return {
-      modalStore,
-    };
-  },
-  data() {
-    return {
-      isOpen: false,
-      post: {},
-      comments: {},
-      path: "posts/" + this.$route.params.id,
-      commentsPath: "posts/" + this.$route.params.id + "/comments",
-    };
-  },
-  created() {
-    this.showComments(this.commentsPath);
-  },
-  methods: {
-    async showComments(commentsPath) {
-      this.comments = await this.get(commentsPath);
-    },
-    back() {
-      this.$emit("currentPage", this.$route.params.currentPage);
-      this.$router.go(-1);
-    },
-    showModal() {
-      this.modalStore.showModal(true);
-    },
-  },
-};
+onMounted(() => {
+  showComments(commentsPath);
+});
+async function showComments(commentsPath) {
+  comments.value = await get(commentsPath);
+}
+function back() {
+  emit("currentPage", route.params.currentPage);
+  router.go(-1);
+}
+function showModal() {
+  modalStore.showModal(true);
+}
+async function get(path, cb = null) {
+  loader.showLoader();
+  return await axios
+    .get(process.env.VUE_APP_API_P2ENDPOINT_URL + path)
+    .then((response) => (cb !== null ? cb(response.data) : response.data))
+    .catch((err) => {
+      error.showError(err.statusCode);
+    })
+    .finally(() => {
+      loader.hideLoader();
+    });
+}
 </script>
 <style scoped>
 .btn {

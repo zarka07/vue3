@@ -9,34 +9,14 @@
   </div>
 </template>
 
-<script>
-import { LoaderStore } from "@/stores/LoaderStore";
-import Loader from "@/components/Project2/Loader.vue";
-//import AuthorizationItem from '@/views/Authorization.vue';
-//import UserItem from '@/views/User.vue'
-export default {
-  name: "App",
-  components: {
-    Loader,
-    //AuthorizationItem, UserItem,
-  },
-  setup() {
-    const loader = LoaderStore();
-    return {
-      loader,
-    };
-  },
-  methods: {
-    toUser() {
-      this.$router.push("/user");
-    },
-  },
-  computed: {
-    showLoader() {
-      return this.loader.loading;
-    },
-  },
-};
+<script setup>
+  import { computed } from "vue";
+  import { LoaderStore } from "@/stores/LoaderStore";
+  import Loader from "@/components/Project2/Loader.vue";
+  const loader = LoaderStore();
+  const showLoader = computed(() => {
+    return loader.loading;
+  });
 </script>
 
 <style scoped>

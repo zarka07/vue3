@@ -5,14 +5,14 @@
       <div>
         <div>
           <div class="posts">
-            <h3>{{ $t("PostlistVue.Postlist") }}</h3>
+            <h3>{{ t("PostlistVue.Postlist") }}</h3>
           </div>
-          <ul class="post">
+          <ul class="post" v-if="posts">
             <li v-for="post in displayedPosts" :key="post.id">
               <router-link
                 :to="{
                   name: 'PostId',
-                  params: { id: post.id, currentPage: this.userStore.currentPage },
+                  params: { id: post.id, currentPage: userStore.currentPage },
                 }"
               >
                 {{ post.id }}. {{ post.title }}
@@ -30,10 +30,10 @@
             type="button"
             class="page-link"
             style="color: #4caf50"
-            v-if="this.userStore.currentPage != 1"
-            @click="this.userStore.currentPage--"
+            v-if="userStore.currentPage != 1"
+            @click="userStore.currentPage--"
           >
-            {{ $t("PostlistVue.Previous") }}
+            {{ t("PostlistVue.Previous") }}
           </button>
         </li>
         <li class="page-item">
@@ -41,11 +41,11 @@
             type="button"
             class="page-link"
             v-for="pageNumber in pages.slice(
-              this.userStore.currentPage - 1,
-              this.userStore.currentPage + 5
+              userStore.currentPage - 1,
+              userStore.currentPage + 5
             )"
             :key="pageNumber"
-            @click="this.userStore.currentPage = pageNumber"
+            @click="userStore.currentPage = pageNumber"
           >
             {{ pageNumber }}
           </button>
@@ -53,70 +53,72 @@
         <li class="page-item">
           <button
             type="button"
-            @click="this.userStore.currentPage++"
+            @click="userStore.currentPage++"
             style="color: #4caf50"
-            v-if="this.userStore.currentPage < pages.length"
+            v-if="userStore.currentPage < pages.length"
             class="page-link"
           >
-            {{ $t("PostlistVue.Next") }}
+            {{ t("PostlistVue.Next") }}
           </button>
         </li>
       </ul>
     </nav>
   </div>
 </template>
-<script>
-import getApi from "../../mixins/getApiForProject2";
-import getPosts from "../../mixins/getPostsForProject2";
+<script setup>
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 import { UserStore } from "@/stores/UserStore";
-export default {
-  name: "PostList",
-  mixins: [getApi, getPosts],
-  setup() {
-    const userStore = UserStore();
-    return {
-      userStore,
-    };
-  },
-  data() {
-    return {
-      path: "posts",
-      posts: [],
-      perPage: 10,
-      pages: [],
-    };
-  },
-  methods: {
-    setPages() {
-      let numberOfPages = Math.ceil(this.posts.length / this.perPage);
-      for (let index = 1; index <= numberOfPages; index++) {
-        this.pages.push(index);
-      }
-    },
-    paginate(posts) {
-      let page = this.userStore.currentPage;
-      let perPage = this.perPage;
-      let from = page * perPage - perPage;
-      let to = page * perPage;
-      return posts.slice(from, to);
-    },
-  },
-  computed: {
-    displayedPosts() {
-      return this.paginate(this.posts);
-    },
-  },
-  watch: {
-    posts() {
-      this.setPages();
-    },
-  },
-  filters: {
-    trimWords(value) {
-      return value.split(" ").splice(0, 20).join(" ") + "...";
-    },
-  },
-};
+import { ErrorStore } from "@/stores/ErrorStore";
+import { ref, reactive, computed, onBeforeMount } from "vue";
+import { LoaderStore } from "@/stores/LoaderStore";
+import axios from "axios";
+const loader = LoaderStore();
+const userStore = UserStore();
+const error = ErrorStore();
+const perPage = 10;
+let path = "posts";
+let posts = ref([]);
+let pages = reactive([]);
+onBeforeMount(async () => {
+  loader.showLoader()
+  let cb = null
+  posts.value = await axios
+    .get(process.env.VUE_APP_API_P2ENDPOINT_URL + path, cb)
+    .then((response) => (cb !== null ? cb(response.data) : response.data))
+    .catch((err) => {
+      error.showError(err)      
+    })
+    .finally(() => {
+      loader.hideLoader();
+    });
+  if(posts.value){
+    setPages()
+  }else{
+    return 0
+  }
+});
+function setPages() {
+  let numberOfPages = Math.ceil(posts.value.length / perPage);
+  for (let index = 1; index <= numberOfPages; index++) {
+    pages.push(index);
+  }
+  return pages;
+}
+let displayedPosts = computed(() => {
+  return paginate(posts.value);
+})
+function paginate(value) {
+    let page = userStore.currentPage;
+    let from = page * perPage - perPage;
+    let to = page * perPage;
+    return value.slice(from, to);
+}
+// filters: {
+//   trimWords(value) {
+//     return value.split(" ").splice(0, 20).join(" ") + "...";
+//   },
+// },
 </script>
 <style scoped>
 .post {

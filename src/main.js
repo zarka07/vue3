@@ -6,7 +6,7 @@ import router from '@/router';
 import { initializeApp } from "firebase/app";
 import Toaster from '@meforma/vue-toaster';
 import "bootstrap/dist/js/bootstrap.js";
-import { createI18n } from 'vue-i18n/index';
+import { createI18n, useI18n } from 'vue-i18n';
 //import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { CRMstore } from "@/stores/CRMstore";
 
@@ -118,6 +118,7 @@ const firebaseConfig = {
 
 
 const i18n = createI18n({
+    legacy: false, //if use Composition API
     locale: 'en', // set locale
     fallbackLocale: 'ru', // set fallback locale
     messages,
@@ -126,9 +127,14 @@ const i18n = createI18n({
 let app = initializeApp(firebaseConfig)
 
 
-app = createApp(App).
+app = createApp(App, {
+    setup() {
+        const { $t } = useI18n;
+        return { $t }
+    }
+}).
     use(router).
-    use(i18n).
+    use(i18n, {scope: global}).
     use(Toaster, { position: 'bottom' }).
     use(createPinia())
 app.mount('#app')
