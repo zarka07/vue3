@@ -102,11 +102,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "cv-component",
-  data: () => ({
-    contacts: [
+<script setup>
+ const contacts = [
       {
         icon: "bi bi-arrow-down-right-circle",
         description: "Kharkiv, Ukraine",
@@ -132,10 +129,9 @@ export default {
         description: "serhii-tarasov",
         href: "https://www.linkedin.com/in/serhii-tarasov/",
       },
-    ],
-    skills: ["emotional stability", "attentiveness", "scrupulosity", "self-motivation"],
-  }),
-};
+    ]
+ const skills = ["emotional stability", "attentiveness", "scrupulosity", "self-motivation"]
+
 </script>
 
 <style scoped>
