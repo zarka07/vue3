@@ -13,7 +13,7 @@
   padding-top: 30vh;
   color: #fff;
   text-align: center;
-  font-size: 6rem;
+  font-size: 5rem;
   justify-content: center;
   align-items: center;
   position: absolute;
