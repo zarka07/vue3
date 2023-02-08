@@ -49,7 +49,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 const modalStore = ModalStore();
 const router = useRouter();
-const { t } = useI18n({ useScope: "global" });
+const { t } = useI18n();
 let isReaded = ref(false);
 const modal = ref(null);
 function closeAgreement() {
