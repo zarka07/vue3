@@ -5,28 +5,28 @@
       <div>
         <div class="postNumber">
           <h3>
-            {{ t("PostVue.Comments") }} {{ t("PostVue.Post") }} {{ route.params.id }}
+            {{ $t("PostVue.Comments") }} {{ $t("PostVue.Post") }} {{ route.params.id }}
           </h3>
         </div>
         <!-- comment -->
         <div class="comment" v-for="comment in comments" :key="comment.id">
           <p>
-            <b>{{ t("PostVue.Name") }}:</b> {{ comment.name }}
+            <b>{{ $t("PostVue.Name") }}:</b> {{ comment.name }}
           </p>
           <p>
-            <b>{{ t("PostVue.Email") }}:</b> {{ comment.email }}
+            <b>{{ $t("PostVue.Email") }}:</b> {{ comment.email }}
           </p>
           <p>
-            <b>{{ t("PostVue.Body") }}:</b> {{ comment.body }}
+            <b>{{ $t("PostVue.Body") }}:</b> {{ comment.body }}
           </p>
         </div>
         <!-- modal -->
         <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-2">
           <button class="btn btn-success" type="button" @click="showModal">
-            {{ t("Agreement.ShowAgreement") }}
+            {{ $t("Agreement.ShowAgreement") }}
           </button>
           <button class="btn btn-primary" type="button" @click="back">
-            {{ t("PostVue.Back") }}
+            {{ $t("PostVue.Back") }}
           </button>
         </div>
         <!-- agreement -->
@@ -47,10 +47,8 @@ import { ModalStore } from "@/stores/ModalStore";
 import { ref, onMounted, defineEmits } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { LoaderStore } from "@/stores/LoaderStore";
-import { useI18n } from "vue-i18n";
 import { ErrorStore } from "@/stores/ErrorStore";
 const error = ErrorStore();
-const { t } = useI18n();
 const loader = LoaderStore();
 const emit = defineEmits(["currentPage"]);
 const router = useRouter();

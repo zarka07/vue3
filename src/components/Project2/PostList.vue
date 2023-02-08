@@ -5,7 +5,7 @@
       <div>
         <div>
           <div class="posts">
-            <h3>{{ t("PostlistVue.Postlist") }}</h3>
+            <h3>{{ $t("PostlistVue.Postlist") }}</h3>
           </div>
           <ul class="post" v-if="posts">
             <li v-for="post in displayedPosts" :key="post.id">
@@ -33,7 +33,7 @@
             v-if="userStore.currentPage != 1"
             @click="userStore.currentPage--"
           >
-            {{ t("PostlistVue.Previous") }}
+            {{ $t("PostlistVue.Previous") }}
           </button>
         </li>
         <li class="page-item">
@@ -58,7 +58,7 @@
             v-if="userStore.currentPage < pages.length"
             class="page-link"
           >
-            {{ t("PostlistVue.Next") }}
+            {{ $t("PostlistVue.Next") }}
           </button>
         </li>
       </ul>
@@ -66,8 +66,6 @@
   </div>
 </template>
 <script setup>
-import { useI18n } from "vue-i18n";
-const { t } = useI18n();
 import { UserStore } from "@/stores/UserStore";
 import { ErrorStore } from "@/stores/ErrorStore";
 import { ref, reactive, computed, onBeforeMount } from "vue";

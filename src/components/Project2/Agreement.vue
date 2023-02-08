@@ -29,7 +29,7 @@
     <!-- buttons-->
     <div class="d-grid gap-2 col-4 mx-auto mt-2">
       <button class="btn btn-danger" type="button" @click="closeAgreement">
-        {{ t("Agreement.NotAgree") }}
+        {{ $t("Agreement.NotAgree") }}
       </button>
       <button
         class="btn btn-success"
@@ -37,19 +37,17 @@
         :disabled="!isReaded"
         @click="showPost"
       >
-        {{ t("Agreement.Agree") }}
+        {{ $t("Agreement.Agree") }}
       </button>
     </div>
   </div>
 </template>
 <script setup>
 import { ModalStore } from "@/stores/ModalStore";
-import { useI18n } from "vue-i18n";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 const modalStore = ModalStore();
 const router = useRouter();
-const { t } = useI18n();
 let isReaded = ref(false);
 const modal = ref(null);
 function closeAgreement() {
@@ -57,7 +55,7 @@ function closeAgreement() {
   router.push({ name: "PostList" });
 }
 function showPost() {
-  let answer = t("Agreement.Molodec");
+  let answer = `$t("Agreement.Molodec")`;
   alert(answer + "!");
   modalStore.showModal(false);
 }
