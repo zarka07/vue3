@@ -15,17 +15,17 @@
       <ul class="dropdown" v-if="showDropdown">
         <li>
           <router-link to="/about" class="dropDownButton"
-            ><h5>{{ t("Where") }}?</h5></router-link
+            ><h5>{{ $t("Where") }}?</h5></router-link
           >
         </li>
         <li>
           <router-link to="/about" class="dropDownButton"
-            ><h5>{{ t("What") }}?</h5></router-link
+            ><h5>{{ $t("What") }}?</h5></router-link
           >
         </li>
         <li>
           <router-link to="/about" class="dropDownButton"
-            ><h5>{{ t("Who") }}?</h5></router-link
+            ><h5>{{ $t("Who") }}?</h5></router-link
           >
         </li>
       </ul>
@@ -36,7 +36,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
-let { t, locale } = useI18n();
+let { locale } = useI18n();
 const showDropdown = ref(false);
 let style = "clip-path:polygon(0 100%, 100% 100%, 100% 100%, 0 100%)";
 onMounted(() => {
@@ -49,7 +49,6 @@ function set() {
 function changeLang(lang) {
   if (locale.value !== lang) {
     locale.value = lang;
-    console.log(locale.value);
   }
 }
 </script>

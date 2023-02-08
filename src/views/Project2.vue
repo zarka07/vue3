@@ -10,7 +10,7 @@
     <div class="" style="min-height: 77vh">
       <div class="Header row" style="margin: 0">
         <div class="title col-xs-12 col-sm-6 col-md-6">
-          <h2>{{ t("AppVue.Vue") }}</h2>
+          <h2>{{ $t("AppVue.Vue") }}</h2>
         </div>
 
         <div class="dropdown col-xs-12 col-sm-6 col-md-6">
@@ -21,12 +21,12 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            {{ t("AppVue.Language") }}
+            {{ $t("AppVue.Language") }}
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li v-for="_locale in locales" :key="_locale" @click="changeLang(_locale)">
               <a class="dropdown-item" href="#">
-                {{ t("AppVue.Language") }}: {{ _locale }}
+                {{ $t("AppVue.Language") }}: {{ _locale }}
               </a>
             </li>
           </ul>
@@ -45,7 +45,7 @@ import Footer from "@/components/Footer.vue";
 import PostList from "@/components/Project2/PostList.vue";
 import { ErrorStore } from "@/stores/ErrorStore";
 import { useI18n } from "vue-i18n";
-let { t, locale } = useI18n();
+let { locale } = useI18n();
 const locales = process.env.VUE_APP_I18N_SUPPORTED_LOCALE.split(",");
 const error = ErrorStore();
 function changeLang(_locale) {

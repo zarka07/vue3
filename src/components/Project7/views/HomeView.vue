@@ -5,20 +5,20 @@
   <main class="main">
     <aside class="main__aside__left">
       <router-link to="/about"
-        ><h6>{{ t("Where") }}?</h6></router-link
+        ><h6>{{ $t("Where") }}?</h6></router-link
       >
     </aside>
     <article class="main__article">
       <section id="text" class="main__article__title">
-        <div>{{ t("FullCycle") }}</div>
-        <div>{{ t("EventAgency") }}</div>
+        <div>{{ $t("FullCycle") }}</div>
+        <div>{{ $t("EventAgency") }}</div>
       </section>
       <section id="run" class="main__article__runningtext">
         <div class="article__runningtext__top marquee marquee__top">
-          <span class="marq">{{ t("AgencyLine") }}</span>
+          <span class="marq">{{ $t("AgencyLine") }}</span>
         </div>
         <div class="article__runningtext__bottom marquee marquee__bottom">
-          <span class="marq">{{ t("AgencyLine") }}</span>
+          <span class="marq">{{ $t("AgencyLine") }}</span>
         </div>
       </section>
       <section class="main__article__textRotated">
@@ -27,20 +27,18 @@
     </article>
     <aside class="main__aside__right">
       <router-link to="/about"
-        ><h6>{{ t("What") }}?</h6></router-link
+        ><h6>{{ $t("What") }}?</h6></router-link
       >
     </aside>
     <aside class="main__aside__bottom">
       <router-link to="/about"
-        ><h6>{{ t("Who") }}?</h6></router-link
+        ><h6>{{ $t("Who") }}?</h6></router-link
       >
     </aside>
   </main>
 </template>
 
 <script setup>
-import { useI18n } from "vue-i18n";
-let { t } = useI18n();
 import Header from "../components/Header.vue";
 import { onMounted } from "vue";
 onMounted(() => {
