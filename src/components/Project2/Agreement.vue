@@ -46,6 +46,8 @@
 import { ModalStore } from "@/stores/ModalStore";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import {useI18n } from 'vue-i18n'
+const { t } = useI18n()
 const modalStore = ModalStore();
 const router = useRouter();
 let isReaded = ref(false);
@@ -55,7 +57,7 @@ function closeAgreement() {
   router.push({ name: "PostList" });
 }
 function showPost() {
-  let answer = `$t("Agreement.Molodec")`;
+  let answer = t("Agreement.Molodec");
   alert(answer + "!");
   modalStore.showModal(false);
 }
