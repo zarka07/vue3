@@ -24,7 +24,8 @@
           </div>
           <div class="skills">
             <div>JS + <span class="vue">Vue.js</span></div>
-            <div class="vue">(Vuex/Pinia/Router/Vuetify/Quasar)</div>
+            <div class="vue">(Vuex/Pinia/Router/Vuetify/Quasar/</div>
+            <div class="vue">Composition API)</div>
             <div class="js">i18n/axios/RestAPI/Bootstrap5/Firebase</div>
           </div>
           <!-- minor skills -->
@@ -83,7 +84,7 @@
               <b>2+ years of non-commercial experience (11.2019 - today):</b>
             </h6>
             <p>
-              Creating pet projects using Vue 2, 3, Vuex, Pinia, router, axios, Vuetify, Quasar,
+              Creating pet projects using Vue 2, 3 (Composition API), Vuex, Pinia, router, axios, Vuetify, Quasar,
               bootstrap5, i18n, localStorage, Firebase, wrld.js, MSSQL Databases.
             </p>
             <h4 class="goal">OTHER EXPERIENCE:</h4>
