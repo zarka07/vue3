@@ -200,7 +200,12 @@ const routes = [
 		path: '/user',
 		name: 'User',
 		component: () => import(/*webpackChunkName: "User" */ '@/views/User.vue'),
-	}
+	},
+	// {
+	// 	path: '/:catchAll(.*)*',
+	// 	name: "PageNotFound",
+	// 	component: PageNotFound,
+	// },
 ]
 const router = createRouter({
 	history: createWebHistory(),

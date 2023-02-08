@@ -3,7 +3,7 @@
     <Header />
     <router-view v-slot="{ Component }">
       <transition name="slide-fade" mode="out-in">
-        <div class="slide-fade__component" :key="$route.name">
+        <div class="slide-fade__component" :key="route.name">
           <component :is="Component" />
         </div>
       </transition>
@@ -11,22 +11,18 @@
     <Footer />
   </div>
 </template>
-<script>
+<script setup>
+import { useRoute } from 'vue-router'
+import { computed, onMounted } from 'vue'
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import HomeView from "../components/Project7/views/HomeView.vue";
 import AboutView from "../components/Project7/views/AboutView.vue";
-export default {
-  name: "project7-component",
-
-  computed: {
-    Component() {
-      return HomeView ? HomeView : AboutView;
-    },
-  },
-
-  components: { Header, Footer, HomeView, AboutView },
-};
+const route = useRoute()
+const Component = computed(()=>{
+  return HomeView ? HomeView : AboutView
+})
+onMounted(()=>console.log(Component))
 </script>
 
 <style scoped>

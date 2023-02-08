@@ -55,7 +55,15 @@ const messages = {
             "416": "Error #:",
             "422": "Validation failed.",
             "500": "Service is not avalible"
-        }
+        },
+        "lang": "en",
+        "Where": "Where",
+        "What": "What",
+        "Who": "Who",
+        "AgencyLine": "FULL-CYCLE EVENT AGENCY FULL-CYCLE EVENT AGENCY",
+        "FullCycle": "FULL-CYCLE",
+        "EventAgency": "EVENT AGENCY",
+        "About": "About us"
     },
     ru: {
         "AppVue": {
@@ -99,9 +107,15 @@ const messages = {
             "422": "Проверка данных завершилась неудачно.",
             "500": "Сервис недоступен"
 
-        }
-
-
+        },
+        "lang": "укр",
+        "Where": "Де",
+        "What": "Що",
+        "Who": "Хто",
+        "AgencyLine": "АГЕНЦІЯ З ЗАХОДІВ ПОВНОГО ЦИКЛУ АГЕНЦІЯ З ЗАХОДІВ ПОВНОГО ЦИКЛУ",
+        "FullCycle": "АГЕНЦІЯ З ЗАХОДІВ",
+        "EventAgency": "ПОВНОГО ЦИКЛУ",
+        "About": "Про нас"
     }
 }
 
@@ -122,6 +136,7 @@ const i18n = createI18n({
     locale: 'en', // set locale
     fallbackLocale: 'ru', // set fallback locale
     messages,
+    globalInjection: true,
 })
 
 let app = initializeApp(firebaseConfig)
@@ -134,7 +149,7 @@ app = createApp(App, {
     }
 }).
     use(router).
-    use(i18n, {scope: global}).
+    use(i18n, { scope: global }).
     use(Toaster, { position: 'bottom' }).
     use(createPinia())
 app.mount('#app')

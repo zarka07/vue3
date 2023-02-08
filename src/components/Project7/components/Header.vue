@@ -2,8 +2,8 @@
   <nav class="nav">
     <div class="nav__group53">
       <img src="/assets/images/Group53.svg" alt="group53" />
-      <h5 class="nav__lang nav__lang__ua">UA</h5>
-      <h5 class="nav__lang nav__lang__usa">EN</h5>
+      <h5 class="nav__lang nav__lang__ua" @click="changeLang('ru')">ua</h5>
+      <h5 class="nav__lang nav__lang__usa" @click="changeLang('en')">en</h5>
     </div>
 
     <div id="nav__title" :style="style">
@@ -14,39 +14,44 @@
       <img src="/assets/images/Group176.svg" alt="two lines" />
       <ul class="dropdown" v-if="showDropdown">
         <li>
-          <router-link to="/about" class="dropDownButton"><h5>where?</h5></router-link>
+          <router-link to="/about" class="dropDownButton"
+            ><h5>{{ t("Where") }}?</h5></router-link
+          >
         </li>
         <li>
-          <router-link to="/about" class="dropDownButton"><h5>what?</h5></router-link>
+          <router-link to="/about" class="dropDownButton"
+            ><h5>{{ t("What") }}?</h5></router-link
+          >
         </li>
         <li>
-          <router-link to="/about" class="dropDownButton"><h5>who?</h5></router-link>
+          <router-link to="/about" class="dropDownButton"
+            ><h5>{{ t("Who") }}?</h5></router-link
+          >
         </li>
       </ul>
     </button>
   </nav>
 </template>
 
-<script>
-export default {
-  name: "Header-component",
-  data() {
-    return {
-      showDropdown: false,
-      style: "clip-path:polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
-    };
-  },
-  mounted() {
-    //let text = document.getElementById("nav__title");
-    setTimeout(this.set, 1000);
-  },
-  methods: {
-    set() {
-      this.style =
-        "clip-path:polygon(0 0, 100% 0, 100% 100%, 0 100%); display:inline-block";
-    },
-  },
-};
+<script setup>
+import { ref, onMounted } from "vue";
+import { useI18n } from "vue-i18n";
+let { t, locale } = useI18n();
+const showDropdown = ref(false);
+let style = "clip-path:polygon(0 100%, 100% 100%, 100% 100%, 0 100%)";
+onMounted(() => {
+  //let text = document.getElementById("nav__title");
+  setTimeout(set, 1000);
+});
+function set() {
+  style = "clip-path:polygon(0 0, 100% 0, 100% 100%, 0 100%); display:inline-block";
+}
+function changeLang(lang) {
+  if (locale.value !== lang) {
+    locale.value = lang;
+    console.log(locale.value);
+  }
+}
 </script>
 
 <style scoped>
