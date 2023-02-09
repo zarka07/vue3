@@ -110,7 +110,7 @@ export default {
   padding: 40px;
   display: inline-block;
   width: 100%;
-  min-width: 375px;
+  min-width: 400px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
