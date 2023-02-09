@@ -5,14 +5,11 @@
     </div>
     <hr />
     <!-- <Loader v-if="isLoaded" /> -->
-    <section >
+    <section>
       <div class="row justify-content-evenly">
-        <AddCategory @categoryAdded="updateCategories"/>
+        <AddCategory @categoryAdded="updateCategories" />
 
-        <EditCategory
-          :categories="categories"
-          :key="categories.length + updateCount"
-        />
+        <EditCategory :categories="categories" :key="updateCount" />
       </div>
     </section>
   </div>
@@ -33,25 +30,37 @@ export default {
     };
   },
 
-  components: { AddCategory, EditCategory, //Loader 
+  components: {
+    AddCategory,
+    EditCategory, //Loader
   },
 
   data() {
     return {
       isLoaded: true,
-      categories: this.crmStore.categories,
       updateCount: 0,
     };
   },
 
-  methods:{
-    updateCategories(){
+  methods: {
+    updateCategories() {
       this.updateCount++;
-    }
+      this.crmStore.categories = JSON.parse(localStorage.getItem("categories"))||[];
+    },
   },
-
-  // async mounted() {
-  //   await this.crmStore.fetchCategories().then((this.isLoaded = false));
-  // },
+  computed: {
+    categories() {
+      return this.crmStore._userInfo.categories;
+    },
+  },
+  mounted(){
+    this.updateCategories();
+  },
+  watch:{
+      categories(){
+        let allInfo = JSON.parse(localStorage.getItem('userInfo'))
+        this.crmStore.categories = allInfo.categories
+    }
+  }
 };
 </script>
