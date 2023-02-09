@@ -1,5 +1,5 @@
 <template>
-  <div v-if="categories.length"
+  <div v-if="categories"
     class="edit border border-success col-xl-5 col-lg-5 col-md-5 col-sm-5 bg-light flex-wrap m-2"
   >
     <div class="p-2">
@@ -7,9 +7,9 @@
         <h4>Edit</h4>
       </div>
 
-      <form @submit.prevent="submit()">
+      <form @submit.prevent="submit">
         <div class="mb-2">
-          <label for="selectCategory">Choose the category</label>
+          
           <select
             class="form-select"
             id="selectCategory"
@@ -21,7 +21,7 @@
               {{ category.categoryName }}
             </option>
           </select>
-          
+          <label for="selectCategory">Choose the category</label>
         </div>
 
         <div class="mb-2">
@@ -80,7 +80,7 @@ export default {
       try {
         this.crmStore.updateCategory(this.current);
         this.current = {};
-        this.$toast.success("Категория обновлена!");
+        this.$toast.success("Category updated!");
       } catch (e) {
         this.$toast.warning(e.message);
       }
