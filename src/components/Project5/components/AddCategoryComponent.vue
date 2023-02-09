@@ -65,7 +65,7 @@ import { required } from "@vuelidate/validators";
 export default {
   name: "add-category",
 
-  emits: ["create-category"],
+  emits: ["categoryAdded"],
 
   setup() {
     const crmStore = CRMstore();
@@ -95,16 +95,18 @@ export default {
         return;
       }
 
-      //const newCategory = 
-      await this.crmStore.setNewCategory({
-        name: this.categoryName,
-        limit: this.categoryLimit,
-      });
-      this.categoryName = "";
-      this.categoryLimit = "";
-      this.v$.$reset();
-      this.$emit("categoryAdded")
-      this.$toast.success("Категория добавлена!");
+      await this.crmStore
+        .setNewCategory({
+          name: this.categoryName,
+          limit: this.categoryLimit,
+        })
+        .then((res) => {
+          this.$toast.success(`Category ${res.newCategory.categoryName} added`);
+          this.categoryName = "";
+          this.categoryLimit = "";
+          this.v$.$reset();
+          this.$emit("categoryAdded");
+        });
     },
   },
 };
