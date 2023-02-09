@@ -62,7 +62,10 @@
           {{ username ?? "anonimus" }}
         </a>
 
-        <ul class="dropdown-menu dropdown-menu-end me-1" aria-labelledby="dropdownMenuLink">
+        <ul
+          class="dropdown-menu dropdown-menu-end me-1"
+          aria-labelledby="dropdownMenuLink"
+        >
           <li v-if="username">
             <a class="dropdown-item p-1 mb-1" @click="toProfile"
               ><i class="bi bi-file-person me-2"></i>Profile</a
@@ -133,14 +136,11 @@ export default {
       return this.crmStore._userInfo.username;
     },
   },
-  mounted(){
-    console.log('mounted: ',this.crmStore._userInfo.username)
+  watch: {
+    username: function () {
+      return this.crmStore._userInfo.username;
+    },
   },
-  watch:{
-    username: function(){
-      return this.crmStore._userInfo.username
-    }
-  }
 };
 </script>
 
@@ -177,6 +177,6 @@ export default {
 
 .dropdown-menu {
   min-width: 5rem;
-  padding:10px;
+  padding: 10px;
 }
 </style>
