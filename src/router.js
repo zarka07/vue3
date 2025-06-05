@@ -93,7 +93,7 @@ const routes = [
 			{
 				path: '',
 				name: 'Home',
-				meta: { layout: 'main', auth: true },
+				meta: { layout: 'main', auth: false },
 				//beforeEnter: ifAuthenticated,
 				component: () => import(/* webpackChunkName: "Home.vue", webpackMode: "lazy" */'@/components/Project5/Views/Home.vue')
 			},
@@ -190,6 +190,12 @@ const routes = [
 				component: () => import(/* webpackChunkName: "AboutView.vue", webpackMode: "lazy" */'@/components/Project7/views/AboutView.vue'),
 			},
 		]
+	},
+	{
+		path: '/project8',
+		name: 'Project8',
+		component: () => import(/* webpackChunkName: "Project8.vue", webpackMode: "lazy" */'@/views/Project8.vue'),
+		
 	},
 	{
 		path: '/auth',
