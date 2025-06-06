@@ -192,9 +192,9 @@ const routes = [
 		]
 	},
 	{
-		path: '/project8',
-		name: 'Project8',
-		component: () => import(/* webpackChunkName: "Project8.vue", webpackMode: "lazy" */'@/views/Project8.vue'),
+		path: '/project9',
+		name: 'Project9',
+		component: () => import(/* webpackChunkName: "Project9.vue", webpackMode: "lazy" */'@/views/Project9.vue'),
 		
 	},
 	{
