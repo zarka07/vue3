@@ -80,6 +80,11 @@ export default {
       password: { required, minLength: minLength(6) },
     };
   },
+  // computed:{
+  //   catKey(){
+  //     return this.crmStore.categoryKey?this.crmStore.categoryKey:''
+  //   }
+  // },
   methods: {
     async onSubmit() {
       if (this.v$.$invalid) {
@@ -91,17 +96,25 @@ export default {
       };
 
       try {
-          await this.crmStore.login(formData);
-          if(localStorage.getItem("userInfo")){
-            this.$router.push({ name: "Home" })
-            this.$toast.success(`Your login is successful`)
-          }
-          else return
+        await this.crmStore.login(formData).then((res) => {
+          if (res === 1) {
+            this.$router.push({ name: "Home" });
+            this.$toast.success(`Your login is successful`);
+          } else return;
+        });
       } catch (e) {
-        this.$toast.warning(e.message)
+        this.$toast.warning(e.message);
       }
     },
   },
+  // updated(){
+  //   this.catKey = this.crmStore.categoryKey
+  // },
+  // watch:{
+  //   catKey(){
+  //     this.crmStore._userInfo = JSON.parse(localStorage.getItem('userInfo'))
+  //   }
+  // }
 };
 </script>
 
@@ -140,6 +153,6 @@ export default {
 }
 
 .errors {
-  width:100%;
+  width: 100%;
 }
 </style>

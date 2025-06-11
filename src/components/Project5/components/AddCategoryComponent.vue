@@ -58,56 +58,41 @@
   </div>
 </template>
 
-<script>
-import { CRMstore } from "@/stores/CRMstore";
-import useVuelidate from "@vuelidate/core";
-import { required } from "@vuelidate/validators";
-export default {
-  name: "add-category",
+<script setup>
+//import { CRMstore } from "@/stores/CRMstore";
+import { useVuelidate } from "@vuelidate/core"
+import { required } from "@vuelidate/validators"
+import { reactive, computed } from "vue"
 
-  emits: ["categoryAdded"],
+//emits: ["categoryAdded"],
+const state = reactive({
+  categoryName: '',
+  categoryLimit: '',
+})
+const rules = computed(() => ({
+  categoryName: { required },
+  categoryLimit: { required },
+}));
+const v$ = useVuelidate(rules, state);
+async function addCategory() {
+  if (this.v$.$invalid) {
+    for (let err of this.v$.$silentErrors) {
+      this.$toast.warning(err.$message);
+    }
+    return;
+  }
 
-  setup() {
-    const crmStore = CRMstore();
-    return {
-      crmStore,
-      v$: useVuelidate(),
-    };
-  },
-
-  data: () => ({
-    categoryName: "",
-    categoryLimit: "",
-  }),
-
-  validations() {
-    return {
-      categoryName: { required },
-      categoryLimit: { required },
-    };
-  },
-  methods: {
-    async addCategory() {
-      if (this.v$.$invalid) {
-        for (let err of this.v$.$silentErrors) {
-          this.$toast.warning(err.$message);
-        }
-        return;
-      }
-
-      await this.crmStore
-        .setNewCategory({
-          name: this.categoryName,
-          limit: this.categoryLimit,
-        })
-        .then((res) => {
-          this.$toast.success(`Category ${res.newCategory.categoryName} added`);
-          this.categoryName = "";
-          this.categoryLimit = "";
-          this.v$.$reset();
-          this.$emit("categoryAdded");
-        });
-    },
-  },
-};
+  await this.crmStore
+    .setNewCategory({
+      name: this.categoryName,
+      limit: this.categoryLimit,
+    })
+    .then((res) => {
+      this.$toast.success(`Category ${res.newCategory.categoryName} added`);
+      this.categoryName = "";
+      this.categoryLimit = "";
+      this.v$.$reset();
+      this.$emit("categoryAdded");
+    });
+}
 </script>

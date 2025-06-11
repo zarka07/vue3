@@ -10,7 +10,7 @@ export const ErrorStore = defineStore('error', {
     actions: {
         showError(statusCode) {
             this.statusCode = statusCode,
-                this.isError = true
+            this.isError = true
         },
     }
 })

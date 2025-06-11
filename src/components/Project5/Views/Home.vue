@@ -56,10 +56,10 @@ export default {
   },
 
   async mounted() {
-    this.currency = await this.crmStore.getCurrency(this.billParams.to, this.billParams.from);
-    this.billParams.result = this.currency.result;
-    this.date = this.currency.date;
-    this.billParams.loading = false;
+    //this.currency = await this.crmStore.getCurrency(this.billParams.to, this.billParams.from);
+    //this.billParams.result = this.currency.result;
+    //this.date = this.currency.date;
+    //this.billParams.loading = false;
   },
 };
 </script>
