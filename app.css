@@ -1,0 +1,77 @@
+.navbar-default{
+  height: 10vh;
+}
+
+
+header h2{
+  padding: 20px 20px;
+}
+
+.boxes {
+  margin-top: 20px;
+}
+
+.verify {
+  margin-top: 20px;
+}
+
+.submit {
+  margin-top:20px;
+  float: right;
+}
+
+.pagecheckout {
+  padding: 20px 50px;
+}
+.description {
+  font-size: 120%;
+  margin-top:10px;
+}
+
+.inventory-message {
+  margin-left: 20px;
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: 80%;
+}
+.navbar-default::before{
+  background-color: crimson;
+}
+.price{
+  color:rgb(0, 255, 34);
+  font-size: 150%;
+  font-weight: bold;
+}
+
+.product {
+  margin-top: 17px;
+  max-height:300px;
+  max-width:100%;
+}
+
+.rating-active:before {
+   content: "\2605";
+   position: absolute;
+}
+.rating {
+  display: inline;
+  margin: 10px 0 10px 0;
+}
+.rating > span {
+  position: relative;
+  width: 0.8em;
+}
+
+.rating-active{
+  color: gold;
+}
+
+
+.btn:disabled{
+  opacity: 0.2;
+}
+
+h3 a{
+  color: black;
+  text-decoration: none;
+}

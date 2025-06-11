@@ -1,0 +1,68 @@
+{
+    "products":[
+      {
+        "id": 1001,
+        "title": "Турбулизатор для котла",
+        "description": "Турбулизатор (завихритель) применяется для увеличения времени теплопередачи от раскаленных дымовых газов к металлическим поверхностям теплообменника  и имеет такую форму, которая резко замедляет скорость движения раскаленных дымовых газов, проходящих сквозь трубы теплообменника. Таким образом, эффективность теплосъема значительно вырастает. КПД котла повышается.Особая конструкция турбулизатора устроена таким образом, чтобы прижимать ламинарные потоки газов к поверхности стенок теплообменника.Мы изготавливаем турбулизаторы из нержавеющей стали диаметром 5мм",
+        "price": 470.65,
+        "image": "images/turbulizator-dlya-kotla.png",
+        "availableInventory": 50,
+        "rating": 5
+      },
+      {
+        "id": 1002,
+        "title": "Задвижка чугунная Ду100 Ру25 HM",
+        "description": "Задвижка чугунная Ду100 Ру25 HM под ремонт. Вторая такая же, но без штурвала",
+        "price": 450.2,
+        "image": "images/zadvizhka-chugunnaya-du100.jpg",
+        "availableInventory": 3,
+        "rating": 1
+      },
+      {
+        "id": 1003,
+        "title": "Задвижка стальная Ду80",
+        "description": "Задвижка стальная Ду80",
+        "price": 850.99,
+        "image": "images/zadvizhka-stalnaja-du80.jpg",
+        "availableInventory": 1,
+        "rating": 4
+      },
+      {
+        "id": 1004,
+        "title": "Задвижка чугунная Ду50 Ру64 ЗИЛ",
+        "description": "Задвижка чугунная Ду50 Ру64 ЗИЛ",
+        "price": 2680.64,
+        "image": "images/zadvizhka-chugunnaya-du50.jpg",
+        "availableInventory": 1,
+        "rating": 4
+      },
+      {
+        "id": 1005,
+        "title": "Вентиль чугунный Ду80 Ру10",
+        "description": "Фланцевое соединение (квадрат)",
+        "price": 800.50,
+        "image": "images/ventil-chugunnij-kvadratnij-flanets.jpg",
+        "availableInventory": 1,
+        "rating": 3
+      },
+      {
+        "id": 1006,
+        "title": "Шаровый кран для газа Ду80 Ру16",
+        "description": "Шаровый кран для газа IVR 82 GJS 400 Ду80 Ру16 чугун",
+        "price": 2020,
+        "image": "images/zadvizhka-vr.png",
+        "availableInventory": 3,
+        "rating": 5
+      },
+      {
+        "id": 1007,
+        "title": "Кран шаровый диаметр 2'' ДУ50",
+        "description": "Резьбовое соединение два дюйма, разных производителей",
+        "price": 800,
+        "image": "images/kran-sharovij-2-dujma.png",
+        "availableInventory": 11,
+        "rating": 5
+      }
+      
+    ]
+  }
