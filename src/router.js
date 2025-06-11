@@ -207,11 +207,11 @@ const routes = [
 		name: 'User',
 		component: () => import(/*webpackChunkName: "User" */ '@/views/User.vue'),
 	},
-	// {
-	// 	path: '/:catchAll(.*)*',
-	// 	name: "PageNotFound",
-	// 	component: PageNotFound,
-	// },
+	{
+		path: '/:catchAll(.*)*',
+		name: "PageNotFound",
+		component: () => import(/* webpackChunkName: "PageNotFound.vue", webpackMode: "lazy" */'@/components/PageNotFound.vue'),
+	},
 ]
 const router = createRouter({
 	history: createWebHashHistory(),
