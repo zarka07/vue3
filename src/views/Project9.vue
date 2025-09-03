@@ -54,8 +54,7 @@ const transformedText = computed(() => {
 
     return value.trim();
   }).filter(Boolean); // убираем пустые строки/null
-
-  return results.join(', ');
+  return results.toString().replaceAll(' ', '').replaceAll(',', ', ');
 });
 const formattedSymbols = computed(() => {
   //const input = "Рульова тяга DACIA 97- RENAULT Logan 04-, Sandero 08-, Lodgy 1.6-1.4 12-, 6001550441, 60 01 547 606, 8660003581";
