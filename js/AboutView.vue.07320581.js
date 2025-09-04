@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvue3"]=self["webpackChunkvue3"]||[]).push([[688],{1712:function(t,u,e){e.r(u),e.d(u,{default:function(){return b}});var a=e(3396),n=e(4870),s=e(7139),c=e(678);const o={class:"about"};var r={setup(t){const u=(0,c.tv)();return(t,e)=>((0,a.wg)(),(0,a.iD)("div",o,[(0,a._)("h1",{onClick:e[0]||(e[0]=t=>(0,n.SU)(u).go(-1))},(0,s.zw)(t.$t("About")),1)]))}},v=e(89);const i=(0,v.Z)(r,[["__scopeId","data-v-b50a2a1e"]]);var b=i}}]);
+//# sourceMappingURL=AboutView.vue.07320581.js.map
