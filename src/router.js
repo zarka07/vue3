@@ -198,6 +198,12 @@ const routes = [
 		
 	},
 	{
+		path: '/project10',
+		name: 'Project-10',
+		component: () => import(/* webpackChunkName: "Project-10.vue", webpackMode: "lazy" */'@/views/Project-10.vue'),
+		
+	},
+	{
 		path: '/auth',
 		name: 'Authorization',
 		component: () => import(/*webpackChunkName: "auth" */ '@/views/Authorization.vue'),

@@ -1,0 +1,12 @@
+npm run build
+npm run deploy
+
+cd dist
+git init
+git remote add origin https://github.com/zarka07/zarka07.github.io.git
+git checkout -b main
+git add .
+git commit -m "Deploy new build"
+git push -f origin main
+
+node parser-server.js
