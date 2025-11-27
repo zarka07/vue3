@@ -31,7 +31,7 @@
           </section>
         </div>
         <div class="text-center p-3" style="background-color: #152733">
-          © 2022 Copyright:
+          © 2025 Copyright:
           <a class="text-white" href="mailto:zarka08@gmail.com">zarka08@gmail.com</a>
         </div>
       </div>
