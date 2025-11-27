@@ -24,9 +24,9 @@
           </div>
           <div class="skills">
             <div>JS + <span class="vue">Vue.js</span></div>
-            <div class="vue">(Vuex/Pinia/Router/Vuetify/Quasar/</div>
+            <div class="vue">(Vuex/ Pinia/ Router/ Vuetify/ Quasar</div>
             <div class="vue">Composition API)</div>
-            <div class="js">i18n/axios/RestAPI/Bootstrap5/Firebase</div>
+            <div class="js">i18n/ axios/ RestAPI/ Bootstrap5/ Firebase</div>
           </div>
           <!-- minor skills -->
           <div>
@@ -136,7 +136,10 @@
 </script>
 
 <style scoped>
-@media only screen and (max-width: 1400px) {
+.v-img{
+  height: calc(1rem + 1.5vw);
+}
+@media only screen and (min-width: 1400px) {
   .avatar {
     width: 300px;
     height: 480px;
@@ -155,7 +158,7 @@
   }
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (min-width: 1200px) {
   .avatar {
     width: 290px;
     height: 480px;
@@ -163,7 +166,7 @@
   .name {
     font-weight: 700;
     font-size: 4rem;
-    width:100vw;
+    max-width:100%;
   }
   .v-img {
     height: 46px;
@@ -175,7 +178,7 @@
   }
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (min-width: 992px) {
   .avatar {
     width: 160px;
     height: 256px;
@@ -194,7 +197,7 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (min-width: 768px) {
   .avatar {
     width: 220px;
     height: 352px;
@@ -213,7 +216,7 @@
   }
 }
 
-@media only screen and (max-width: 576px) {
+@media only screen and (min-width: 576px) {
   .avatar {
     width: 160px;
     height: 256px;
@@ -270,6 +273,9 @@ i {
   color: rgb(111, 176, 236);
   font-weight: 700;
   list-style: none;
+  white-space: normal;  
+  overflow-wrap: break-word; 
+  word-break: break-word;
 }
 
 a {
