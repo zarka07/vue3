@@ -28,11 +28,27 @@
       class=""
       readonly
     ></textarea>
+    <div class="border p-3 rounded flex items-start gap-3">
+      <div class="flex-1">
+        <label class="block mb-2 font-medium">Текст для копирования:</label>
+        <div class="whitespace-pre-line p-2 rounded bg-white border h-20 overflow-auto">
+          {{ clipboardText }}
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center justify-center gap-2">
+        <button @click="copyToClipboard" class="px-4 py-2 rounded shadow hover:opacity-90">
+          Копировать
+        </button>
+        <div v-if="copied" class="text-sm text-green-600">Скопировано!</div>
+        <div v-else class="text-sm text-gray-500">Нажми, чтобы скопировать</div>
+      </div>
+    </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue';
-
+const clipboardText = `👍В наявності ✅Відправка сьогодні 📞(068/073/098/099)-5-660-770 ☎️0-800-756-770`;
 const inputText = ref('');
 const input_Text = ref('');
 const transformedText = computed(() => {
@@ -124,4 +140,38 @@ const formattedSymbols = computed(() => {
           //   }, [])
           //   .join("");
 })
+const copied = ref(false);
+let copyTimeout = null;
+
+async function copyToClipboard() {
+  const text = clipboardText;
+
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(text);
+    } else {
+      // Fallback: временный textarea + execCommand
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      // Стили, чтобы не вызвать видимых изменений
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, ta.value.length);
+      const successful = document.execCommand('copy');
+      document.body.removeChild(ta);
+      if (!successful) throw new Error('execCommand copy failed');
+    }
+
+    // Показать подсказку "Скопировано!"
+    copied.value = true;
+    if (copyTimeout) clearTimeout(copyTimeout);
+    copyTimeout = setTimeout(() => (copied.value = false), 2000);
+  } catch (err) {
+    console.error('Copy failed', err);
+    // Можно показать пользователю ошибку или попробовать альтернативы
+    alert('Не удалось скопировать в буфер обмена. Пожалуйста, выделите текст и нажмите Ctrl+C.');
+  }
+}
 </script>
